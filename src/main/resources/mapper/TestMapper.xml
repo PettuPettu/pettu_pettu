@@ -1,0 +1,16 @@
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Mapper와 Interface의 경로와 이름이 같아야 한다. -->
+<mapper namespace="com.spring.pettu.mapper.TestMapper">
+	<select id="testList" resultType="com.spring.pettu.test.vo.TestEntity">
+		select * from poto
+	</select>
+
+	<insert id="insertTest" parameterType="com.spring.pettu.test.vo.TestEntity">
+		insert into poto values (#{id}, #{pw}, #{username})
+	</insert>
+</mapper>
+
+
