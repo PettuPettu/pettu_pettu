@@ -29,6 +29,8 @@
     <mvc:resources mapping="/assets/**" location="/pettu/assets/"/>
     <mvc:resources mapping="/**/css/**" location="/pettu/" />
     <mvc:resources mapping="/user/icon/**" location="/pettu/user/icon/" />
+    <mvc:resources mapping="/**/js/**" location="/pettu/" />
+
 
     <bean id="MY_tomcat_ds" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>

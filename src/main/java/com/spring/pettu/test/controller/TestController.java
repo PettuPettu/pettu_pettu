@@ -66,4 +66,10 @@ public class TestController {
         return "redirect:/list";
     }
 
+    @GetMapping("/layout")
+    public String layout(Model model) {
+        model.addAttribute("contentPage", "/list");
+        return "pettu/layout/layout";
+    }
+
 }
