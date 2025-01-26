@@ -1,0 +1,41 @@
+@import "./reset.css";
+@import "./color.css";
+
+@font-face {
+    font-family: "Hakgyoansim Dunggeunmiso TTF B";
+    src: url("../../assets/common/Hakgyoansim Dunggeunmiso TTF B.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Hakgyoansim Dunggeunmiso TTF R";
+    src: url("../../assets/common/Hakgyoansim Dunggeunmiso TTF R.ttf") format("truetype");
+}
+
+body {
+    font-family: "Hakgyoansim Dunggeunmiso TTF R";
+    background-color: var(--back-white-color);
+}
+
+header, footer {
+    padding: 15px 40px;
+}
+
+#main-content {
+    padding: 20px 40px;
+}
+
+input {
+    font-family: "Hakgyoansim Dunggeunmiso TTF R";
+}
+
+button {
+    font-family: "Hakgyoansim Dunggeunmiso TTF R";
+}
+
+textarea {
+    font-family: "Hakgyoansim Dunggeunmiso TTF R";
+}
+
+a {
+    cursor: pointer;
+}

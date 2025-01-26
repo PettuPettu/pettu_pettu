@@ -1,0 +1,20 @@
+footer {
+    background-color:var(--back-dark-color);
+    color: var(--font-gray-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+#footer-git {
+    width: 24px;
+}
+
+#footer-desc-title {
+    font-size: 14px;
+}
+
+#footer-desc-inc {
+    font-size: 12px;
+    margin-top: 5px;
+}
