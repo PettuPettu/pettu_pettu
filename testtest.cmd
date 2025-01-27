@@ -1,0 +1,3 @@
+:: 테스트테스트
+
+echo Starting tasks...
