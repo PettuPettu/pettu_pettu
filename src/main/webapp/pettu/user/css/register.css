@@ -68,14 +68,16 @@ h2 {
     font-size: 14px;
 }
 
-.email-group, .nickname-group {
+.email-group,
+.nickname-group {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 5px;
 }
 
-.email-input, .nickname-input {
+.email-input,
+.nickname-input {
     flex: 1;
 }
 
@@ -143,4 +145,10 @@ h2 {
     flex-shrink: 0;
     width: 100%;
     margin-top: auto;
+}
+
+/* 비밀번호 일치 여부 메시지 */
+#pwdMatchMessage {
+    margin-top: 5px;
+    font-size: 12px;
 }

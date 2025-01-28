@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.codehaus.jackson.annotate.JsonProperty;
 
 import java.util.Date;
 
@@ -16,7 +17,7 @@ public class UserVO {
     private String userEmail;
     private String userPw;
     private String userName;
-    private String userNickName;
+    private String userNickname;
     private String userRole;
     private int userStatus;
     private Date userCreateAt;
