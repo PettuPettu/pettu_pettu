@@ -1,0 +1,157 @@
+@import "../../layout/css/color.css";
+@import "../../layout/css/reset.css";
+@import "../../layout/css/layout.css";
+
+body {
+    background-color: var(--back-white-color);
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+/* Search Section */
+.search-section {
+    text-align: center;
+    padding: 30px;
+    background-color: #ffccbc;
+}
+
+.search-section h1 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: var(--font-point-color);
+}
+
+.search-section .search-bar {
+    padding: 10px;
+    width: 50%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: var(--back-white-color);
+}
+
+.search-section .search-button {
+    padding: 10px 15px;
+    background-color: var(--font-point-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+/* Hotdeal Sections */
+.hotdeal-section {
+    margin: 30px 20px;
+}
+
+.hotdeal-section h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+}
+
+.product-card {
+    flex: 1 1 200px; /* 기본 너비 200px, 공간에 맞춰 늘어나고 줄어들도록 설정 */
+    max-width: 500px; /* 최대 너비 제한 */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 10px;
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.product-info {
+    padding: 10px;
+}
+
+.product-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.product-price {
+    color: #d32f2f;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.product-discount {
+    color: var(--sub-green-color);
+    font-size: 1rem;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* Chart Section */
+.chart-section {
+    text-align: center;
+    margin: 30px 20px;
+}
+
+.chart-section img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+    font-size: 0.9rem;
+}
