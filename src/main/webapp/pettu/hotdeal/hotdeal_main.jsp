@@ -34,7 +34,7 @@
     </section>
 
     <section class="hotdeal-section">
-        <h2>가장 많이 찾은 상품 핫딜 정보</h2>
+        <h2>🌟 가장 많이 찾은 상품 핫딜 정보</h2>
         <div class="product-grid">
             <%-- 반복될 상품 카드 영역 --%>
             <c:forEach begin="1" end="5"> <!--나중에 리스트 길이로 변경하기 && 슬라이드 적용-->
@@ -50,7 +50,7 @@
     </section>
 
     <section class="hotdeal-section">
-        <h2>할인율 높은 상품 핫딜 정보</h2>
+        <h2>🌟 할인율 높은 상품 핫딜 정보</h2>
         <div class="product-grid">
             <%-- 반복될 상품 카드 영역 --%>
             <c:forEach begin="1" end="5"> <!--나중에 리스트 길이로 변경하기 && 슬라이드 적용-->
@@ -66,7 +66,7 @@
     </section>
 
     <section class="hotdeal-section">
-        <h2>반려동물 상품 핫딜 정보</h2>
+        <h2>🔥 반려동물 상품 핫딜 정보</h2>
         <div class="product-grid">
             <%-- 반복될 상품 카드 영역 --%>
             <c:forEach begin="0" end="21" varStatus="status">
