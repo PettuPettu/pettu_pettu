@@ -1,0 +1,142 @@
+.main-slide-section {
+    margin-top: 50px;
+    font-size: 20px;
+    position: relative;
+}
+
+.main-slide-card-fragment-wrapper {
+    overflow: hidden;
+}
+
+.main-slide-card-fragment {
+    display: flex;
+    width: 100%;
+    gap: 30px;
+    transition: transform 0.5s ease-in-out;
+    transform: translateX(0);
+}
+
+.main-slide-header {
+    font-family: "Hakgyoansim Dunggeunmiso TTF B";
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-slide-header a {
+    border-radius: 5px;
+    padding: 5px 7px;
+    border: 3px solid var(--main-color);
+    color: var(--main-color);
+    text-decoration: none;
+}
+
+.main-slide-title {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.main-slide-card {
+    flex: 0 0 30%;
+    position: relative;
+    scroll-snap-align: start;
+    border: 3px var(--sub-yellow-color) solid;
+    border-radius: 10px;
+    padding: 30px;
+    display: flex;
+    gap:30px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.main-slide-card img {
+    width : 150px;
+    height: 200px;
+    border-radius: 5px;
+    border: 1px #000000 solid;
+}
+
+.main-slide-card-desc {
+    width:fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+}
+
+.main-slide-card-title, .main-slide-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.main-slide-card-title strong,
+.main-slide-card-title span,
+.main-slide-card-info strong,
+.main-slide-card-info span {
+    width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+}
+
+.main-slide-card-title strong, .main-slide-card-info strong {
+    font-family: "Hakgyoansim Dunggeunmiso TTF B";
+    font-size: 14px;
+}
+
+.main-slide-card-title span, .main-slide-card-info span {
+    font-size: 14px;
+}
+.main-slide-card-title span {
+    color: #8F8F8F;
+}
+
+.main-slide-card-info strong {
+    color: var(--font-point-color);
+}
+
+.main-slide-card-category {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background-color: var(--sub-blue-color);
+    border-radius: 3px;
+    font-size: 14px;
+    color: var(--font-bright-color);
+    padding:5px 10px;
+}
+
+.main-slide-btn {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    z-index: 10;
+    border-radius: 50%;
+    top:50%;
+    border: none;
+    background-color: var(--sub-yellow-color);
+    opacity: 0.7;
+}
+
+.main-slide-btn:hover {
+    opacity: 1;
+}
+
+.main-slide-btn img {
+    width: 30px;
+    height: 30px;
+}
+
+.main-slide-btn[data-direction="left"] {
+    left: 0px;
+    transform: translateX(-50%);
+}
+
+
+.main-slide-btn[data-direction="right"] {
+    right: 0px;
+    transform: translateX(50%);
+}
