@@ -37,6 +37,7 @@
         <h2>가장 많이 찾은 상품 핫딜 정보</h2>
         <div class="product-grid">
             <%-- 반복될 상품 카드 영역 --%>
+            <c:forEach begin="1" end="5"> <!--나중에 리스트 길이로 변경하기 && 슬라이드 적용-->
             <div class="product-card">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfZbTaFxjSTrlVVdzmfSbeIDxhiY80j0tWdQ&s" alt="상품 이미지">
                 <div class="product-info">
@@ -44,6 +45,7 @@
                     <p class="product-price">5000원</p>
                 </div>
             </div>
+            </c:forEach>
         </div>
     </section>
 
@@ -51,6 +53,7 @@
         <h2>할인율 높은 상품 핫딜 정보</h2>
         <div class="product-grid">
             <%-- 반복될 상품 카드 영역 --%>
+            <c:forEach begin="1" end="5"> <!--나중에 리스트 길이로 변경하기 && 슬라이드 적용-->
             <div class="product-card">
                 <img src="https://i.pinimg.com/474x/5c/93/51/5c9351acd5c3d3bc32a342aad65f48b0.jpg" alt="상품 이미지">
                 <div class="product-info">
@@ -58,6 +61,7 @@
                     <p class="product-price">5000원</p>
                 </div>
             </div>
+            </c:forEach>
         </div>
     </section>
 
@@ -65,6 +69,14 @@
         <h2>반려동물 상품 핫딜 정보</h2>
         <div class="product-grid">
             <%-- 반복될 상품 카드 영역 --%>
+            <c:forEach begin="0" end="21" varStatus="status">
+
+            <!--한줄 시작 -->
+
+            <c:if test="${status.index == 0 || status.index % 4 == 0}">
+                <div class="row">
+            </c:if>
+
             <div class="product-card">
                 <img src="https://i.namu.wiki/i/c18xKUGWXNtJppHYSUG2FcmnQgTjmp5o48jB-btMtbNrXiLhm2jCJEOsCoiXFovA6YQQILcACi1CDUCxhjUPGg.gif" alt="상품 이미지">
                 <div class="product-info">
@@ -73,6 +85,12 @@
                     <div class="product-rating">⭐⭐⭐⭐☆</div>
                 </div>
             </div>
+
+            <!-- 한 줄 끝 -->
+            <c:if test="${(status.index % 4 == 3) || status.last}">
+                </div>
+            </c:if>
+        </c:forEach>
         </div>
     </section>
 </main>
