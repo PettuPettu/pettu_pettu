@@ -19,6 +19,7 @@ public interface UserMapper {
     // 닉네임 중복 체크 (0: 사용 가능, 1 이상: 중복)
     UserVO findByUserNickName(@Param("userNickname") String userNickname);
 
+
     // 유저 자장
     int saveUser(UserVO userVO);
 }

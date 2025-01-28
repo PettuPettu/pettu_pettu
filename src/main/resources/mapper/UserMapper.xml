@@ -4,13 +4,6 @@
 
 <!-- Mapper와 Interface의 경로와 이름이 같아야 한다. -->
 <mapper namespace="com.spring.pettu.mapper.UserMapper">
-    <select id="testList" resultType="com.spring.pettu.test.vo.TestEntity">
-        select * from poto
-    </select>
-
-    <insert id="save" parameterType="com.spring.pettu.test.vo.TestEntity">
-        insert into poto values (#{id}, #{pw}, #{username})
-    </insert>
 
     <!-- 이메일로 유저 가져오기 -->
     <select id="findByUserEmail" resultType="com.spring.pettu.auth.user.vo.UserVO">
@@ -30,8 +23,10 @@
     <select id="findByUserNickName" resultType="com.spring.pettu.auth.user.vo.UserVO">
         SELECT *
         FROM user_app
-        WHERE LOWER(user_nickname) = LOWER(#{userNickname})
+        WHERE user_nickname = #{userNickname}
     </select>
+
+
 
     <insert id="saveUser" parameterType="com.spring.pettu.auth.user.vo.UserVO">
         INSERT INTO user_app (
@@ -40,7 +35,7 @@
             user_status, user_create_at, user_update_at
         ) VALUES (
                      user_seq.NEXTVAL, #{userEmail}, #{userPw},
-                     #{userName}, #{userNickname}, ROLE_USER,
+                     #{userName}, #{userNickname}, 'ROLE_USER',
                      #{userStatus}, SYSDATE, null
                  )
     </insert>
