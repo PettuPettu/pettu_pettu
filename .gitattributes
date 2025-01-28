@@ -1,0 +1,64 @@
+# 기본 텍스트 파일 설정
+* text=auto
+
+# IntelliJ 프로젝트 구성 파일 (공유해야 할 파일)
+.idea/misc.xml text eol=lf
+.idea/modules.xml text eol=lf
+.idea/vcs.xml text eol=lf
+
+# IntelliJ 개인 설정 파일 (공유하지 않을 파일)
+.idea/workspace.xml text eol=lf
+.idea/usage.statistics.xml text eol=lf
+.idea/shelf/ text eol=lf
+
+# Java 소스 코드
+*.java text eol=lf
+
+# XML, JSON, YAML 설정 파일 (Spring에서 자주 사용)
+*.xml text eol=lf        # Spring XML 설정 파일
+*.yml text eol=lf        # Spring Boot YAML 설정 파일
+*.yaml text eol=lf
+*.json text eol=lf       # JSON 설정 파일
+
+# Markdown 및 텍스트 파일
+*.md text eol=lf
+*.txt text eol=lf
+
+# HTML, CSS, JavaScript 파일
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+
+# 운영 체제별 스크립트 파일
+*.sh text eol=lf         # Linux/Mac 전용 스크립트
+*.bat text eol=crlf      # Windows 배치 파일
+*.cmd text eol=crlf      # Windows 명령 스크립트
+
+# 바이너리 파일 (줄 끝 변환 방지)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.jar binary            # Java 라이브러리
+*.war binary            # Web Application Archive
+*.ear binary            # Enterprise Archive
+*.class binary          # Java 클래스 파일
+*.exe binary            # Windows 실행 파일
+*.dll binary            # Windows 동적 링크 라이브러리
+
+# Git 관리 파일 (LF로 고정)
+.gitattributes text eol=lf
+.gitignore text eol=lf
+.editorconfig text eol=lf
+
+# IntelliJ 모듈 파일
+*.iml text eol=lf
+
+# 외부 라이브러리 디렉토리
+.idea/libraries/ text eol=lf
+
+# 빌드 툴 관련 파일 (Maven/Gradle)
+pom.xml text eol=lf      # Maven POM 파일
+*.gradle text eol=lf     # Gradle 설정 파일
+gradlew text eol=lf      # Gradle Wrapper 스크립트
+gradlew.bat text eol=crlf
