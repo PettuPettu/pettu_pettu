@@ -1,0 +1,146 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #fff;
+    font-family: 'Arial', sans-serif;
+}
+
+#main-content {
+    flex: 1 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.container {
+    width: 450px;
+    padding: 40px;
+    text-align: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.logo-image {
+    width: 50px;
+    height: 50px;
+}
+
+.logo-text {
+    font-size: 38px;
+    color: #F6B8A9;
+    font-weight: 500;
+}
+
+h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-field {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.email-group, .nickname-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.email-input, .nickname-input {
+    flex: 1;
+}
+
+.verify-btn {
+    background-color: #F6B8A9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.password-group {
+    position: relative;
+}
+
+.password-group img {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #F6B8A9;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+.login-text {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+.login-link {
+    color: #9370DB;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.verification-area {
+    display: none;
+    margin-top: 10px;
+}
+
+.error-message {
+    color: #666;
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+}
+
+.footer-wrapper {
+    flex-shrink: 0;
+    width: 100%;
+    margin-top: auto;
+}
