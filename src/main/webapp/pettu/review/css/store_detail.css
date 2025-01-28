@@ -1,0 +1,273 @@
+
+.create-btn {
+    height: 40px;
+    width: 100%;
+    background: linear-gradient(to bottom, #FFF9F9, #FFE4E4);
+    display: flex; /* Flexbox 사용 */
+    align-items: center; /* 세로 방향 가운데 정렬 */
+    justify-content: center; /* 가로 방향 가운데 정렬 */
+    border-radius: 10px;
+    border: 2px solid #FFE4E4; /* 테두리 추가 */
+    margin: 0 auto;
+}
+
+
+.create-btn:hover {
+    background: linear-gradient(to bottom, #FFE4E4, #FFF9F9); /* 호버 시 위에서 아래로 그라데이션 반전 */
+}
+.create-btn:active {
+    background: linear-gradient(to bottom, #FFD2D2, #FFB6B6); /* 클릭 시 색상 변경 */
+}
+/*      .review-store-name-div {
+          !* 정렬을 위한 flex *!
+          display: flex;
+          align-items: center;!* 세로 방향 가운데 정렬 *!
+          justify-content: center; !* 가로 방향 가운데 정렬 *!
+
+          text-align: center; !*글자 가운데*!
+
+          height: 100%;
+      }
+*/
+.review-store-name-div {
+    margin: 0 auto ;
+    height: 50px;
+    width: 99%;
+    display: flex; /* Flexbox 사용 */
+    align-items: center; /* 세로 방향 가운데 정렬 */
+    justify-content: space-between; /* 가로 방향 가운데 정렬 */
+    border-radius: 10px;
+    border: 2px solid #FFE4E4; /* 테두리 추가 */
+
+    top: 0;
+    position: sticky;
+
+    background-color:rgba(255, 249, 249, 0.8);
+}
+
+.review-store-title-div {
+    margin: 0 auto ;
+    height: 50px;
+    width: 80%;
+    display: flex; /* Flexbox 사용 */
+    align-items: center; /* 세로 방향 가운데 정렬 */
+    justify-content: center; /* 가로 방향 가운데 정렬 */
+    border-radius: 10px;
+    border: 3px solid #F1E1A6;
+    background-color: rgba(241, 225, 166, 0.7);
+
+}
+.review-title-div {
+    height: 70%;
+    width: 30%;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex; /* Flexbox 사용 */
+    align-items: center; /* 세로 방향 가운데 정렬 */
+    border-radius: 10px;
+    border: 2px solid #FFE4E4; /* 테두리 추가 */
+    text-align: center;
+    justify-content: center;
+    background-color: #FFF9F9;
+}
+.review-create-btn {
+    height: 70%;
+    width: 15%;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex; /* Flexbox 사용 */
+    align-items: center; /* 세로 방향 가운데 정렬 */
+    border-radius: 10px;
+    border: 2px solid #FFE4E4; /* 테두리 추가 */
+    text-align: center;
+    justify-content: center;
+    background-color: #FFF9F9;
+}
+
+.create-btn:hover {
+    background-color: #FFDFDF; /* 호버 시 배경색 변경 */
+}
+.review-box {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    height: 200px;
+    background-color: #FFF5F5;
+    width: 230px;
+
+}
+.review-box-end-layer{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 10px;
+    padding: 0.5px;
+
+}
+.review-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    margin-top: 20px;
+
+    height: 510px;
+}
+
+.second-section {
+    margin-top: 30px;
+    border: 3px solid #FFE4E4;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+
+#custom-select-box {
+    margin-left: 10px;
+    height: 35px;
+    width: 150px;
+    border-radius: 10px;
+    border: 2px solid #FFE4E4; /* 테두리 */
+    background: #FFF9F9; /* 그라데이션 배경 */
+    font-size: 16px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease; /* 배경색 전환과 클릭 효과 */
+    text-align: center;
+    outline: none; /* 클릭 시 outline 제거 */
+}
+
+/* #custom-select-box select 요소 호버 상태 */
+#custom-select-box:hover {
+    background: linear-gradient(to bottom, #FFE4E4, #FFF9F9); /* 호버 시 그라데이션 반전 */
+}
+
+/* #custom-select-box select 요소 클릭(활성화) 상태 */
+#custom-select-box:active {
+    background: linear-gradient(to bottom, #FFB6B6, #FFDFDF); /* 클릭 시 색상 변경 */
+    transform: scale(0.98); /* 클릭 시 살짝 눌리는 효과 */
+    border: 2px solid transparent; /* 클릭 시 테두리 제거 */
+}
+
+/* option 스타일 (id에 해당하는 select의 option) */
+#custom-select-box option {
+    background-color: #FFF9F9;
+    padding: 5px;
+    text-align: center; /* option 요소 텍스트 중앙 정렬 */
+}
+#custom-select-box option:hover {
+    background-color: #FFDFDF; /* 호버 시 배경색 */
+}
+/*-----------------------가게 정보 css------------------------------------*/
+/* 전체 top-section 스타일 */
+.top-section {
+    border: 3px solid #F1E1A6; /* 연한 노란색 테두리 */
+
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    color: #333; /* 글씨 색상을 진한 회색으로 설정 */
+}
+
+/* info-box 스타일: 두 div가 가로로 배치되도록 */
+.info-box {
+    display: flex;
+    gap: 20px;
+}
+
+/* 이미지 박스 스타일 */
+.image-box {
+    width: 35%;
+    height: 420px;
+    border: 2px solid #F1E1A6; /* 연한 노란색 테두리 */
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFBF2; /* 연한 노란색 배경 */
+}
+
+/* 세로 방향 정렬을 위한 flex-box 설정 */
+.flex-vertical-div {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 정보 필드 (카테고리, 위치 등) 스타일 */
+.info-fields {
+    flex: 1;
+}
+
+.info-field {
+    background-color: white ; /* 더 밝고 부드러운 노란색 배경 */
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    min-height: 20px;
+    border: 2px solid #F1E1A6;
+    color: #333; /* 글씨 색상을 진한 회색으로 설정 */
+}
+
+/* 설명 텍스트 영역 스타일 */
+.info-contents {
+    background-color: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    min-height: 120px;
+
+    color: #333; /* 글씨 색상 */
+    border: 2px solid #F1E1A6;
+
+}
+
+/* 이미지 업로드 영역 */
+#image-content-div {
+    height: 68%;
+    width: 85%;
+
+    margin-bottom: 20px;
+    margin-top: 10px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #F1E1A6; /* 연한 노란색 테두리 */
+    text-align: center;
+    display: flex;
+    color: #333; /* 글씨 색상 */
+    background-color: #FDFDFD;
+}
+
+/* 평점 표시 영역 */
+.place-score-div {
+    height: 16%;
+    width: 85%;
+
+    margin-bottom: 10px;
+    display: flex; /* 세로 방향 가운데 정렬 */
+    align-items: center; /* 세로 방향 가운데 정렬 */
+    justify-content: center; /* 가로 방향 가운데 정렬 */
+    border-radius: 10px;
+    border: 2px solid #F1E1A6; /* 연한 노란색 테두리 */
+    color: #333; /* 글씨 색상 */
+    background-color: #FDFDFD;
+}
+
+
+
+
+.img-full {
+    width: 100%;  /* 부모 div의 너비에 맞게 */
+    height: 100%; /* 부모 div의 높이에 맞게 */
+    object-fit: contain;  /* 이미지 비율을 유지하면서 꽉 차게 보이도록 조정 */
+}
