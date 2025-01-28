@@ -8,35 +8,6 @@ body {
     line-height: 1.6;
 }
 
-/* Header */
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-header h1 {
-    margin: 0;
-    font-size: 1.5rem;
-}
-
-header nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 15px;
-}
-
-header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1rem;
-}
-
 /* Search Section */
 .search-section {
     text-align: center;
@@ -75,8 +46,10 @@ header nav ul li a {
 
 .hotdeal-section h2 {
     margin-bottom: 20px;
-    text-align: center;
-    font-size: 1.5rem;
+    text-align: left;
+    margin-left: 120px;
+    font-size: 3rem;
+    font-weight: bold;
     color: #333;
 }
 
@@ -89,43 +62,50 @@ header nav ul li a {
 }
 
 .product-card {
-    flex: 1 1 200px; /* 기본 너비 200px, 공간에 맞춰 늘어나고 줄어들도록 설정 */
-    max-width: 500px; /* 최대 너비 제한 */
+    display: flex; /* 사진과 제품 정보를 가로로 정렬 */
+    align-items: center; /* 세로 가운데 정렬 */
+    justify-content: space-between; /* 공간 분리 */
+    width: 90%; /* 가로로 넓게 설정 */
+    max-width: 1200px; /* 최대 너비 제한 */
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 그림자 */
+    margin: 20px auto; /* 가운데 정렬 */
+    padding: 20px; /* 여백 */
+    gap: 20px; /* 이미지와 정보 간 간격 */
 }
 
 .product-card img {
-    max-width: 100%;
+    max-width: 40%; /* 이미지가 카드의 40% 차지 */
     height: auto;
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 10px;
+    border-radius: 10px; /* 이미지 모서리를 둥글게 */
 }
 
 .product-info {
-    padding: 10px;
+    flex: 1; /* 남은 공간을 제품 정보가 차지 */
+    text-align: left; /* 왼쪽 정렬 */
+    padding: 0 20px; /* 좌우 여백 */
 }
 
 .product-name {
     font-weight: bold;
-    margin-bottom: 5px;
+    font-size: 1.8rem; /* 제목 강조 */
+    margin-bottom: 10px;
 }
 
 .product-price {
     color: #d32f2f;
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+    font-size: 1.5rem; /* 가격 강조 */
+    margin-bottom: 15px;
 }
 
 .product-discount {
     color: var(--sub-green-color);
-    font-size: 1rem;
+    font-size: 1.2rem; /* 할인 정보 강조 */
 }
+
 
 .row {
     display: flex;
@@ -147,11 +127,3 @@ header nav ul li a {
     height: auto;
 }
 
-/* Footer */
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #333;
-    color: #fff;
-    font-size: 0.9rem;
-}
