@@ -70,13 +70,17 @@ body {
 }
 
 .product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    display: flex;
+    /*grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));*/
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
     padding: 10px;
 }
 
 .product-card {
+    flex: 1 1 200px; /* 기본 너비 200px, 공간에 맞춰 늘어나고 줄어들도록 설정 */
+    max-width: 500px; /* 최대 너비 제한 */
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -113,3 +117,11 @@ body {
     font-size: 1rem;
 }
 
+.row {
+    display: flex; /* Flexbox 사용 */
+    flex-wrap: wrap; /* 내부 요소가 화면 너비를 넘어가면 줄 바꿈 */
+    justify-content: center; /* 가로 방향으로 가운데 정렬 */
+    align-items: flex-start; /* 세로 방향 정렬 (필요 시 조정 가능) */
+    gap: 20px; /* 내부 요소 간 간격 */
+    margin-bottom: 20px; /* 각 행의 아래쪽 여백 */
+}
