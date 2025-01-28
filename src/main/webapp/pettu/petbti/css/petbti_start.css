@@ -1,0 +1,51 @@
+.petbti-title {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.petbti-title p{
+    color: var(--font-gray-color);
+}
+
+#title-pet {
+    color: var(--main-color);
+}
+
+#title-b {
+    color: var(--sub-yellow-color);
+}
+
+#title-t {
+    color: var(--sub-blue-color);
+}
+
+#title-i {
+    color: var(--sub-green-color);
+}
+
+.petbti-start-animation {
+    height: 60%;
+    display: flex;
+    gap: 50px;
+    flex-direction: column;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+
+.petbti-start-animation img{
+    height: 60%;
+    transition: opacity 1s ease-in-out;
+}
+
+.petbti-start-animation span{
+    font-family: "Hakgyoansim Dunggeunmiso TTF B";
+    bottom: 0;
+    font-size: 40px;
+    display: flex;
+    transition: opacity 1s ease-in-out;
+}
