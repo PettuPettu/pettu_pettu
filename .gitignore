@@ -1,0 +1,77 @@
+# IntelliJ IDEA 설정
+.idea/
+# 공유해야 할 IntelliJ 설정 파일 예외 처리
+!.idea/misc.xml
+!.idea/modules.xml
+!.idea/vcs.xml
+!.idea/libraries/
+# 무시할 IntelliJ 개인 설정 파일
+.idea/workspace.xml
+.idea/usage.statistics.xml
+.idea/shelf/
+
+# 로그 파일
+logs/
+*.log
+spring.log
+
+# 빌드 디렉토리
+target/
+out/
+build/
+
+# Maven 관련 파일
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+release.properties
+
+# Gradle 관련 파일
+.gradle/
+build/
+!gradle-wrapper.jar
+gradlew
+gradlew.bat
+
+# 운영 체제 관련 파일
+.DS_Store       # macOS
+.AppleDouble    # macOS
+.LSOverride     # macOS
+._*             # macOS 리소스 포크
+Thumbs.db       # Windows
+Desktop.ini     # Windows
+ehthumbs.db     # Windows
+
+# Spring Boot 설정 파일
+*.env                     # 환경 변수 파일
+application.properties     # Spring Boot 설정 파일
+application.yml
+application.yaml
+!application.example.yml   # 템플릿 파일 포함
+
+# Static 리소스 (예: 프론트엔드 포함 시)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.css.map
+*.js.map
+
+# Temp 파일
+tmp/
+*.tmp
+
+# Java 빌드 파일
+*.class
+*.war
+*.ear
+
+# IDE 관련 파일
+*.iml                    # IntelliJ 모듈 파일
+*.swp                    # Vim 임시 파일
+*.bak                    # 백업 파일
+*.idea/                 # IntelliJ 설정 디렉토리 무시
+
+# 테스트 파일
+*.test
+*.result
