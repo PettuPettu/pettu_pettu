@@ -77,4 +77,10 @@ public class TestController {
         model.addAttribute("contentPage", "/list");
         return "pettu/hotdeal/hotdeal_main";
     }
+
+    @GetMapping("/hotdeal_detail")
+    public String hotdealDetail(Model model){
+        model.addAttribute("contentPage", "/list");
+        return "pettu/hotdeal/hotdeal_detail";
+    }
 }
