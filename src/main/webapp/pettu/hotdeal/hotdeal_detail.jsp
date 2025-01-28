@@ -33,7 +33,7 @@
     <div class="product-grid">
         <!-- 상품 카드 -->
         <div class="product-card">
-            <img src="https://i.namu.wiki/i/c18xKUGWXNtJppHYSUG2FcmnQgTjmp5o48jB-btMtbNrXiLhm2jCJEOsCoiXFovA6YQQILcACi1CDUCxhjUPGg.gif" alt="상품 이미지">
+            <img src="https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/418/1c3ee64eea127d84b2f5f74756693888_res.jpeg" alt="상품 이미지">
             <div class="product-info">
                 <p class="product-name">상품명: 레비앙독 연어</p>
                 <p class="product-category">카테고리: 강아지 사료</p>
