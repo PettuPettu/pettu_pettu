@@ -5,11 +5,15 @@
 <head>
     <meta charset="UTF-8" />
     <title>우리 아이와의 행복한 반려생활, 펫뚜펫뚜</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/layout/css/layout.css" />
+    <!-- CSS 파일 -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/user/css/register.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/layout/css/layout.css" />
     <link rel="icon" href="${pageContext.request.contextPath}/assets/favicon/favicon.ico">
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- JS 파일 -->
     <script src="${pageContext.request.contextPath}/user/js/register.js"></script>
+
 
 </head>
 <body>
@@ -20,6 +24,7 @@
             <span class="logo-text">펫뚜펫뚜</span>
         </div>
         <h2>회원가입</h2>
+        <br>
         <form id="signupForm">
             <div class="input-group">
                 <div class="email-group">
@@ -47,6 +52,7 @@
                     <input type="password" id="password2" class="input-field" placeholder="Password">
                     <img src="/user/icon/see_pw.svg" alt="비밀번호 보기">
                 </div>
+                <div id="pwdMatchMessage"></div>
             </div>
 
             <div class="input-group">
@@ -72,6 +78,5 @@
 <div class="footer-wrapper">
     <jsp:include page="/pettu/layout/footer.jsp" />
 </div>
-
 </body>
 </html>

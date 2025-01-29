@@ -1,0 +1,13 @@
+.petbti-name-input {
+    width: 55%;
+    border: 2px solid var(--main-color);
+    border-radius: 10px;
+    font-size: 24px;
+    padding: 20px 30px;
+}
+
+.petbti-guest-btn-container p{
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+}

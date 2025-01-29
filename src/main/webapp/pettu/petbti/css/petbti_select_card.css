@@ -1,0 +1,39 @@
+.petbti-select-card-fragment {
+    display: flex;
+    border-radius: 20px;
+    border: 2px solid var(--font-gray-color);
+    padding: 20px 30px;
+    width: 70%;
+    gap: 20px;
+}
+.petbti-select-card-fragment[data-select="true"] {
+    border-color: var(--sub-yellow-color);
+}
+
+.petbti-select-card-fragment img{
+    border-radius: 100%;
+    width: 30%;
+}
+
+.petbti-select-card-info-fragment {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+}
+
+.petbti-select-card-info {
+    font-family: "Hakgyoansim Dunggeunmiso TTF B";
+    margin-bottom: 10px;
+}
+
+.petbti-select-card-mbti {
+    background-color: var(--font-gray-color);
+    padding: 3px 5px;
+    border-radius: 5px;
+}
+
+.petbti-select-card-gender {
+    color: var(--font-point-color);
+}
