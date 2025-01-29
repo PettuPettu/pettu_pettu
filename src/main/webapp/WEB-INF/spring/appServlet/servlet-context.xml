@@ -30,6 +30,7 @@
     <mvc:resources mapping="/**/css/**" location="/pettu/" />
     <mvc:resources mapping="/user/icon/**" location="/pettu/user/icon/" />
     <mvc:resources mapping="/**/js/**" location="/pettu/" />
+    <mvc:resources mapping="/hotdeal/js/**" location="/pettu/hotdeal/js" />
 
 
     <bean id="MY_tomcat_ds" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
