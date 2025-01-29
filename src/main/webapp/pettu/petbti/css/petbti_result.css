@@ -1,0 +1,43 @@
+.petbti-container {
+    overflow: auto;
+}
+
+.petbti-title h1{
+    color: var(--main-color);
+    margin-bottom: 10px;
+}
+
+.petbti-title h3, .petbti-result-tag{
+    font-family: "Hakgyoansim Dunggeunmiso TTF B";
+    font-size: 24px;
+    color: var(--sub-blue-color);
+}
+
+.petbti-result-img {
+    width: 60%;
+    margin: 30px 0;
+}
+
+.petbti-result-desc {
+    font-size: 24px;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.petbti-result-desc strong{
+    font-family: "Hakgyoansim Dunggeunmiso TTF B";
+}
+
+
+.petbti-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.petbti-container::-webkit-scrollbar-thumb {
+    background: rgb(246, 184, 169, 0.5);
+    border-radius: 5px;
+}
+
+.petbti-container::-webkit-scrollbar-thumb:hover {
+    background: var(--main-color);
+}

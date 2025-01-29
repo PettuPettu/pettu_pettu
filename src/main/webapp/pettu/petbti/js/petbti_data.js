@@ -1,0 +1,309 @@
+export const petbtiData = [
+    {
+        mbti: "ENFJ",
+        img: "/assets/layout/logo.svg",
+        color: "#A0B3FF",
+        subTitle: "정의로운 사회운동가",
+        explanation: "<strong>ENFJ</strong> 성향을 가진 길동이는<br/>사자와 같은 따뜻하고 리더십 있는 존재입니다.<br/><br/>이 동물은 항상 주변을 살피며 무리를 이끄는 데 탁월합니다. 자신감 넘치는 태도와 부드러운 배려심을 겸비해, 누구든 이 동물에게서 안전과 안정을 느낍니다.<br/><br/><strong>사교적이고 배려심이 많아요</strong><br/>ENFJ 동물은 무리의 분위기를 읽고, 모두가 어울릴 수 있도록 중재합니다. 새로운 동물에게도 거리낌 없이 다가가며, 늘 협력과 조화를 우선시합니다.<br/><br/><strong>천부적인 리더</strong><br/>이 동물은 자연스럽게 앞장서서 방향을 제시합니다. 그러나 강압적이지 않고, 모두의 의견을 들으면서도 명확한 결정을 내릴 줄 아는 현명함을 가지고 있습니다.<br/><br/><strong>타인의 성장을 돕는 멘토</strong><br/>ENFJ 동물은 다른 동물들이 잠재력을 발휘할 수 있도록 격려합니다. 항상 긍정적이고, 자신감과 희망을 심어주려 노력합니다."
+    },
+    {
+        mbti: "ENFP",
+        img: "/assets/layout/logo.svg",
+        color: "#FFB3A0",
+        subTitle: "재기발랄한 활동가",
+        explanation: "<strong>ENFP</strong> 성향을 가진 길동이는<br/>호기심이 많고 창의적인 존재입니다.<br/><br/>이 동물은 새로운 경험을 추구하며, 주변의 모든 것에 대해 탐구하는 것을 좋아합니다. 그들의 에너지는 다른 동물들에게도 긍정적인 영향을 미칩니다.<br/><br/><strong>자유로운 영혼</strong><br/>ENFP 동물은 규칙에 얽매이지 않고, 자신만의 방식으로 세상을 탐험합니다. 그들은 항상 새로운 아이디어와 가능성을 찾고 있습니다.<br/><br/><strong>사람들을 끌어당기는 매력</strong><br/>이 동물은 사람들을 쉽게 매료시키며, 그들의 주변에 항상 친구가 많습니다. 그들은 타인과의 깊은 연결을 중요시합니다."
+    },
+    {
+        mbti: "INFJ",
+        img: "/assets/layout/logo.svg",
+        color: "#A0FFC1",
+        subTitle: "선의의 옹호자",
+        explanation: "<strong>INFJ</strong> 성향을 가진 길동이는<br/>깊은 통찰력과 이해심을 가진 존재입니다.<br/><br/>이 동물은 다른 동물들의 감정을 잘 이해하고, 그들의 필요를 충족시키기 위해 노력합니다. 그들은 항상 주변을 살피며, 조용히 지혜를 나누는 역할을 합니다.<br/><br/><strong>깊은 감정의 소유자</strong><br/>INFJ 동물은 자신의 감정을 깊이 느끼며, 타인의 감정에도 민감합니다. 그들은 진정한 연결을 추구합니다.<br/><br/><strong>변화를 이끄는 힘</strong><br/>이 동물은 세상을 더 나은 곳으로 만들기 위해 노력하며, 자신의 신념을 지키기 위해 행동합니다."
+    },
+    {
+        mbti: "INFP",
+        img: "/assets/layout/logo.svg",
+        color: "#FFC1A0",
+        subTitle: "열정적인 중재자",
+        explanation: "<strong>INFP</strong> 성향을 가진 길동이는<br/>이상과 꿈을 추구하는 존재입니다.<br/><br/>이 동물은 자신의 가치관에 따라 행동하며, 세상을 더 나은 곳으로 만들기 위해 노력합니다. 그들은 깊은 감정을 가지고 있으며, 타인과의 연결을 중요시합니다.<br/><br/><strong>상상력이 풍부해요</strong><br/>INFP 동물은 창의적이고 상상력이 풍부하여, 새로운 아이디어를 제시하는 데 능숙합니다.<br/><br/><strong>타인을 이해하는 능력</strong><br/>이 동물은 다른 동물들의 감정을 잘 이해하고, 그들의 이야기를 들어주는 것을 좋아합니다."
+    },
+    {
+        mbti: "ENTJ",
+        img: "/assets/layout/logo.svg",
+        color: "#A0A0FF",
+        subTitle: "대담한 통솔자",
+        explanation: "<strong>ENTJ</strong> 성향을 가진 길동이는<br/>강력한 리더십과 결단력을 가진 존재입니다.<br/><br/>이 동물은 목표를 설정하고 이를 달성하기 위해 전략적으로 행동합니다. 그들은 항상 주변을 이끌며, 다른 동물들에게 영감을 줍니다.<br/><br/><strong>목표 지향적이에요</strong><br/>ENTJ 동물은 목표를 세우고 이를 달성하기 위해 끊임없이 노력합니다. 그들은 도전적인 상황에서도 흔들리지 않습니다.<br/><br/><strong>효율적인 문제 해결사</strong><br/>이 동물은 문제를 신속하게 분석하고 해결책을 제시하는 데 능숙합니다."
+    },
+    {
+        mbti: "ENTP",
+        img: "/assets/layout/logo.svg",
+        color: "#FFDAA0",
+        subTitle: "논쟁을 즐기는 변론가",
+        explanation: "<strong>ENTP</strong> 성향을 가진 길동이는<br/>창의적이고 혁신적인 아이디어를 가진 존재입니다.<br/><br/>이 동물은 새로운 가능성을 탐구하며, 기존의 틀을 깨는 것을 좋아합니다. 그들은 항상 새로운 도전을 찾고 있습니다.<br/><br/><strong>논리적이고 분석적이에요</strong><br/>ENTP 동물은 문제를 분석하고, 다양한 관점에서 접근하는 것을 좋아합니다.<br/><br/><strong>사람들과의 대화에서 영감을 받아요</strong><br/>이 동물은 다른 동물들과의 대화를 통해 새로운 아이디어를 얻고, 이를 발전시키는 데 능숙합니다."
+    },
+    {
+        mbti: "ISFJ",
+        img: "/assets/layout/logo.svg",
+        color: "#A0FFC1",
+        subTitle: "용감한 수호자",
+        explanation: "<strong>ISFJ</strong> 성향을 가진 길동이는<br/>타인을 배려하고 헌신하는 존재입니다.<br/><br/>이 동물은 주변의 필요를 잘 이해하고, 이를 충족시키기 위해 노력합니다. 그들은 항상 다른 동물들을 돕고자 합니다.<br/><br/><strong>신뢰할 수 있는 친구</strong><br/>ISFJ 동물은 항상 믿을 수 있는 존재로, 다른 동물들이 그들에게 의지할 수 있도록 합니다.<br/><br/><strong>세심한 배려</strong><br/>이 동물은 작은 것에도 신경을 쓰며, 주변의 분위기를 잘 살피고 조화롭게 행동합니다."
+    },
+    {
+        mbti: "ISFP",
+        img: "/assets/layout/logo.svg",
+        color: "#FFC1A0",
+        subTitle: "호기심 많은 예술가",
+        explanation: "<strong>ISFP</strong> 성향을 가진 길동이는<br/>자유롭고 창의적인 존재입니다.<br/><br/>이 동물은 자신의 감정을 표현하는 것을 좋아하며, 예술적인 감각이 뛰어납니다. 그들은 자연과의 연결을 중요시합니다.<br/><br/><strong>감정이 풍부해요</strong><br/>ISFP 동물은 자신의 감정을 깊이 느끼며, 이를 통해 주변과 소통합니다.<br/><br/><strong>자연을 사랑해요</strong><br/>이 동물은 자연 속에서 편안함을 느끼며, 자연과의 조화를 중요시합니다."
+    },
+    {
+        mbti: "ESTJ",
+        img: "/assets/layout/logo.svg",
+        color: "#A0A0FF",
+        subTitle: "엄격한 관리자",
+        explanation: "<strong>ESTJ</strong> 성향을 가진 길동이는<br/>조직적이고 실용적인 존재입니다.<br/><br/>이 동물은 규칙과 절차를 중요시하며, 목표를 달성하기 위해 체계적으로 행동합니다. 그들은 항상 주변을 이끌며, 다른 동물들에게 안정감을 줍니다.<br/><br/><strong>신뢰할 수 있는 리더</strong><br/>ESTJ 동물은 다른 동물들에게 신뢰를 주며, 그들의 의견을 존중합니다.<br/><br/><strong>효율적인 문제 해결사</strong><br/>이 동물은 문제를 신속하게 분석하고 해결책을 제시하는 데 능숙합니다."
+    },
+    {
+        mbti: "ESTP",
+        img: "/assets/layout/logo.svg",
+        color: "#FFDAA0",
+        subTitle: "모험을 즐기는 사업가",
+        explanation: "<strong>ESTP</strong> 성향을 가진 길동이는<br/>모험을 즐기고 즉흥적인 존재입니다.<br/><br/>이 동물은 새로운 경험을 추구하며, 항상 활동적이고 에너지가 넘칩니다. 그들은 주변의 모든 것을 탐험하는 것을 좋아합니다.<br/><br/><strong>즉흥적인 결정</strong><br/>ESTP 동물은 상황에 따라 즉흥적으로 결정을 내리는 데 능숙합니다.<br/><br/><strong>사람들과의 상호작용을 즐겨요</strong><br/>이 동물은 다른 동물들과의 상호작용을 통해 에너지를 얻고, 새로운 친구를 만드는 것을 좋아합니다."
+    },
+    {
+        mbti: "INTJ",
+        img: "/assets/layout/logo.svg",
+        color: "#A0B3FF",
+        subTitle: "용의주도한 전략가",
+        explanation: "<strong>INTJ</strong> 성향을 가진 길동이는<br/>논리적이고 전략적인 존재입니다.<br/><br/>이 동물은 목표를 설정하고 이를 달성하기 위해 체계적으로 계획합니다. 그들은 항상 깊이 있는 사고를 통해 문제를 해결합니다.<br/><br/><strong>미래를 내다보는 시각</strong><br/>INTJ 동물은 미래를 예측하고, 이를 바탕으로 행동하는 데 능숙합니다.<br/><br/><strong>독립적인 사고</strong><br/>이 동물은 자신의 의견을 중요시하며, 타인의 의견에 휘둘리지 않습니다."
+    },
+    {
+        mbti: "INTP",
+        img: "/assets/layout/logo.svg",
+        color: "#FFB3A0",
+        subTitle: "논리적인 사색가",
+        explanation: "<strong>INTP</strong> 성향을 가진 길동이는<br/>논리적이고 분석적인 존재입니다.<br/><br/>이 동물은 문제를 깊이 분석하고, 다양한 관점에서 접근하는 것을 좋아합니다. 그들은 항상 새로운 아이디어를 탐구합니다.<br/><br/><strong>창의적인 문제 해결사</strong><br/>INTP 동물은 문제를 해결하기 위해 창의적인 방법을 찾는 데 능숙합니다.<br/><br/><strong>지식에 대한 갈증</strong><br/>이 동물은 항상 새로운 지식을 추구하며, 이를 통해 성장하고 발전합니다."
+    },
+    {
+        mbti: "ISTJ",
+        img: "/assets/layout/logo.svg",
+        color: "#A0B3FF",
+        subTitle: "청렴결백한 논리주의자",
+        explanation: "<strong>ISTJ</strong> 성향을 가진 길동이는<br/>책임감이 강하고 신뢰할 수 있는 존재입니다.<br/><br/>이 동물은 규칙과 절차를 중요시하며, 항상 체계적으로 행동합니다. 그들은 주변의 안정성을 유지하기 위해 노력합니다.<br/><br/><strong>세심한 계획가</strong><br/>ISTJ 동물은 목표를 설정하고 이를 달성하기 위해 철저하게 계획합니다. 그들은 항상 준비가 되어 있습니다.<br/><br/><strong>신뢰할 수 있는 친구</strong><br/>이 동물은 다른 동물들에게 신뢰를 주며, 그들의 필요를 잘 이해하고 도와줍니다."
+    },
+    {
+        mbti: "ISTP",
+        img: "/assets/layout/logo.svg",
+        color: "#FFDAA0",
+        subTitle: "만능 재주꾼",
+        explanation: "<strong>ISTP</strong> 성향을 가진 길동이는<br/>실용적이고 분석적인 존재입니다.<br/><br/>이 동물은 문제를 신속하게 분석하고, 효율적인 해결책을 찾는 데 능숙합니다. 그들은 항상 새로운 도전을 즐깁니다.<br/><br/><strong>즉흥적인 행동가</strong><br/>ISTP 동물은 상황에 따라 즉흥적으로 행동하며, 새로운 경험을 추구합니다.<br/><br/><strong>독립적인 성향</strong><br/>이 동물은 혼자 있는 것을 좋아하며, 자신의 방식으로 세상을 탐험합니다."
+    },
+    {
+        mbti: "ESFP",
+        img: "/assets/layout/logo.svg",
+        color: "#FFB3A0",
+        subTitle: "자유로운 영혼의 연예인",
+        explanation: "<strong>ESFP</strong> 성향을 가진 길동이는<br/>사교적이고 활기찬 존재입니다.<br/><br/>이 동물은 주변의 모든 것에 대해 호기심을 가지고 있으며, 사람들과의 상호작용을 즐깁니다. 그들은 항상 긍정적인 에너지를 발산합니다.<br/><br/><strong>즐거움을 추구해요</strong><br/>ESFP 동물은 삶의 즐거움을 중요시하며, 주변의 모든 것에서 행복을 찾습니다.<br/><br/><strong>사람들을 끌어당기는 매력</strong><br/>이 동물은 사람들을 쉽게 매료시키며, 그들의 주변에 항상 친구가 많습니다."
+    },
+    {
+        mbti: "ESFJ",
+        img: "/assets/layout/logo.svg",
+        color: "#A0FFC1",
+        subTitle: "사교적인 외교관",
+        explanation: "<strong>ESFJ</strong> 성향을 가진 길동이는<br/>타인을 배려하고 돕는 것을 좋아하는 존재입니다.<br/><br/>이 동물은 주변의 필요를 잘 이해하고, 이를 충족시키기 위해 항상 노력합니다. 그들은 다른 동물들과의 관계를 중요시합니다.<br/><br/><strong>사교적이고 따뜻해요</strong><br/>ESFJ 동물은 사람들과의 상호작용을 즐기며, 그들의 감정을 잘 이해합니다.<br/><br/><strong>조화로운 분위기를 만들어줘요</strong><br/>이 동물은 주변의 분위기를 조화롭게 만들기 위해 노력하며, 모두가 편안하게 느낄 수 있도록 합니다."
+    }
+];
+
+export const petbtiQuestions = [
+    {
+        id: 1,
+        question: "낯선 사람이나 동물을 만나면 다가가서 인사하려고 하나요?",
+        options: [
+            { id: "E", text: "네, 다가가서 인사해요!" },
+            { id: "I", text: "아니요, 조심스러워요." }
+        ]
+    },
+    {
+        id: 2,
+        question: "새로운 환경에서는 금방 적응하나요, 아니면 시간이 걸리나요?",
+        options: [
+            { id: "E", text: "금방 적응해요" },
+            { id: "I", text: "시간이 걸려요" }
+        ]
+    },
+    {
+        id: 3,
+        question: "혼자 있을 때도 잘 놀거나 편안해 보이나요?",
+        options: [
+            { id: "I", text: "네, 혼자서도 잘 놀아요." },
+            { id: "E", text: "아니요, 혼자 있으면 심심해요." }
+        ]
+    },
+    {
+        id: 4,
+        question: "산책이나 놀이 시간이 길어질수록 더 즐거워하나요?",
+        options: [
+            { id: "E", text: "네, 더 즐거워요!" },
+            { id: "I", text: "아니요, 적당한 시간이 좋아요." }
+        ]
+    },
+    {
+        id: 5,
+        question: "집 안에서 가족들과 시간을 보내는 걸 더 좋아하나요?",
+        options: [
+            { id: "I", text: "네, 가족과 함께하는 게 좋아요." },
+            { id: "E", text: "아니요, 혼자 있는 게 좋아요." }
+        ]
+    },
+    {
+        id: 6,
+        question: "손님이 오면 바로 다가가서 반기나요, 아니면 숨거나 거리를 두나요?",
+        options: [
+            { id: "E", text: "바로 다가가서 반겨요!" },
+            { id: "I", text: "숨거나 거리를 두는 편이에요." }
+        ]
+    },
+    {
+        id: 7,
+        question: "주변의 사소한 변화(새 가구, 물건 위치 변화)를 바로 알아차리나요?",
+        options: [
+            { id: "S", text: "네, 바로 알아차려요!" },
+            { id: "N", text: "아니요, 잘 못 알아차려요." }
+        ]
+    },
+    {
+        id: 8,
+        question: "산책 중 특정 냄새를 오래 탐색하는 걸 좋아하나요?",
+        options: [
+            { id: "S", text: "네, 좋아해요!" },
+            { id: "N", text: "아니요, 빨리 지나가요." }
+        ]
+    },
+    {
+        id: 9,
+        question: "새로운 장난감이나 환경에 호기심을 보이며 적극적으로 탐구하나요?",
+        options: [
+            { id: "N", text: "네, 적극적으로 탐구해요!" },
+            { id: "S", text: "아니요, 익숙한 게 좋아요." }
+        ]
+    },
+    {
+        id: 10,
+        question: "같은 루틴(식사 시간, 산책 경로)을 고집하나요?",
+        options: [
+            { id: "S", text: "네, 고집해요!" },
+            { id: "N", text: "아니요, 변화를 좋아해요." }
+        ]
+    },
+    {
+        id: 11,
+        question: "창밖을 보며 상상의 세계에 빠진 듯한 행동을 하나요?",
+        options: [
+            { id: "N", text: "네, 자주 그래요!" },
+            { id: "S", text: "아니요, 현실을 더 중요시해요." }
+        ]
+    },
+    {
+        id: 12,
+        question: "목적 없이 뛰어다니며 창의적인 놀이를 즐기나요?",
+        options: [
+            { id: "N", text: "네, 즐겨요!" },
+            { id: "S", text: "아니요, 목적이 있어야 해요." }
+        ]
+    },
+    {
+        id: 13,
+        question: "다른 동물과 다툴 때 합리적으로 물러나거나 경계를 하나요?",
+        options: [
+            { id: "T", text: "네, 합리적으로 행동해요." },
+            { id: "F", text: "아니요, 감정적으로 반응해요." }
+        ]
+    },
+    {
+        id: 14,
+        question: "보호자가 기분이 좋지 않을 때 이를 알아채고 위로하려는 듯한 행동을 하나요?",
+        options: [
+            { id: "F", text: "네, 위로하려고 해요." },
+            { id: "T", text: "아니요, 잘 모르겠어요." }
+        ]
+    },
+    {
+        id: 15,
+        question: "원하는 것을 얻기 위해 논리적으로 행동하거나 문제를 해결하려고 하나요?",
+        options: [
+            { id: "T", text: "네, 논리적으로 행동해요." },
+            { id: "F", text: "아니요, 감정적으로 행동해요." }
+        ]
+    },
+    {
+        id: 16,
+        question: "보호자의 표정과 감정을 민감하게 관찰하며 반응하나요?",
+        options: [
+            { id: "F", text: "네, 민감하게 반응해요." },
+            { id: "T", text: "아니요, 잘 못 알아차려요." }
+        ]
+    },
+    {
+        id: 17,
+        question: "다른 동물에게 장난을 치거나 규칙을 어기는 행동을 자주 하나요?",
+        options: [
+            { id: "T", text: "네, 자주 그래요!" },
+            { id: "F", text: "아니요, 규칙을 잘 지켜요." }
+        ]
+    },
+    {
+        id: 18,
+        question: "보호자와의 교감(스킨십, 칭찬)에 매우 의존적인 편인가요?",
+        options: [
+            { id: "F", text: "네, 의존적이에요." },
+            { id: "T", text: "아니요, 독립적이에요." }
+        ]
+    },
+    {
+        id: 19,
+        question: "식사, 산책 등 일과가 일정하지 않을 경우 불안감을 보이나요?",
+        options: [
+            { id: "J", text: "네, 불안해요." },
+            { id: "P", text: "아니요, 괜찮아요." }
+        ]
+    },
+    {
+        id: 20,
+        question: "자유로운 환경(예: 큰 마당, 넓은 공원)에서 더 활발히 움직이나요?",
+        options: [
+            { id: "P", text: "네, 더 활발해요!" },
+            { id: "J", text: "아니요, 제한된 공간이 좋아요." }
+        ]
+    },
+    {
+        id: 21,
+        question: "새 장난감이나 새로운 경험을 바로 시도하나요, 아니면 천천히 접근하나요?",
+        options: [
+            { id: "P", text: "바로 시도해요!" },
+            { id: "J", text: "천천히 접근해요." }
+        ]
+    },
+    {
+        id: 22,
+        question: "자신의 공간(방석, 집)을 깨끗하게 유지하려고 하나요?",
+        options: [
+            { id: "J", text: "네, 깨끗하게 유지해요." },
+            { id: "P", text: "아니요, 신경 쓰지 않아요." }
+        ]
+    },
+    {
+        id: 23,
+        question: "놀이 도중 계획 없이 즉흥적으로 새로운 행동을 자주 하나요?",
+        options: [
+            { id: "P", text: "네, 자주 그래요!" },
+            { id: "J", text: "아니요, 계획이 필요해요." }
+        ]
+    },
+    {
+        id: 24,
+        question: "특정 행동 패턴(앉기, 기다리기)을 배우면 이를 엄격히 따르나요?",
+        options: [
+            { id: "J", text: "네, 엄격히 따르죠." },
+            { id: "P", text: "아니요, 유연하게 해요." }
+        ]
+    }
+];
