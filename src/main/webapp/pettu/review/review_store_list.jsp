@@ -23,7 +23,7 @@
         <div class="slide-cards">
             <div class="slide-card card-flex">
                 <div class="top-img-contents">
-                    <img src="/assets/layout/github.svg" alt="카드 이미지 3">
+                    <img src="http://tong.visitkorea.or.kr/cms/resource/10/2445110_image2_1.jpg" alt="카드 이미지 3">
                 </div>
                 <div class="top-info-contents">
                     <div> 마루네 아침 카페 </div>
@@ -91,16 +91,7 @@
                         <label><input type="checkbox" value="맛집" onchange="handleCheckboxChange(event)"> 맛집</label>
                     </div>
                 </div>
-                <div class="dropdown">
-                    <button class="dropdown-button" onclick="toggleDropdown(event)">동물 분류 검색</button>
-                    <div class="dropdown-content">
-                        <label><input type="checkbox" value="개" onchange="handleCheckboxChange(event)"> 개</label>
-                        <label><input type="checkbox" value="고양이" onchange="handleCheckboxChange(event)"> 고양이</label>
-                        <label><input type="checkbox" value="파충류" onchange="handleCheckboxChange(event)"> 파충류</label>
-                        <label><input type="checkbox" value="새" onchange="handleCheckboxChange(event)"> 새</label>
 
-                    </div>
-                </div>
                 <div class="search-bar">
                     <input type="text" placeholder="검색어를 입력하세요">
                     <button>검색</button>
