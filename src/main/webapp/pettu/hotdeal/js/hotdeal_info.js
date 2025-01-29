@@ -75,3 +75,4 @@ svg.selectAll("circle")
     .attr("cy", d => y(d.price))
     .attr("r", 4)
     .attr("fill", "steelblue");
+
