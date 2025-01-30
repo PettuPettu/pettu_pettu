@@ -1,0 +1,27 @@
+.petbti-container {
+    justify-content: center;
+    padding: 20px 50px;
+    gap: 50px;
+    position: relative;
+}
+
+.petbti-question-btn {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.petbti_btn {
+    width: 100%;
+}
+
+.petbti-progressbar {
+    background-color: var(--main-color);
+    height: 10px;
+    width: 70%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+

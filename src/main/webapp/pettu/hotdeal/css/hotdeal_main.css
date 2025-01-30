@@ -1,0 +1,130 @@
+@import "../../layout/css/color.css";
+@import "../../layout/css/reset.css";
+@import "../../layout/css/layout.css";
+
+body {
+    background-color: var(--back-white-color);
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Search Section */
+.search-section {
+    text-align: center;
+    padding: 30px;
+    background-color: #ffccbc;
+}
+
+.search-section h1 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--font-point-color);
+}
+
+.search-section .search-bar {
+    padding: 10px;
+    width: 50%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: var(--back-white-color)
+}
+
+.search-section .search-button {
+    padding: 10px 15px;
+    background-color: var(--font-point-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+/* Category Section */
+.category-section {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px 0;
+    background-color: var(--sub-blue-color);
+}
+
+.category {
+    padding: 10px 20px;
+    background-color: var(--sub-blue-color);
+    color: #fff;
+    border: 2px solid var(--font-bright-color);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* Hotdeal Sections */
+.hotdeal-section {
+    margin: 30px 20px;
+}
+
+.hotdeal-section h2 {
+    margin-bottom: 20px;
+    text-align: left;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    padding: 20px;
+}
+
+.product-grid {
+    display: flex;
+    /*grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));*/
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+}
+
+.product-card {
+    flex: 1 1 200px; /* 기본 너비 200px, 공간에 맞춰 늘어나고 줄어들도록 설정 */
+    max-width: 500px; /* 최대 너비 제한 */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 10px;
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.product-info {
+    padding: 10px;
+}
+
+.product-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.product-price {
+    color: #d32f2f;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.product-rating {
+    color: var(--sub-yellow-color);
+    font-size: 1rem;
+}
+
+.row {
+    display: flex; /* Flexbox 사용 */
+    flex-wrap: wrap; /* 내부 요소가 화면 너비를 넘어가면 줄 바꿈 */
+    justify-content: center; /* 가로 방향으로 가운데 정렬 */
+    align-items: flex-start; /* 세로 방향 정렬 (필요 시 조정 가능) */
+    gap: 20px; /* 내부 요소 간 간격 */
+    margin-bottom: 20px; /* 각 행의 아래쪽 여백 */
+}

@@ -1,0 +1,22 @@
+.petbti-select-pet {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    overflow-y: auto;
+}
+
+.petbti-select-pet::-webkit-scrollbar {
+    width: 10px;
+}
+
+.petbti-select-pet::-webkit-scrollbar-thumb {
+    background: rgb(251, 225, 134, 0.5);
+    border-radius: 5px;
+}
+
+.petbti-select-pet::-webkit-scrollbar-thumb:hover {
+    background: var(--sub-yellow-color);
+}
