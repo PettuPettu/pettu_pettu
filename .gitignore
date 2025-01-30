@@ -3,7 +3,6 @@
 # 공유해야 할 IntelliJ 설정 파일 예외 처리
 !.idea/misc.xml
 !.idea/modules.xml
-!.idea/vcs.xml
 !.idea/libraries/
 # 무시할 IntelliJ 개인 설정 파일
 .idea/workspace.xml
