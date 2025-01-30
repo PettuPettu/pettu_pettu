@@ -10,7 +10,7 @@ $(document).ready(function () {
                 password: $('#password').val()
             },
             success: function (response) {
-                window.location.href = "/main";
+                window.location.href = "/";
             },
             error: function (xhr) {
                 // 에러 메시지를 표시할 div가 없으면 생성

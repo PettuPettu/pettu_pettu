@@ -12,12 +12,6 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
     <!-- Enables the Spring MVC @Controller programming model -->
     <mvc:annotation-driven />
-    <!--
-        <mvc:message-converters>
-            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
-        </mvc:message-converters>
-
-    </mvc:annotation-driven> -->
 
 
     <!--    <context:component-scan base-package="com.spring.pettu"/>-->
@@ -30,9 +24,11 @@
     <mvc:resources mapping="/**/css/**" location="/pettu/" />
     <mvc:resources mapping="/user/icon/**" location="/pettu/user/icon/" />
     <mvc:resources mapping="/**/js/**" location="/pettu/" />
-    <mvc:resources mapping="/hotdeal/js/**" location="/pettu/hotdeal/js" />
 
+    <!-- 이미지 정적 리소스 경로 -->
+    <mvc:resources mapping="/images/**" location="file:/Users/yeongbee/SIntellij/images/" cache-period="0" />
 
+  
     <bean id="MY_tomcat_ds" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
         <property name="url" value="jdbc:oracle:thin:@yeongbee.store:9268:XE"/>
@@ -93,6 +89,16 @@
         <property name="prefix" value="/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
+
+    <!-- 파일 업로드  : CommonsMultipartResolver 설정 -->
+    <!--  FileUpload View Resolver -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="31457280"/> <!-- 30MB -->
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+
+
 
 
 </beans>

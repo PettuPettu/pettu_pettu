@@ -36,8 +36,6 @@ public class UserController {
     public ResponseEntity<?> loginUser(@RequestParam("email") String email, @RequestParam("password") String password, HttpSession session){
         UserVO user = userLoginService.login(email, password);
 
-
-
         if( user == null){
             log.error("로그인 실패");
             return ResponseEntity
@@ -46,7 +44,8 @@ public class UserController {
                     .header(HttpHeaders.CONTENT_ENCODING, "UTF-8")
                     .body("아이디 또는 비밀번호가 오류 입니다.");
         } else {
-            session.setAttribute("SESSION_USER_EMAIL", user.getUserRole());
+            session.setAttribute("SESSION_USER_EMAIL", user.getUserEmail());
+            session.setAttribute("SESSION_USER_CODE", user.getUserSeq());
             session.setAttribute("SESSION_USER_ROLE", user.getUserRole());
             log.info("로그인 성공");
             return ResponseEntity.ok().body("success");
@@ -67,7 +66,6 @@ public class UserController {
             int authNumber = userEmailService.sendAuthEmail(email);
             log.info("authNumber = {}", authNumber);
             session.setAttribute(email,authNumber);
-            session.setAttribute("SESSION_USER_EMAIL", email);
             return ResponseEntity.ok("success");
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
@@ -102,7 +100,6 @@ public class UserController {
     @ResponseBody
     public ResponseEntity<?> registerUser(@RequestBody UserVO userVO) {
 
-        log.info("userVO = {}", userVO);
        if(userRegisterService.save(userVO) == 0){
            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
        }
