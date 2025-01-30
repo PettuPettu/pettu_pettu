@@ -1,0 +1,27 @@
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Mapper와 Interface의 경로와 이름이 같아야 한다. -->
+<mapper namespace="com.spring.pettu.mapper.SpotMapper">
+<!--
+	<select id="reviewList" resultType="com.spring.pettu.com.spring.pettu.review.vo.ReviewVO">
+		select * from poto
+	</select>
+-->
+
+    <select id="spotList" resultType="com.spring.pettu.review.vo.ReviewVO">
+        select * from spot
+    </select>
+
+    <select id="spotListOfTop3" resultType="com.spring.pettu.review.vo.ReviewVO">
+        select * from spot
+    </select>
+
+    <select id="spotListByType" parameterType="com.spring.pettu.review.vo.SearchSpotType" resultType="com.spring.pettu.review.vo.ReviewVO">
+        select * from spot
+    </select>
+
+</mapper>
+
+

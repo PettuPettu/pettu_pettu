@@ -19,6 +19,7 @@ public class ReviewController {
     private static final Logger logger = LoggerFactory.getLogger(ReviewController.class);
 
 
+    /*-------------------------- jsp 페이지 mapping ---------------------------*/
     @GetMapping("/list")
     public String reviewStoreList(Model model) {
         model.addAttribute("contentPage", "/pettu/review/review_store_list.jsp");
@@ -36,5 +37,7 @@ public class ReviewController {
         model.addAttribute("contentPage", "/pettu/review/review_create_modal.jsp");
         return "pettu/layout/layout";
     }
+    /*-----------------------------------------------------------------------*/
+
 
 }
