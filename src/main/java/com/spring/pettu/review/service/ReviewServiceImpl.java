@@ -29,21 +29,21 @@ public class ReviewServiceImpl implements ReviewService {
 
 
     @Override
-    public List<SpotVO> selectAllSpot() {
+    public List<SpotVO> svcSelectAllSpot() {
         List<SpotVO> spotList = new ArrayList<>();
         spotList = spotMapper.spotList();
         return spotList;
     }
 
     @Override
-    public List<SpotVO> selectSpotListOfTop3() {
+    public List<SpotVO> svcSelectSpotTop3() {
         List<SpotVO> spotList = new ArrayList<>();
         spotList = spotMapper.spotListOfTop3();
         return spotList;
     }
 
     @Override
-    public List<SpotVO> selectSpotListBySearchType(SearchSpotType searchSpotType) {
+    public List<SpotVO> svcSelectSpotListBySearchType(SearchSpotType searchSpotType) {
         List<SpotVO> spotList = new ArrayList<>();
         spotList = spotMapper.spotListByType(searchSpotType);
         return spotList;

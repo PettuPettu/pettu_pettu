@@ -1,13 +1,18 @@
 package com.spring.pettu.review.controller;
 
+import com.spring.pettu.review.vo.SpotVO;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.spring.pettu.review.service.ReviewServiceImpl;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 
 @Controller
@@ -20,11 +25,7 @@ public class ReviewController {
 
 
     /*-------------------------- jsp 페이지 mapping ---------------------------*/
-    @GetMapping("/list")
-    public String reviewStoreList(Model model) {
-        model.addAttribute("contentPage", "/pettu/review/review_store_list.jsp");
-        return "pettu/layout/layout";
-    }
+
 
     @GetMapping("/detail")
     public String reviewStoreDetail(Model model) {
@@ -39,5 +40,15 @@ public class ReviewController {
     }
     /*-----------------------------------------------------------------------*/
 
+    private final ReviewServiceImpl rSvc;
+
+
+    // spot top3 REST API
+    @GetMapping("/top3")
+    public ResponseEntity<List<SpotVO>> spotListOfTop3() {
+        System.out.println( "SpotRestController : spotListOfTop3 함수 실행 >> ");
+        List<SpotVO> slist = rSvc.svcSelectSpotTop3();
+        return new ResponseEntity<>(slist, HttpStatus.OK);
+    }
 
 }

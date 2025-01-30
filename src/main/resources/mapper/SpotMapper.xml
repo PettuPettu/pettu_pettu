@@ -10,15 +10,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 -->
 
-    <select id="spotList" resultType="com.spring.pettu.review.vo.ReviewVO">
+    <select id="spotList" resultType="com.spring.pettu.review.vo.SpotVO">
         select * from spot
     </select>
 
-    <select id="spotListOfTop3" resultType="com.spring.pettu.review.vo.ReviewVO">
+    <select id="spotListOfTop3" resultType="com.spring.pettu.review.vo.SpotVO">
         select * from spot
     </select>
 
-    <select id="spotListByType" parameterType="com.spring.pettu.review.vo.SearchSpotType" resultType="com.spring.pettu.review.vo.ReviewVO">
+    <select id="spotListByType" parameterType="com.spring.pettu.review.vo.SearchSpotType" resultType="com.spring.pettu.review.vo.SpotVO">
         select * from spot
     </select>
 

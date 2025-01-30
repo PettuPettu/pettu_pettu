@@ -6,8 +6,16 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+
+<%@ taglib prefix="c" 	uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" 	uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" 	uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="x" 	uri="http://java.sun.com/jsp/jstl/xml" %>
+<%@ taglib prefix="sql" 	uri="http://java.sun.com/jsp/jstl/sql" %>
+
 <head>
+    <meta charset="UTF-8">
+    <title>Spot List</title>
 
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/review/css/store_list.css" />
@@ -114,7 +122,14 @@
         <div class="review-grid">
 
         </div>
-
+        <h1>펫뚜펫뚜 spot LIST </h1>
+        <%--<c:forEach items="${ALL_SPOT_LIST}" var="spot">
+            <tr>
+                <td>${spot.spotName}</td>
+                <td>${spot.spotLocation}</td>
+                <td>${spot.spotPicture}</td>
+            </tr>
+        </c:forEach>--%>
         <div class="main-slide-section">
             <!-- 카드 1 -->
             <div class="main-slide-card">

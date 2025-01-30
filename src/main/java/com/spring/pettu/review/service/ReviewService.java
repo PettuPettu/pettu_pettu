@@ -10,10 +10,10 @@ public interface ReviewService {
 
     List<ReviewVO> findALl();
 
-    List<SpotVO> selectAllSpot();
+    List<SpotVO> svcSelectAllSpot();
 
-    List<SpotVO> selectSpotListOfTop3();
+    List<SpotVO> svcSelectSpotTop3();
 
-    List<SpotVO> selectSpotListBySearchType(SearchSpotType searchSpotType);
+    List<SpotVO> svcSelectSpotListBySearchType(SearchSpotType searchSpotType);
 
 }
