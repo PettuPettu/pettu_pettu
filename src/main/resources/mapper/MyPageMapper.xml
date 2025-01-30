@@ -1,0 +1,279 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Mapper와 Interface의 경로와 이름이 같아야 한다. -->
+<mapper namespace="com.spring.pettu.mapper.MyPageMapper">
+
+
+    <!-- FileVO User ResultMap -->
+    <resultMap id="FileVOMapUser" type="com.spring.pettu.mypage.vo.FileVO">
+        <id property="fileSeq" column="USER_FILE_SEQ"/>
+        <result property="orgName" column="USER_FILE_ORG_NAME"/>
+        <result property="sysName" column="USER_FILE_SYS_NAME"/>
+        <result property="regdate" column="USER_FILE_REGDATE"/>
+        <result property="userSeq" column="USER_FILE_USER_SEQ"/>
+        <result property="fileSize" column="USER_FILE_SIZE"/>
+        <result property="fileType" column="USER_FILE_TYPE"/>
+    </resultMap>
+
+    <!-- FileVO Pet ResultMap -->
+    <resultMap id="FileVOMapPet" type="com.spring.pettu.mypage.vo.FileVO">
+        <id property="fileSeq" column="PET_FILE_SEQ"/>
+        <result property="orgName" column="PET_FILE_ORG_NAME"/>
+        <result property="sysName" column="PET_FILE_SYS_NAME"/>
+        <result property="regdate" column="PET_FILE_REGDATE"/>
+        <result property="userSeq" column="PET_FILE_USER_SEQ"/>
+        <result property="fileSize" column="PET_FILE_SIZE"/>
+        <result property="fileType" column="PET_FILE_TYPE"/>
+    </resultMap>
+
+
+    <!-- PetVO ResultMap -->
+    <resultMap id="PetVOMap" type="com.spring.pettu.mypage.vo.PetVO">
+        <id property="petSeq" column="PET_SEQ"/>
+        <result property="petName" column="PET_NAME"/>
+        <result property="petBirth" column="PET_BIRTH"/>
+        <result property="petMbti" column="PET_MBTI"/>
+        <result property="petGender" column="PET_GENDER"/>
+        <result property="petKing" column="PET_KING"/>
+        <result property="userSeq" column="PET_USER_SEQ"/>
+        <result property="petType" column="PET_TYPE"/>
+        <result property="petDetailType" column="PET_DETAIL_TYPE"/>
+        <result property="petCreateat" column="PET_CREATEAT"/>
+        <result property="petUpdateat" column="PET_UPDATEAT"/>
+
+        <!-- Pet의 FileVO 매핑 -->
+        <association property="fileVO" resultMap="FileVOMapPet"/>
+    </resultMap>
+
+    <!-- UserAndFileVO ResultMap -->
+    <resultMap id="UserAndFileResultMap" type="com.spring.pettu.mypage.vo.UserAndFileVO">
+        <!-- User 기본 정보 매핑 -->
+        <id property="userSeq" column="USER_SEQ"/>
+        <result property="userEmail" column="USER_EMAIL"/>
+        <result property="userPw" column="USER_PW"/>
+        <result property="userName" column="USER_NAME"/>
+        <result property="userNickname" column="USER_NICKNAME"/>
+        <result property="userRole" column="USER_ROLE"/>
+        <result property="userStatus" column="USER_STATUS"/>
+        <result property="userCreateAt" column="USER_CREATE_AT"/>
+        <result property="userUpdateAt" column="USER_UPDATE_AT"/>
+
+        <!-- User의 FileVO 매핑 -->
+        <association property="fileVO" resultMap="FileVOMapUser"/>
+
+        <!-- Pet 리스트 매핑 -->
+        <collection property="petList" resultMap="PetVOMap"/>
+    </resultMap>
+
+    <select id="getUserWithFileAndPets" parameterType="long" resultMap="UserAndFileResultMap">
+        SELECT *
+        FROM (
+                 SELECT u.*,
+                        uf.file_seq as user_file_seq,
+                        uf.org_name as user_file_org_name,
+                        uf.sys_name as user_file_sys_name,
+                        uf.regdate as user_file_regdate,
+                        uf.user_seq as user_file_user_seq,
+                        uf.file_size as user_file_size,
+                        uf.file_type as user_file_type
+                 FROM user_app u,
+                      (SELECT * FROM file_info WHERE file_type = 1) uf
+                 WHERE u.user_seq = uf.user_seq(+)
+                   AND u.user_seq = #{userSeq}
+             ) user_data,
+             (
+                 SELECT p.*,
+                        pf.file_seq as pet_file_seq,
+                        pf.org_name as pet_file_org_name,
+                        pf.sys_name as pet_file_sys_name,
+                        pf.regdate as pet_file_regdate,
+                        pf.user_seq as pet_file_user_seq,
+                        pf.file_size as pet_file_size,
+                        pf.file_type as pet_file_type
+                 FROM pet p,
+                      (SELECT * FROM file_info WHERE file_type = 2) pf
+                 WHERE p.pet_seq = pf.pet_seq(+)
+                   AND p.user_seq = #{userSeq}
+             ) pet_data
+        WHERE user_data.user_seq = pet_data.user_seq(+)
+    </select>
+
+    <!-- 유저 프로필 추가 -->
+    <insert id="saveUserProfileImage" parameterType="com.spring.pettu.mypage.vo.FileVO">
+        INSERT INTO file_info (
+            file_seq,
+            org_name,
+            sys_name,
+            regdate,
+            user_seq,
+            file_size,
+            file_type,
+            pet_seq
+        ) VALUES (
+                     file_info_seq.NEXTVAL,
+                     #{orgName},
+                     #{sysName},
+                     sysdate,
+                     #{userSeq},
+                     #{fileSize},
+                     #{fileType},
+                     DECODE(#{petSeq}, 0, NULL, #{petSeq})
+                 )
+    </insert>
+
+
+    <update id="updatePet" parameterType="com.spring.pettu.mypage.vo.PetVO">
+        UPDATE pet
+        SET pet_name = #{petName},
+            pet_birth = #{petBirth},
+            pet_gender = #{petGender},
+            pet_king = #{petKing},
+            pet_type = #{petType},
+            pet_detail_type = #{petDetailType},
+            pet_updateat = sysdate
+        WHERE pet_seq = #{petSeq}
+    </update>
+
+
+    <!-- 펫 seq로 파일 조회-->
+    <select id="getPetByPetSeq" parameterType="long" resultType="com.spring.pettu.mypage.vo.FileVO">
+        select * from file_info where pet_seq = #{petSeq} and file_type = 2
+    </select>
+
+
+    <!-- 유저 seq로 파일 조회-->
+    <select id="getPetByUserSeq" parameterType="long" resultType="com.spring.pettu.mypage.vo.FileVO">
+        select * from file_info where user_seq = #{userSeq} and file_type = 1
+    </select>
+
+
+    <!-- 유저 업데이트 파일 -->
+    <update id="updateUserProfileImage" parameterType="com.spring.pettu.mypage.vo.FileVO">
+        UPDATE file_info
+        SET org_name = #{orgName},
+            sys_name = #{sysName},
+            regdate = sysdate,
+            file_size = #{fileSize},
+            file_type = #{fileType}
+        WHERE user_seq = #{userSeq}
+        AND FILE_TYPE = #{fileType}
+    </update>
+
+    <!-- 펫 업데이트 파일 -->
+    <update id="updatePetImage" parameterType="com.spring.pettu.mypage.vo.FileVO">
+        UPDATE file_info
+        SET org_name = #{orgName},
+            sys_name = #{sysName},
+            regdate = sysdate,
+            file_size = #{fileSize},
+            file_type = #{fileType}
+        WHERE user_seq = #{userSeq}
+          AND pet_seq = #{petSeq}
+          AND FILE_TYPE = #{fileType}
+    </update>
+
+
+
+<!-- 닉네임 중복 체크-->
+    <select id="findUserByNickName" parameterType="String" resultType="com.spring.pettu.mypage.vo.UserAndFileVO">
+        select * from user_app where user_nickname = #{userNickname}
+    </select>
+
+    <!-- 닉네임 업데이트 -->
+    <update id="updateNickname" >
+        UPDATE user_app
+        SET user_nickname = #{nickName}
+        WHERE user_seq = #{userSeq}
+    </update>
+
+
+    <!-- 반려동물 추가 폼 -->
+    <insert id="savePet" parameterType="com.spring.pettu.mypage.vo.PetVO">
+        INSERT INTO PET (
+            PET_SEQ,
+            PET_NAME,
+            PET_BIRTH,
+            PET_GENDER,
+            PET_KING,
+            USER_SEQ,
+            PET_TYPE,
+            PET_DETAIL_TYPE,
+            PET_CREATEAT,
+            PET_UPDATEAT
+        ) VALUES (
+                     PET_SEQ.NEXTVAL,
+                     #{petName},
+                     #{petBirth},
+                     #{petGender},
+                     0,
+                     #{userSeq},
+                     #{petType},
+                     #{petDetailType},
+                     SYSDATE,
+                     null
+                 )
+    </insert>
+
+    <!-- 펫 불러오기 -->
+    <select id="selectPetsByUserSeq" parameterType="long" resultMap="petResultMap">
+        SELECT
+            p.pet_seq,
+            p.pet_name,
+            p.pet_birth,
+            p.pet_mbti,
+            p.pet_gender,
+            p.pet_king,
+            p.user_seq,
+            p.pet_type,
+            p.pet_detail_type,
+            p.pet_createat,
+            p.pet_updateat,
+            f.file_seq,
+            f.org_name,
+            f.sys_name,
+            f.regdate,
+            f.file_size,
+            f.file_type,
+            f.pet_seq as file_pet_seq
+        FROM pet p
+                 LEFT JOIN file_info f ON p.pet_seq = f.pet_seq
+        WHERE p.user_seq = #{userSeq}
+    </select>
+
+    <resultMap id="petResultMap" type="com.spring.pettu.mypage.vo.PetVO">
+        <id property="petSeq" column="pet_seq"/>
+        <result property="petName" column="pet_name"/>
+        <result property="petBirth" column="pet_birth"/>
+        <result property="petMbti" column="pet_mbti"/>
+        <result property="petGender" column="pet_gender"/>
+        <result property="petKing" column="pet_king"/>
+        <result property="userSeq" column="user_seq"/>
+        <result property="petType" column="pet_type"/>
+        <result property="petDetailType" column="pet_detail_type"/>
+        <result property="petCreateat" column="pet_createat"/>
+        <result property="petUpdateat" column="pet_updateat"/>
+        <association property="fileVO" javaType="com.spring.pettu.mypage.vo.FileVO">
+            <id property="fileSeq" column="file_seq"/>
+            <result property="orgName" column="org_name"/>
+            <result property="sysName" column="sys_name"/>
+            <result property="regdate" column="regdate"/>
+            <result property="userSeq" column="user_seq"/>
+            <result property="fileSize" column="file_size"/>
+            <result property="fileType" column="file_type"/>
+            <result property="petSeq" column="file_pet_seq"/>
+        </association>
+    </resultMap>
+
+
+    <delete id="deletePet" parameterType="long">
+        delete from pet where pet_seq = #{pet_seq}
+
+    </delete>
+
+
+
+</mapper>
+
+
