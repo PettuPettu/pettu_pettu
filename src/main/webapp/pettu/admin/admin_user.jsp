@@ -46,7 +46,7 @@
                     <td>홍길동</td>
                     <td>2024/05/21 오후 2시</td>
                     <td>활성화</td>
-                    <td><a href="dsds">보기</a></button></td>
+                    <td><a href="${pageContext.request.contextPath}/admin/user/detail">보기</a></td>
                 </tr>
             </c:forEach>
             <!-- Add more rows dynamically -->
