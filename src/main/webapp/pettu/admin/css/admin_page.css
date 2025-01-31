@@ -1,0 +1,125 @@
+@import "../../layout/css/color.css";
+@import "../../layout/css/reset.css";
+@import "../../layout/css/layout.css";
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* 전체 화면 높이를 최소한으로 유지 */
+}
+
+/* Global Styles */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f7f6;
+    color: #333;
+}
+
+/* Main Content */
+.main-content {
+    padding: 20px;
+    flex-grow: 1; /* 컨텐츠가 부족하면 남은 공간을 채움 */
+}
+
+/* Top Controls */
+.top-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.top-controls .view-options {
+    display: flex;
+    gap: 10px;
+}
+.top-controls .menu-item {
+    background-color: #e4f0ef;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.top-controls .menu-item.active {
+    background-color: #b2d8d6;
+    font-weight: bold;
+}
+.top-controls .menu-item:hover {
+    background-color: #cbe9e8;
+}
+.top-controls .add-button {
+    background-color: #1f3d3b;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.top-controls .add-button:hover {
+    background-color: #3c5c5a;
+}
+
+/* Table Styles */
+.facility-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.facility-table th, .facility-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+.facility-table th {
+    background-color: #1f3d3b;
+    color: #fff;
+    font-weight: bold;
+}
+.facility-table tr:hover {
+    background-color: #f9f9f9;
+}
+.delete-button {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.delete-button:hover {
+    background-color: #c0392b;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.pagination-button {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    margin: 0 5px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.pagination-button.active, .pagination-button:hover {
+    background-color: #1f3d3b;
+    color: #fff;
+}
