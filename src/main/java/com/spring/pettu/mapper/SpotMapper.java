@@ -4,6 +4,7 @@ import com.spring.pettu.review.vo.ReviewVO;
 import com.spring.pettu.review.vo.SearchSpotType;
 import com.spring.pettu.review.vo.SpotVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,5 +22,10 @@ public interface SpotMapper {
     // 검색 결과 [ 위치(도시군) / 카테고리(시설 종류) / 가게 이름 ]에 따른 Spot 리스트
     List<SpotVO> spotListByType(SearchSpotType searchSpotType);
 
+    // 전체 Spot 리스트 수
+    int spotListSize();
+
+    // 페이징 처리된 페이지별 Spot 리스트
+    List<SpotVO> spotListByPaging(@Param("startSeq") int startSeq, @Param("endSeq") int endSeq);
 }
 

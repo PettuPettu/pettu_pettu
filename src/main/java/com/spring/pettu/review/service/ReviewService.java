@@ -16,4 +16,5 @@ public interface ReviewService {
 
     List<SpotVO> svcSelectSpotListBySearchType(SearchSpotType searchSpotType);
 
+    List<SpotVO> svcSpotListByPaging(int startSeq, int endSeq);
 }

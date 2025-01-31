@@ -15,12 +15,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
 
     <select id="spotListOfTop3" resultType="com.spring.pettu.review.vo.SpotVO">
-        select * from spot
+        <![CDATA[
+        SELECT *
+        FROM SPOT
+        WHERE spot_seq IN (
+            SELECT spot_seq
+            from (
+                SELECT spot_seq, total_visit_cnt, ROUND(total_sum_score/total_visit_cnt,2) as total_review_socre
+                FROM (
+                    select spot_seq, count(1) as total_visit_cnt , sum(review_score) as total_sum_score
+                    from review
+                    group by spot_seq
+                )
+                where ROUND(total_sum_score/total_visit_cnt,2) >= 4.0
+                ORDER BY total_visit_cnt DESC, total_review_socre DESC
+            )
+            WHERE ROWNUM <= 3
+        )
+        ]]>
     </select>
 
     <select id="spotListByType" parameterType="com.spring.pettu.review.vo.SearchSpotType" resultType="com.spring.pettu.review.vo.SpotVO">
         select * from spot
     </select>
+
+    <select id="spotListSize" resultType="int">
+        select count(1) from spot
+    </select>
+
+    <select id="spotListByPaging" resultType="com.spring.pettu.review.vo.SpotVO">
+        select s.*
+        from
+            (
+                select spot.*, (ROW_NUMBER() OVER(order by SPOT_CREATE_DATE asc, SPOT_SEQ)) as page_spot_seq
+                from spot
+            ) s
+        where page_spot_seq between #{startSeq} and #{endSeq}
+    </select>
+
 
 </mapper>
 

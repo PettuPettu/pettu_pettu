@@ -1,4 +1,4 @@
-﻿package com.spring.pettu.common.paging;
+package com.spring.pettu.common.paging;
 
 public class PagingUtil {
 
@@ -16,6 +16,15 @@ public class PagingUtil {
 	 * @param blockCount 	: 한 블럭의 게시물 수
 	 * @param blockPage  	: 한화면에 보여질 블럭 수
 	 **/
+
+	/**
+	 * 		int blockCount = 9;
+	 *		int blockPage = 3;
+	 *      totRecord = 27 일때
+	 *		blockPage = 4로 설정하면(maxPage = 3인 상태에서), 3페이지까지만 있어야 하는데, 4페이지, 5페이지, 6페이지까지 표시되는 경우가 발생
+	 *   	추후 로직 수정 필요
+	*/
+
 	public PagingUtil(String url, int currentPage, int totRecord, int blockCount, int blockPage) {
 		// (1) 최대 페이지 수 구하기 (Math.ceil 올림)
 		maxPage = (int) Math.ceil((double) totRecord / blockCount);

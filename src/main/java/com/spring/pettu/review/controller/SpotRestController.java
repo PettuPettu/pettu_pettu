@@ -42,5 +42,4 @@ public class SpotRestController {
         return new ResponseEntity<>(slist, HttpStatus.OK);
     }
 
-
 }

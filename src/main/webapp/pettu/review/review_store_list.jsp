@@ -123,13 +123,7 @@
 
         </div>
         <h1>펫뚜펫뚜 spot LIST </h1>
-        <%--<c:forEach items="${ALL_SPOT_LIST}" var="spot">
-            <tr>
-                <td>${spot.spotName}</td>
-                <td>${spot.spotLocation}</td>
-                <td>${spot.spotPicture}</td>
-            </tr>
-        </c:forEach>--%>
+
         <div class="main-slide-section">
             <!-- 카드 1 -->
             <div class="main-slide-card">
@@ -175,22 +169,21 @@
                     </div>
                 </div>
             </div>
-            <div class="main-slide-card">
-                <img src="/assets/layout/github.svg" alt="카드 이미지 3">
-                <div class="main-slide-card-desc">
-                    <div class="main-slide-card-title">
-                        <strong>카드 3 제목</strong>
-                        <span>카드 3 설명</span>
-                    </div>
-                    <div class="main-slide-card-info">
-                        <strong>카드 3 정보</strong>
-                        <span>추가 정보 3</span>
-                    </div>
-                </div>
-            </div>
+
         </div>
-
-
+        <c:forEach items="${PAGING_SPOT_LIST}" var="spot">
+                 <tr>
+                     <td>${spot.spotName}</td>
+                     <%--<td>${spot.spotLocation}</td>
+                     <td>${spot.spotPicture}</td>--%>
+                 </tr>
+                <br>
+        </c:forEach>
+        <div>
+            button
+            <br>
+            ${SPOT_PAGING_BUTTON}
+        </div>
     </div>
 </div>
 </body>

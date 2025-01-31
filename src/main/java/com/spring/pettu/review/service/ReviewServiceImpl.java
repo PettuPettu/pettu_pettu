@@ -48,4 +48,14 @@ public class ReviewServiceImpl implements ReviewService {
         spotList = spotMapper.spotListByType(searchSpotType);
         return spotList;
     }
+
+    // 페이징 처리된 가게리스트 API
+    @Override
+    public List<SpotVO> svcSpotListByPaging(int startSeq, int endSeq) {
+        List<SpotVO> spotList = new ArrayList<>();
+        spotList = spotMapper.spotListByPaging(startSeq, endSeq);
+        return spotList;
+    }
+
+
 }
