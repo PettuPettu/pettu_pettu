@@ -99,6 +99,28 @@
     </bean>
 
 
+<!-- 인증, 권한 관리-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!-- 인증이 필요한 특정 경로만 매핑 -->
+            <mvc:mapping path="/mypage/**"/>
+            <mvc:mapping path="/myreview/**"/>
+            <mvc:mapping path="/admin/**"/>
+
+            <!-- 정적 리소스 제외 -->
+            <mvc:exclude-mapping path="/resources/**"/>
+            <mvc:exclude-mapping path="/assets/**"/>
+            <mvc:exclude-mapping path="/**/css/**"/>
+            <mvc:exclude-mapping path="/user/icon/**"/>
+            <mvc:exclude-mapping path="/**/js/**"/>
+            <mvc:exclude-mapping path="/images/**"/>
+
+            <bean class="com.spring.pettu.auth.interceptor.AuthInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+
+
 
 
 </beans>
