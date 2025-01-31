@@ -72,34 +72,7 @@ public class MyReviewController {
     @GetMapping("/myreview/sort")
     @ResponseBody
     public ResponseEntity<?> sortReviews(@RequestParam String sortBy, @RequestParam Long userSeq) {
-
-        UserAndReviewVO reviews = myReviewService.findUserAndReviewById(userSeq);
-
-        //원래 정렬은 DB에서 끝내고 와야 하지만 너무 귀찮아서.....
-        try {
-
-            if (reviews.getReviewReviewVOList() != null) {
-                List<MyReviewReviewVO> sortedList = reviews.getReviewReviewVOList();
-
-                switch(sortBy) {
-                    case "oldest":
-                        // 등록순 (오래된 날짜가 먼저)
-                        sortedList.sort((a, b) -> a.getReviewCreateDate().compareTo(b.getReviewCreateDate()));
-                        break;
-                    case "rating":
-                        // 평점순 (높은 평점이 먼저)
-                        sortedList.sort((a, b) -> b.getReviewScore() - a.getReviewScore());
-                        break;
-                }
-                reviews.setReviewReviewVOList(sortedList);
-            }
-
-            return ResponseEntity.ok(reviews);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("정렬 실패");
-        }
+        return ResponseEntity.ok(myReviewService.sort(sortBy, userSeq));
     }
-
-
 
 }

@@ -6,4 +6,5 @@ public interface MyReviewService {
 
     UserAndReviewVO findUserAndReviewById(Long id);
     int deleteReviewById(Long id);
+    UserAndReviewVO sort(String sortStr, long userSeq );
 }
