@@ -34,4 +34,11 @@ public class AdminController {
         model.addAttribute("contentPage", "/pettu/admin/admin_hotdeal.jsp");
         return "pettu/admin/admin_hotdeal";
     }
+
+    @GetMapping("/user/detail")
+    public String adminUserDetail(Model model) {
+        model.addAttribute("contentPage", "/pettu/admin/admin_user_detail.jsp");
+        return "pettu/admin/admin_user_detail";
+    }
+
 }
