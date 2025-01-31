@@ -581,11 +581,35 @@ $(document).on('click', '.modal', function(e) {
     }
 });
 
+// 날짜 형식 변환(년월일)
+function formatDate(timestamp) {
+    // 타임스탬프가 밀리초 단위인지 확인하고 변환
+    const date = new Date(Number(timestamp));
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    console.log(year);
+    console.log(month);
+    console.log(day);
+    return `${year}년 ${month}월 ${day}일`;
+}
 
-
+// 날짜 형식 변환( - )
+function formatDateDay(timestamp) {
+    // 타임스탬프가 밀리초 단위인지 확인하고 변환
+    const date = new Date(Number(timestamp));
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    console.log(year);
+    console.log(month);
+    console.log(day);
+    return `${year}-${month}-${day}`;
+}
 
 
 function renderPetCard(pet) {
+
     return `
         <div class="pet-card" data-pet-seq="${pet.petSeq}">
             <div class="pet-header">
@@ -601,7 +625,7 @@ function renderPetCard(pet) {
                     </div>
                     <div class="pet-details">
                         품종 : ${pet.petType} - ${pet.petDetailType}<br>
-                        생일 : ${pet.petBirth}<br>
+                        생일 : ${formatDate(pet.petBirth)}<br>
                         mbti: ${pet.petMbti ? pet.petMbti : '검사 필요해요. <a href="/pettu/mbti/test">검사하러 가기</a>'}
                     </div>
                 </div>
@@ -625,8 +649,9 @@ function renderPetCard(pet) {
                 </div>
                 <div class="form-row">
                     <label>생일:</label>
-                    <input type="text" name="petBirth" value="${pet.petBirth}">
-                </div>
+<!--                    <input type="date" name="petBirth" value="${pet.petBirth}">-->
+                    <input type="date" name="petBirth" value="${formatDateDay(pet.petBirth)}">
+                </div>  
                 <div class="form-buttons">
                     <button class="save-btn" onclick="savePetForm('petForm${pet.petSeq}')">저장</button>
                     <button class="cancel-btn" onclick="cancelPetForm('petForm${pet.petSeq}')">취소</button>
