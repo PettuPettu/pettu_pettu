@@ -2,6 +2,14 @@
     overflow: auto;
 }
 
+#petbti-result-fragment {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
 .petbti-title h1{
     color: var(--main-color);
     margin-bottom: 10px;
