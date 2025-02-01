@@ -23,7 +23,7 @@
             <img src="${pageContext.request.contextPath}/assets/layout/logo.svg" alt="로고" class="logo-image">
             <span class="logo-text">펫뚜펫뚜</span>
         </div>
-        <h2>회원가입</h2>
+        <h2>비밀번호 변경</h2>
         <br>
         <form id="signupForm">
             <div class="input-group">
@@ -54,7 +54,7 @@
                 </div>
                 <div id="pwdMatchMessage"></div>
             </div>
-            
+
             <button type="submit" class="submit-btn">변경하기</button>
         </form>
     </div>
