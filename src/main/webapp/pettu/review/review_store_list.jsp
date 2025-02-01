@@ -68,7 +68,7 @@
                 </div>
                 <div class="dropdown">
                     <div class="search-bar">
-                        <input type="text" id="search-input" placeholder="검색어를 입력하세요">
+                        <label><input type="text" id="search-input" placeholder="검색어를 입력하세요"></label>
                         <button style="background-color: #495a8c" onclick="findSpotName()">입력</button>
                     </div>
                 </div>
