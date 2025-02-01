@@ -6,14 +6,16 @@ import com.spring.pettu.auth.user.service.interfaces.UserRegisterService;
 import com.spring.pettu.auth.user.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -33,24 +35,47 @@ public class UserController {
 
     @PostMapping("/login")
     @ResponseBody
-    public ResponseEntity<?> loginUser(@RequestParam("email") String email, @RequestParam("password") String password, HttpSession session){
+    public ResponseEntity<?> loginUser(
+            @RequestParam("email") String email,
+            @RequestParam("password") String password,
+            @RequestParam(required = false) String redirectURL,
+            HttpSession session) {
+
         UserVO user = userLoginService.login(email, password);
 
-        if( user == null){
-            log.error("로그인 실패");
+        if (user == null) {
             return ResponseEntity
                     .status(HttpStatus.UNAUTHORIZED)
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .header(HttpHeaders.CONTENT_ENCODING, "UTF-8")
                     .body("아이디 또는 비밀번호가 오류 입니다.");
         } else {
             session.setAttribute("SESSION_USER_EMAIL", user.getUserEmail());
             session.setAttribute("SESSION_USER_CODE", user.getUserSeq());
             session.setAttribute("SESSION_USER_ROLE", user.getUserRole());
-            log.info("로그인 성공");
-            return ResponseEntity.ok().body("success");
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("status", "success");
+            response.put("redirectURL", redirectURL != null ? redirectURL : "/");
+
+            return ResponseEntity.ok().body(response);
         }
     }
+
+
+
+    // 로그아웃
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
+        // 브라우저 캐시 방지 헤더
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        response.setHeader("Pragma", "no-cache");
+        response.setHeader("Expires", "0");
+
+        HttpSession session = request.getSession();
+        session.invalidate();
+        return "redirect:/";
+    }
+
+
 
     @GetMapping("/register")
     public String registerUser(){
@@ -64,7 +89,6 @@ public class UserController {
         UserVO user = userRegisterService.findByEmail(email);
         if(user == null){
             int authNumber = userEmailService.sendAuthEmail(email);
-            log.info("authNumber = {}", authNumber);
             session.setAttribute(email,authNumber);
             return ResponseEntity.ok("success");
         }
@@ -103,7 +127,6 @@ public class UserController {
        if(userRegisterService.save(userVO) == 0){
            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
        }
-       log.info("유저 회원가입 완료");
         return ResponseEntity.ok().build();
     }
 
