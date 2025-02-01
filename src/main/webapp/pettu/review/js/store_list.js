@@ -204,7 +204,7 @@ function findSpotName(){
         }
 
         if (inputText) {
-
+            toggleMessage();
             addTag(inputText,'검색어');
             document.getElementById('search-input').value = '';
         } else {
