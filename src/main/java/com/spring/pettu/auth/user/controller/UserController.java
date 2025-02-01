@@ -27,12 +27,14 @@ public class UserController {
     private final UserEmailService userEmailService;
 
 
-
+    // 로그인
     @GetMapping("/login")
     public String loginUser(){
         return "pettu/user/login";
     }
 
+
+    // 로그인 검증
     @PostMapping("/login")
     @ResponseBody
     public ResponseEntity<?> loginUser(
@@ -61,7 +63,6 @@ public class UserController {
     }
 
 
-
     // 로그아웃
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) {
@@ -76,7 +77,7 @@ public class UserController {
     }
 
 
-
+    // 회원가입 페이지로 이동
     @GetMapping("/register")
     public String registerUser(){
         return "pettu/user/register";
@@ -93,7 +94,6 @@ public class UserController {
             return ResponseEntity.ok("success");
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-
     }
 
     // 인증코드 확인
@@ -119,14 +119,46 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
-
+    // 회원가입 검증
     @PostMapping("/api/register/save")
     @ResponseBody
-    public ResponseEntity<?> registerUser(@RequestBody UserVO userVO) {
+    public ResponseEntity<?> registerUser(@RequestBody UserVO userVO, HttpSession session) {
 
        if(userRegisterService.save(userVO) == 0){
            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
        }
+       session.invalidate();
+        return ResponseEntity.ok().build();
+    }
+
+    // 비밀번호 찾기 이메일
+    @PostMapping("/api/password-reset/check-email")
+    @ResponseBody
+    public ResponseEntity<?> pwResetEmail(@RequestParam("email") String email, HttpSession session){
+        UserVO user = userRegisterService.findByEmail(email);
+        if(user != null){
+            int authNumber = userEmailService.sendAuthEmail(email);
+            session.setAttribute(email,authNumber);
+            return ResponseEntity.ok("success");
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
+
+
+
+    //비밀번호 찾기
+    @GetMapping("/password-reset")
+    public String passwordReset(){
+        return "pettu/user/find_pw";
+    }
+
+    @PostMapping("/api/password/reset")
+    @ResponseBody
+    public ResponseEntity<?> resetPassword(@RequestBody UserVO userVO , HttpSession session) {
+        if(userRegisterService.updateUserPwd(userVO) == 0){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        session.invalidate();
         return ResponseEntity.ok().build();
     }
 
