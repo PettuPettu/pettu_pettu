@@ -1,7 +1,6 @@
 import { petbtiQuestions } from './petbti_data.js';
 
 document.addEventListener("DOMContentLoaded", function () {
-    sessionStorage.setItem("petMbti", "");
     const mbtiScores = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
 
     let currentQuestionIndex = 0;
@@ -9,6 +8,28 @@ document.addEventListener("DOMContentLoaded", function () {
     const questionTitle = document.querySelector(".petbti-title h1");
     const buttonsContainer = document.querySelector(".petbti-question-btn");
     const progressbar = document.querySelector(".petbti-progressbar");
+
+    function updatePetMbti(mbtiType, petSeq) {
+        const requestData = {
+            petMbti: mbtiType,
+            petSeq: petSeq,
+        };
+
+        fetch('/petbti/mbti', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestData)
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('반려동물 MBTI 업데이트 성공:', data);
+            })
+            .catch(error => {
+                console.error('반려동물 MBTI 업데이트 실패:', error);
+            });
+    }
 
     function updateQuestion(questions) {
         if (currentQuestionIndex >= questions.length) {
@@ -50,6 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mbtiType += mbtiScores["J"] >= mbtiScores["P"] ? "J" : "P";
 
         sessionStorage.setItem("petMbti", mbtiType);
+        updatePetMbti(mbtiType, sessionStorage.getItem("pSeq"));
 
         window.location.href = "/petbti/result";
     }
