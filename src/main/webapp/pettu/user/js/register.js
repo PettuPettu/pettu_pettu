@@ -133,7 +133,7 @@ $(document).ready(function () {
 
         // AJAX 회원가입 요청
         $.ajax({
-            url: '/api/register/save', // 실제 API 엔드포인트로 변경 필요
+            url: '/api/register/save',
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(formData),
