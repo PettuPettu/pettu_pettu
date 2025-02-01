@@ -65,13 +65,13 @@ public class UserController {
 
     // 로그아웃
     @GetMapping("/logout")
-    public String logout(HttpServletRequest request, HttpServletResponse response) {
+    public String logout(HttpSession session , HttpServletResponse response) {
         // 브라우저 캐시 방지 헤더
         response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
         response.setHeader("Pragma", "no-cache");
         response.setHeader("Expires", "0");
 
-        HttpSession session = request.getSession();
+
         session.invalidate();
         return "redirect:/";
     }
