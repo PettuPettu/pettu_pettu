@@ -104,6 +104,8 @@ public class MyPageController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("fail");
         }
     }
+
+
     @DeleteMapping("/mypage/pet/delete/{id}")
     @ResponseBody
     public ResponseEntity<String> deletePet(@PathVariable("id") long seq) {
