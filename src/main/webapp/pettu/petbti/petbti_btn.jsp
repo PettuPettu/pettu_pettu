@@ -1,1 +1,4 @@
-<button type="submit" class="petbti_btn"><%= request.getParameter("value") %></button>
+<button type="button" class="petbti_btn"
+        onclick="<%= request.getParameter("onclick") %>">
+    <%= request.getParameter("value") %>
+</button>
