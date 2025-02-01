@@ -22,57 +22,17 @@
 
 </head>
 <body>
-<script src="${pageContext.request.contextPath}/review/js/store_list.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="${pageContext.request.contextPath}/review/js/store_list.js"></script>
 
 <div class="container">
     <!-- HOT TOP Section -->
-    <div class="hot-top-section">
+    <div class="hot-top-section" >
         <h1>펫뚜펫뚜 <span>1월</span> HOT TOP 3</h1>
-        <div class="slide-cards">
-            <div class="slide-card card-flex">
-                <div class="top-img-contents">
-                    <img src="http://tong.visitkorea.or.kr/cms/resource/10/2445110_image2_1.jpg" alt="카드 이미지 3">
-                </div>
-                <div class="top-info-contents">
-                    <div> 마루네 아침 카페 </div>
-                    <div> 맛있는 쿠키가 있습니다 </div>
-                    <div> 별점 5 점</div>
-                    <div> 총 리뷰 수
-                        이번달 30개 / 총 70개 </div>
-                    <div> 카테고리 : 카페</div>
+        <div class="slide-cards" id="top3-result-div">
 
-                </div>
-            </div>
 
-            <div class="slide-card card-flex">
-                <div class="top-img-contents">
-                    <img src="/assets/layout/github.svg" alt="카드 이미지 3">
-                </div>
-                <div class="top-info-contents">
-                    <div> 마루네 아침 카페 </div>
-                    <div> 맛있는 쿠키가 있습니다 </div>
-                    <div> 별점 5 점</div>
-                    <div> 총 리뷰 수
-                        이번달 30개 / 총 70개 </div>
-                    <div> 카테고리 : 카페</div>
 
-                </div>
-            </div>
-
-            <div class="slide-card card-flex">
-                <div class="top-img-contents">
-                    <img src="/assets/layout/github.svg" alt="카드 이미지 3">
-                </div>
-                <div class="top-info-contents">
-                    <div> 마루네 아침 카페 </div>
-                    <div> 맛있는 쿠키가 있습니다 </div>
-                    <div> 별점 5 점</div>
-                    <div> 총 리뷰 수
-                        이번달 30개 / 총 70개 </div>
-                    <div> 카테고리 : 카페</div>
-
-                </div>
-            </div>
         </div>
     </div>
     <!--  ---------------------- Search Section -------------------- -->
@@ -84,31 +44,49 @@
             <div class="filter-row">
                 <div class="dropdown">
                     <button class="dropdown-button" onclick="toggleDropdown(event)">지역 검색</button>
-                    <div class="dropdown-content">
-                        <label><input type="checkbox" value="서울전체" onchange="handleCheckboxChange(event)"> 서울전체</label>
-                        <label><input type="checkbox" value="경기전체" onchange="handleCheckboxChange(event)"> 경기전체</label>
-                        <label><input type="checkbox" value="인천전체" onchange="handleCheckboxChange(event)"> 인천전체</label>
+                    <div class="dropdown-content" id="location-select-div">
+                        <label><input type="checkbox" class="locationType" value="1" onchange="handleCheckboxChange(event)"> 서울특별시</label>
+                        <label><input type="checkbox" class="locationType" value="31" onchange="handleCheckboxChange(event)"> 경기도</label>
+                        <label><input type="checkbox" class="locationType" value="2" onchange="handleCheckboxChange(event)"> 인천광역시</label>
+                        <label><input type="checkbox" class="locationType" value="35" onchange="handleCheckboxChange(event)"> 경상북도</label>
+                        <label><input type="checkbox" class="locationType" value="32" onchange="handleCheckboxChange(event)"> 강원도</label>
+                        <label><input type="checkbox" class="locationType" value="39" onchange="handleCheckboxChange(event)"> 전북</label>
                     </div>
                 </div>
 
                 <div class="dropdown">
                     <button class="dropdown-button" onclick="toggleDropdown(event)">카테고리 검색</button>
-                    <div class="dropdown-content">
-                        <label><input type="checkbox" value="카페" onchange="handleCheckboxChange(event)"> 카페</label>
-                        <label><input type="checkbox" value="식당" onchange="handleCheckboxChange(event)"> 식당</label>
-                        <label><input type="checkbox" value="맛집" onchange="handleCheckboxChange(event)"> 맛집</label>
+                    <div class="dropdown-content" id="category-select-div">
+                        <label><input type="checkbox" class="categoryType" value="12" onchange="handleCheckboxChange(event)"> 관광지</label>
+                        <label><input type="checkbox" class="categoryType" value="14" onchange="handleCheckboxChange(event)"> 문화시설</label>
+                        <label><input type="checkbox" class="categoryType" value="15" onchange="handleCheckboxChange(event)"> 축제공연행사</label>
+                        <label><input type="checkbox" class="categoryType" value="28" onchange="handleCheckboxChange(event)"> 레포츠</label>
+                        <label><input type="checkbox" class="categoryType" value="32" onchange="handleCheckboxChange(event)"> 숙박</label>
+                        <label><input type="checkbox" class="categoryType" value="38" onchange="handleCheckboxChange(event)"> 쇼핑</label>
+                        <label><input type="checkbox" class="categoryType" value="39" onchange="handleCheckboxChange(event)"> 음식점</label>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <div class="search-bar">
+                        <input type="text" id="search-input" placeholder="검색어를 입력하세요">
+                        <button style="background-color: #495a8c" onclick="findSpotName()">입력</button>
                     </div>
                 </div>
 
-                <div class="search-bar">
-                    <input type="text" placeholder="검색어를 입력하세요">
-                    <button>검색</button>
-                </div>
             </div>
 
             <!-- Tags Section -->
-            <div class="tags">
-                <!-- Tags will be dynamically created here -->
+
+            <div class="tag-flex-div">
+                <div class="tags">
+                    <!-- Tags will be dynamically created here -->
+
+                </div>
+                <div id="tag-btn-div">
+                    <div class="search-bar">
+                        <button id ="search-type-btn">검색</button>
+                    </div>
+                </div>
             </div>
 
         </div>

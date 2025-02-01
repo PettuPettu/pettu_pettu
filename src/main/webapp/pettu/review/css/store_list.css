@@ -89,9 +89,12 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
+    margin: 0 auto;
+
 }
 .search-bar input {
-    width: 300px;
+    width: 280px;
+    height: 24px;
     padding: 10px;
     font-size: 14px;
     border: 1px solid #ccc;
@@ -99,6 +102,7 @@
 }
 .search-bar button {
     padding: 10px 20px;
+    height: 45px;
     font-size: 14px;
     color: #ffffff;
     background-color: #007bff;
@@ -110,7 +114,12 @@
     background-color: #0056b3;
 }
 .tags {
-    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 10px;
+    width: 90%;
+    margin: 15px 10px 15px 0px;
     text-align: center;
 }
 .tags span {
@@ -125,6 +134,30 @@
 }
 .tags span:hover {
     background-color: #0056b3;
+}
+.tag-flex-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f7ff;
+    border: 1px solid #d6e0f5;
+    border-radius: 10px;
+    padding: 15px;
+}
+#tag-content-div {
+    width: 90%;
+    min-height: 70px;
+}
+#tag-btn-div {
+    margin: 0 auto;
+    min-height: 70px;
+}
+#search-type-btn {
+    width: 90px;
+    min-height: 70px;
+    height: 90%;
+    background-color: #4354c8;
+    padding: 10px;
 }
 /*-----------------------------*/
 .main-slide-section {
@@ -249,6 +282,7 @@
 }
 .dropdown {
     position: relative;
+
 }
 .dropdown-button {
     padding: 10px;
@@ -258,6 +292,8 @@
     color: #495a8c;
     font-size: 14px;
     cursor: pointer;
+    width: 350px;
+    height: 45px;
 }
 .dropdown-button:hover {
     background-color: #e0e7ff;
@@ -271,6 +307,7 @@
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     padding: 10px;
     z-index: 1;
+    width: 330px;
 }
 .dropdown.open .dropdown-content {
     display: block;
@@ -283,15 +320,7 @@
     color: #495a8c;
     margin-bottom: 5px;
 }
-.tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 10px;
-    background-color: #f4f7ff;
-    border: 1px solid #d6e0f5;
-    border-radius: 10px;
-}
+
 .tag {
     padding: 5px 10px;
     background-color: #e0e7ff;
@@ -301,8 +330,10 @@
     font-size: 12px;
     display: flex;
     align-items: center;
-    gap: 5px;
+
+    width: fit-content;
 }
+
 .tag span {
     cursor: pointer;
     color: #4354a8;
@@ -312,4 +343,21 @@
 }
 .dropdown.open .dropdown-content {
     display: block;
+}
+
+/*-----------------동적 스타일 추가--------------------*/
+/* tagContainer에 적용될 스타일 */
+.center-style {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: center;  /* 수평 중앙 정렬 */
+    align-items: center;      /* 수직 중앙 정렬 */
+    height: 70%;            /* 원하는 높이 */
+}
+
+/* messageDiv에 적용될 스타일 */
+.message-style {
+    text-align: center;       /* 메시지 글씨 수평 중앙 정렬 */
+    line-height: 90%;       /* 메시지 수직 중앙 정렬 */
 }

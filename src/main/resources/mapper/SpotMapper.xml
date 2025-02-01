@@ -35,8 +35,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         ]]>
     </select>
 
-    <select id="spotListByType" parameterType="com.spring.pettu.review.vo.SearchSpotType" resultType="com.spring.pettu.review.vo.SpotVO">
-        select * from spot
+    <select id="spotListBySearchType" parameterType="com.spring.pettu.review.vo.SearchSpotType" resultType="com.spring.pettu.review.vo.SpotVO">
+
+        SELECT *
+        FROM spot
+        <where>
+            <!-- 'searchKeyword'가 있을 경우 'SPOT_NAME LIKE' 조건 추가 -->
+            <if test="searchKeyword != null and searchKeyword != ''">
+                SPOT_NAME LIKE '%' || #{searchKeyword} || '%'
+            </if>
+
+            <!-- 'locations'가 있을 경우, 'AND'로 조건 추가 -->
+            <if test="locations != null and locations.size() > 0">
+                <if test="searchKeyword != null and searchKeyword != ''">
+                    AND
+                </if>
+                SPOT_AREA_CODE IN
+                <foreach collection="locations" item="location" open="(" close=")" separator=",">
+                    #{location}
+                </foreach>
+            </if>
+
+            <!-- 'categories'가 있을 경우, 'AND'로 조건 추가 -->
+            <if test="categories != null and categories.size() > 0">
+                <if test="searchKeyword != null and searchKeyword != '' or locations != null and locations.size() > 0">
+                    AND
+                </if>
+                CATEGORY_SEQ IN
+                <foreach collection="categories" item="category" open="(" close=")" separator=",">
+                    #{category}
+                </foreach>
+            </if>
+        </where>
     </select>
 
     <select id="spotListSize" resultType="int">

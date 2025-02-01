@@ -45,7 +45,7 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public List<SpotVO> svcSelectSpotListBySearchType(SearchSpotType searchSpotType) {
         List<SpotVO> spotList = new ArrayList<>();
-        spotList = spotMapper.spotListByType(searchSpotType);
+        spotList = spotMapper.spotListBySearchType(searchSpotType);
         return spotList;
     }
 

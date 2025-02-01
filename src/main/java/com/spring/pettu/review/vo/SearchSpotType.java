@@ -4,21 +4,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class SearchSpotType {
+    
+    private List<String> locations;     // 지역 리스트 : spotAreaCode
 
-    // 장소 : 시군구 코드 : 세부 코드 | EX ) 경기도 파주시
-    long spotSigunguCode;
+    private List<String> categories;    // 카테고리 리스트 : categorySeq
+                                        // 카테고리 ID [ 관광타입 ID ] : contentTypeId  | EX ) 음식점 :38번
 
-    // 장소 : 도 코드 : areacode 경기도 / 서울특별시
-    long spotAreaCode;
+    private String searchKeyword;        // 검색어 : 시설명 검색
 
-    // 카테고리 ID [ 관광타입 ID ] : contentTypeId  | EX ) 음식점 :38번
-    long categorySeq;
-
-    // 가게 이름검색
-    String spotName;
 
 }

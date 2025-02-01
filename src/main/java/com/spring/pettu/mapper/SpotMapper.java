@@ -20,7 +20,7 @@ public interface SpotMapper {
     List<SpotVO> spotListOfTop3();
 
     // 검색 결과 [ 위치(도시군) / 카테고리(시설 종류) / 가게 이름 ]에 따른 Spot 리스트
-    List<SpotVO> spotListByType(SearchSpotType searchSpotType);
+    List<SpotVO> spotListBySearchType(SearchSpotType searchSpotType);
 
     // 전체 Spot 리스트 수
     int spotListSize();

@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/spot")
+@RequestMapping("/rest/spot")
 public class SpotRestController {
 
     private final ReviewServiceImpl rSvc;
@@ -31,11 +31,15 @@ public class SpotRestController {
     }
 
     // spot 검색 결과 REST API
-    @GetMapping("/searchSpot")
+    @PostMapping("/searchSpot")
     public ResponseEntity<List<SpotVO>> spotListBySearchType(@RequestBody SearchSpotType searchSpotType) {
         System.out.println( "SpotRestController : spotListBySearchType 함수 실행 >> ");
 
-        System.out.println("검색어 >>> "+searchSpotType.toString());
+
+        System.out.println("Selected Locations: " + searchSpotType.getLocations());
+        System.out.println("Selected Categories: " + searchSpotType.getCategories());
+        System.out.println("Search 시설명  검색 : " + searchSpotType.getSearchKeyword());
+
 
         List<SpotVO> slist = rSvc.svcSelectSpotListBySearchType(searchSpotType);
 
