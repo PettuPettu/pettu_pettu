@@ -15,7 +15,7 @@
     <div class="petbti-btn-fragment">
         <jsp:include page="petbti_btn.jsp">
             <jsp:param name="value" value="시작하기" />
-            <jsp:param name="onclick" value="savePetNameAndRedirect('/petbti/questions')" />
+            <jsp:param name="onclick" value="savePetNameAndRedirect()" />
         </jsp:include>
         <jsp:include page="petbti_btn.jsp">
             <jsp:param name="value" value="로그인" />
