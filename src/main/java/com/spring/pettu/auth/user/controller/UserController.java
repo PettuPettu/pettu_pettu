@@ -152,6 +152,7 @@ public class UserController {
         return "pettu/user/find_pw";
     }
 
+    // 비밀번호 변경
     @PostMapping("/api/password/reset")
     @ResponseBody
     public ResponseEntity<?> resetPassword(@RequestBody UserVO userVO , HttpSession session) {
