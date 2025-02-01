@@ -35,9 +35,6 @@ public class MyPageController {
     public String myPage(Model model, HttpSession session) {
 
         // 로그인한 유저 세션으로 꺼내서 불러오기
-        // 임시 세션
-        session.setAttribute("SESSION_USER_CODE", 2L);
-
         long userCode = (long) session.getAttribute("SESSION_USER_CODE");
         UserAndFileVO userAndFileVO = myPageService.findUserAndFileById(userCode);
 
@@ -51,7 +48,6 @@ public class MyPageController {
     @ResponseBody
     public ResponseEntity<?> profileUpload(@RequestParam("file") MultipartFile file, @PathVariable("id") long seq) {
 
-        long ck = 2;
         if(myPageService.saveFileImage(file, seq, 0,1) == 1){
             return ResponseEntity.ok().build();
         }
@@ -65,10 +61,7 @@ public class MyPageController {
     @ResponseBody
     public ResponseEntity<?> petUpload( @PathVariable("id") long seq, @RequestParam("nickname") String nickname) {
 
-        log.info("seq = {}", seq);
-        log.info("nickname = {}", nickname);
         UserAndFileVO findUserByNickName = myPageService.findUserByNickName(nickname);
-        log.info("uSerBYNickName = {}", findUserByNickName);
         if(findUserByNickName != null){
             return ResponseEntity.status(HttpStatus.CONFLICT).body("duplicate");
         }
@@ -111,11 +104,12 @@ public class MyPageController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("fail");
         }
     }
+
+
     @DeleteMapping("/mypage/pet/delete/{id}")
     @ResponseBody
     public ResponseEntity<String> deletePet(@PathVariable("id") long seq) {
 
-        log.info("seq------------ = {}", seq);
         myPageService.deletePetByPetSeq(seq);
         return ResponseEntity.ok("success");
     }

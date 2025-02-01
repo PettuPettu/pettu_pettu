@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,88 +32,85 @@
 <div id="main-content">
     <div class="container">
         <div class="sidebar">
-            <div class="menu-item">사용자 정보</div>
-            <div class="menu-item">내 리뷰</div>
+            <div class="menu-item" onclick="location.href='/mypage'">사용자 정보</div>
+            <div class="menu-item" onclick="location.href='/myreview'">내 리뷰</div>
         </div>
 
         <div class="main-content">
             <div class="review-header">
                 <h2 class="section-title">내 리뷰</h2>
                 <div class="review-stats">
-                    <span class="total-reviews">전체 리뷰: 4개</span>
-                    <span class="average-rating">평균 평점: 4.5</span>
+                    <span>전체 리뷰: ${fn:length(reviewList.reviewReviewVOList)}개</span>
+                    <span>평균 평점: <fmt:formatNumber value="${averageScore}" pattern="0.0"/></span>
                 </div>
+
             </div>
 
             <div class="review-filters">
                 <select class="sort-by">
-                    <option value="recent">최신순</option>
+                    <option value="latest">최신순</option>
+                    <option value="oldest">등록순</option>
                     <option value="rating">평점순</option>
                 </select>
+
             </div>
 
             <div class="review-list">
-                <!-- 리뷰 카드 반복 -->
-                <div class="review-card">
-                    <div class="review-card-header">
-                        <div class="reviewer-info">
-                            <div class="reviewer-image"></div>
-                            <div class="reviewer-details">
-                                <span class="reviewer-name">홍길동</span>
-                                <span class="review-date">2025.01.20</span>
+                <c:if test="${not empty reviewList.reviewReviewVOList}">
+                    <c:forEach items="${reviewList.reviewReviewVOList}" var="review">
+                        <div class="review-card">
+                            <div class="review-card-header">
+                                <div class="reviewer-info">
+                                    <div class="reviewer-image">
+                                        <img src="${pageContext.request.contextPath}/images/${reviewList.myReviewFileVO.sysName}"
+                                             alt="Profile" width="40" height="40">
+                                    </div>
+                                    <div class="reviewer-details">
+                                        <span class="reviewer-name">${reviewList.userNickname}</span>
+                                        <span class="review-date">
+                                            <fmt:formatDate value="${review.reviewCreateDate}" pattern="yyyy년 MM월 dd일"/>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="rating">
+                                    <c:forEach begin="1" end="${review.reviewScore}">★</c:forEach>
+                                </div>
+                            </div>
+                            <div class="review-body ${not empty review.reviewFile.sysName ? 'has-image' : ''}">
+                                <c:if test="${not empty review.reviewFile.sysName}">
+                                    <img src="${pageContext.request.contextPath}/images/${review.reviewFile.sysName}"
+                                         alt="Review Image" class="review-image">
+                                </c:if>
+                                <div class="review-text-content">
+                                    <div class="review-title">
+                                        <a href="${pageContext.request.contextPath}/review/detail/${review.spotSeq}"
+                                           class="review-title-link"
+                                           title="클릭하여 상세 페이지로 이동">
+                                                ${review.reviewTitle}
+                                        </a>
+                                    </div>
+                                    <div class="review-content">
+                                        <p>${review.reviewContents}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="review-actions">
+                                <button class="delete-btn" data-review-id="${review.reviewSeq}">삭제</button>
                             </div>
                         </div>
-                        <div class="rating">★★★★★</div>
-                    </div>
-                    <div class="review-content">
-                        <p>강아지 미용이 정말 꼼꼼하게 잘되어있어요. 다음에도 재방문 하겠습니다!</p>
-                    </div>
-                    <div class="review-actions">
-                        <button class="delete-btn">삭제</button>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="review-card-header">
-                        <div class="reviewer-info">
-                            <div class="reviewer-image"></div>
-                            <div class="reviewer-details">
-                                <span class="reviewer-name">홍길동</span>
-                                <span class="review-date">2025.01.20</span>
-                            </div>
-                        </div>
-                        <div class="rating">★★★★★</div>
-                    </div>
-                    <div class="review-content">
-                        <p>강아지 미용이 정말 꼼꼼하게 잘되어있어요. 다음에도 재방문 하겠습니다!</p>
-                    </div>
-                    <div class="review-actions">
-                        <button class="delete-btn">삭제</button>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="review-card-header">
-                        <div class="reviewer-info">
-                            <div class="reviewer-image"></div>
-                            <div class="reviewer-details">
-                                <span class="reviewer-name">홍길동</span>
-                                <span class="review-date">2025.01.20</span>
-                            </div>
-                        </div>
-                        <div class="rating">★★★★★</div>
-                    </div>
-                    <div class="review-content">
-                        <p>강아지 미용이 정말 꼼꼼하게 잘되어있어요. 다음에도 재방문 하겠습니다!</p>
-                    </div>
-                    <div class="review-actions">
-                        <button class="delete-btn">삭제</button>
-                    </div>
-                </div>
+                    </c:forEach>
+                </c:if>
+                <c:if test="${empty reviewList.reviewReviewVOList}">
+                    <p>작성한 리뷰가 없습니다.</p>
+                </c:if>
             </div>
         </div>
     </div>
 </div>
 <jsp:include page="/pettu/layout/footer.jsp"/>
 
-
+<script>
+    const userSeq = ${reviewList.userSeq};
+</script>
 </body>
 </html>

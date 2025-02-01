@@ -9,6 +9,9 @@
 .idea/usage.statistics.xml
 .idea/shelf/
 
+#리소스 프로퍼티 파일
+resources/properties/ *.properties
+
 # 로그 파일
 logs/
 *.log

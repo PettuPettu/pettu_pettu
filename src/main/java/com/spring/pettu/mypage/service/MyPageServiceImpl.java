@@ -7,6 +7,7 @@ import com.spring.pettu.mypage.vo.PetVO;
 import com.spring.pettu.mypage.vo.UserAndFileVO;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.io.FilenameUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,6 +27,10 @@ public class MyPageServiceImpl implements MyPageService {
 
     private final MyPageMapper myPageMapper;
 
+    // Properties의 자신의 저장경로
+    @Value("${static.images.java.location}")
+    private String uploadDir;
+
     public UserAndFileVO findUserAndFileById(Long id) {
         return myPageMapper.getUserWithFileAndPets(id);
     }
@@ -39,10 +44,6 @@ public class MyPageServiceImpl implements MyPageService {
         try {
 
             // 저장 경로 설정
-            // 맥북용 내 프로젝트 경로에 이미지 저장
-//            String uploadDir = "/Users/yeongbee/SIntellij/pettu_pettu2/src/main/webapp/pettu/images";
-            // 이미지 정적리소스 경로, 변경시 servlet-context.xml에서도 변경하기
-            String uploadDir = "/Users/yeongbee/SIntellij/images";
             Path uploadPath = Paths.get(uploadDir);
 
             // 디렉토리가 없으면 생성

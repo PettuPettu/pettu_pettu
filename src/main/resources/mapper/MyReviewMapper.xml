@@ -1,0 +1,93 @@
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Mapper와 Interface의 경로와 이름이 같아야 한다. -->
+<mapper namespace="com.spring.pettu.mapper.MyReviewMapper">
+
+	<resultMap id="userAndReviewMap" type="com.spring.pettu.myreview.vo.UserAndReviewVO">
+		<id property="userSeq" column="user_seq"/>
+		<result property="userEmail" column="user_email"/>
+		<result property="userPw" column="user_pw"/>
+		<result property="userName" column="user_name"/>
+		<result property="userNickname" column="user_nickname"/>
+		<result property="userRole" column="user_role"/>
+		<result property="userStatus" column="user_status"/>
+		<result property="userCreateAt" column="user_create_at"/>
+		<result property="userUpdateAt" column="user_update_at"/>
+
+		<association property="myReviewFileVO" javaType="com.spring.pettu.myreview.vo.MyReviewFileVO">
+			<id property="fileSeq" column="profile_file_seq"/>
+			<result property="orgName" column="profile_org_name"/>
+			<result property="sysName" column="profile_sys_name"/>
+			<result property="regdate" column="profile_regdate"/>
+			<result property="userSeq" column="profile_user_seq"/>
+			<result property="fileSize" column="profile_file_size"/>
+			<result property="fileType" column="profile_file_type"/>
+		</association>
+
+		<collection property="reviewReviewVOList" ofType="com.spring.pettu.myreview.vo.MyReviewReviewVO">
+			<id property="reviewSeq" column="review_seq"/>
+			<result property="reviewScore" column="review_score"/>
+			<result property="reviewTitle" column="review_title"/>
+			<result property="reviewContents" column="review_contents"/>
+			<result property="reviewCreateDate" column="review_create_date"/>
+			<result property="spotSeq" column="spot_seq"/>
+			<result property="userSeq" column="review_user_seq"/>
+
+			<association property="reviewFile" javaType="com.spring.pettu.myreview.vo.MyReviewFileVO">
+				<id property="fileSeq" column="review_file_seq"/>
+				<result property="orgName" column="review_file_org_name"/>
+				<result property="sysName" column="review_file_sys_name"/>
+				<result property="regdate" column="review_file_regdate"/>
+				<result property="userSeq" column="review_file_user_seq"/>
+				<result property="fileSize" column="review_file_size"/>
+				<result property="fileType" column="review_file_type"/>
+			</association>
+		</collection>
+	</resultMap>
+
+	<select id="getUserAndReviews" parameterType="long" resultMap="userAndReviewMap">
+		SELECT *
+		FROM (
+				 SELECT u.*,
+						uf.file_seq as profile_file_seq,
+						uf.org_name as profile_org_name,
+						uf.sys_name as profile_sys_name,
+						uf.regdate as profile_regdate,
+						uf.user_seq as profile_user_seq,
+						uf.file_size as profile_file_size,
+						uf.file_type as profile_file_type,
+						uf.review_seq as profile_review_seq
+				 FROM user_app u,
+					  (SELECT * FROM file_info WHERE file_type = 1) uf
+				 WHERE u.user_seq = uf.user_seq(+)
+				   AND u.user_seq = #{userSeq}
+			 ) user_data,
+			 (
+				 SELECT r.*,
+						rf.file_seq as review_file_seq,
+						rf.org_name as review_file_org_name,
+						rf.sys_name as review_file_sys_name,
+						rf.regdate as review_file_regdate,
+						rf.user_seq as review_file_user_seq,
+						rf.file_size as review_file_size,
+						rf.file_type as review_file_type,
+						rf.review_seq as review_file_review_seq
+				 FROM review r,
+					  (SELECT * FROM file_info WHERE file_type = 3) rf
+				 WHERE r.review_seq = rf.review_seq(+)
+				   AND r.user_seq = #{userSeq}
+			 ) review_data
+		WHERE user_data.user_seq = review_data.user_seq(+)
+		order by review_data.review_create_date desc
+	</select>
+
+	<delete id="deleteReview" parameterType="long">
+		delete from review where review_seq = #{reviewSeq}
+	</delete>
+
+
+</mapper>
+
+
