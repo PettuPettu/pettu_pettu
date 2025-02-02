@@ -1,6 +1,6 @@
 package com.spring.pettu.hotdeal.service;
 
-import com.spring.pettu.hotdeal.vo.HistoryVO;
+import com.spring.pettu.hotdeal.vo.HotdealDTO;
 import com.spring.pettu.hotdeal.vo.HotdealVO;
 import com.spring.pettu.mapper.HotdealMapper;
 import org.apache.http.client.methods.CloseableHttpResponse;  // HTTP 응답 객체
@@ -12,7 +12,9 @@ import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +31,8 @@ public class ApiCallerServiceImpl implements ApiCallerService {
     @Override
     public JsonNode getApiData(String query, int displayCount) {
         try (CloseableHttpClient client = HttpClients.createDefault()) {
-            String API_URL_Option = API_URL + "?query=" + query + "&display=" + displayCount;
+            String encodingQuery = URLEncoder.encode(query, "UTF-8");
+            String API_URL_Option = API_URL + "?query=" + encodingQuery + "&display=" + displayCount;
             HttpGet request = new HttpGet(API_URL_Option);
 
             request.setHeader("X-Naver-Client-Id", CLIENT_ID);
@@ -49,28 +52,56 @@ public class ApiCallerServiceImpl implements ApiCallerService {
 
     //수정해야 함!!!
     @Override
-    public List<HotdealVO> setHotdealData(JsonNode jsonNode) {
+    public List<HotdealDTO> setHotdealData(JsonNode jsonNode) {
 
         ObjectMapper mapper = new ObjectMapper();
-        List<HotdealVO> list = new ArrayList<HotdealVO>();
+        List<HotdealDTO> list = new ArrayList<HotdealDTO>();
 
-        if (jsonNode.has("item") && jsonNode.get("item").isArray()) {
-            for (JsonNode item : jsonNode.get("item")) {
+        if (jsonNode.has("items") && jsonNode.get("items").isArray()) {
+            for (JsonNode item : jsonNode.get("items")) {
                 try {
-                    HotdealVO hotdealVO = mapper.treeToValue(item, HotdealVO.class);
-                    list.add(hotdealVO);
+                    //System.out.println("attempt to transfer: " + item.toString());
+                    HotdealDTO hotdealDTO = mapper.treeToValue(item, HotdealDTO.class);
+                    list.add(hotdealDTO);
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    //System.out.println("fail to transfer: " + item.toString());
+                    throw new RuntimeException("리스트 변환 실패", e);
                 }
             }
+        }
+        else {
+            System.out.println("wwwwwwww");
+        }
+
+        if (list.isEmpty()) {
+            System.out.println("list is empty");
+        } else {
+            System.out.println("list size : " + list.size());
         }
         return list;
     }
 
-    public void insertHotdealDataList(HotdealVO hotdealVO, HistoryVO historyVO) {
+    @Transactional
+    public void saveHotdealToDB(List<HotdealDTO> hlist) {
 
-        for (HotdealVO h : setHotdealData(getApiData("강아지 사료", 100))) {
-            hotdealMapper.insertHotdealData(h, historyVO);
+        for (HotdealDTO h : hlist) {
+
+            int count = hotdealMapper.checkProductId(h.getProductId());
+            HotdealVO hvo = null;
+
+            if (count > 0) {
+                hvo = hotdealMapper.selectByProductId(h.getProductId());
+                if (hotdealMapper.checkRegitDate(hvo) >= 1) {
+                    hotdealMapper.updateHistory(h, hvo);
+                } else {
+                    hotdealMapper.insertHistoryData(h, hvo);
+                }
+            } else {
+                hotdealMapper.insertHotdealData(h);
+                hvo = hotdealMapper.selectByProductId(h.getProductId());
+                hotdealMapper.insertHistoryData(h, hvo);
+            }
+
         }
     }
 
