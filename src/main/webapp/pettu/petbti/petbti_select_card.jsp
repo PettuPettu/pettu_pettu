@@ -1,23 +1,42 @@
+<%@ page import="java.util.Date" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <head>
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/petbti/css/petbti_select_card.css" />
 </head>
+<%
+    String petSeq = request.getParameter("pseq");
+    String petImg = request.getParameter("img");
+    String petMbti = request.getParameter("mbti");
+    String petName = request.getParameter("name");
+    String petGender = request.getParameter("gender");
+    String petBreed = request.getParameter("breed");
+
+    String birthStr = request.getParameter("birth");
+    String birthYearStr = birthStr.substring(birthStr.length() - 4);
+    int currentYear = new Date().getYear() + 1900;
+    int birth = currentYear - Integer.parseInt(birthYearStr);
+%>
 
 <article class="petbti-select-card-fragment" data-select="false">
-    <img src="${pageContext.request.contextPath}/assets/layout/github.svg"/>
+    <img src="/images/<%=petImg%>"/>
     <div class="petbti-select-card-info-fragment">
         <p class="petbti-select-card-info">
-            <span class="petbti-select-card-mbti">ESTJ</span>
-            <span class="petbti-select-card-name">복슬이</span>
-            <span class="petbti-select-card-gender">♂</span>
+            <span class="petbti-select-card-pseq"><%= petSeq%></span>
+            <span class="petbti-select-card-mbti"><%= petMbti != "" ? petMbti : "검사 필요" %></span>
+            <span class="petbti-select-card-name"><%= petName %></span>
+            <% if(petGender.equals("1")) { %>
+                <span class="gender-male">♂</span>
+            <% }  else {%>
+                <span class="gender-female">♀</span>
+            <% } %>
         </p>
         <p class="petbti-select-card-breed">
-            리트리버
+            <%= petBreed %>
         </p>
-        <p class=petbti-select-card-desc">
-            2개월ㆍ3kg
+        <p class="petbti-select-card-birth">
+            <%= birth %>살
         </p>
     </div>
 </article>

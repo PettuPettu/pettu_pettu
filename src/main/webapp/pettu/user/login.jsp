@@ -41,8 +41,8 @@
         </form>
 
         <div class="links">
-            <a href="#">회원가입</a>
-            <a href="#">비밀번호 찾기</a>
+            <a href="/register">회원가입</a>
+            <a href="/password-reset">비밀번호 찾기</a>
         </div>
     </div>
 </div>

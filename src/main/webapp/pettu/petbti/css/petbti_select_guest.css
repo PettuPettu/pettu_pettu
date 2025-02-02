@@ -1,4 +1,4 @@
-.petbti-name-input {
+#petbti-name-input {
     width: 55%;
     border: 2px solid var(--main-color);
     border-radius: 10px;

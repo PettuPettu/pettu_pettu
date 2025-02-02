@@ -34,6 +34,14 @@
     border-radius: 5px;
 }
 
-.petbti-select-card-gender {
+.gender-female {
     color: var(--font-point-color);
+}
+
+.gender-male {
+    color: #007bff;
+}
+
+.petbti-select-card-pseq {
+    display: none;
 }

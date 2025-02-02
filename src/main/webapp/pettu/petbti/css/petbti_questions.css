@@ -1,6 +1,5 @@
 .petbti-container {
     justify-content: center;
-    padding: 20px 50px;
     gap: 50px;
     position: relative;
 }
@@ -19,9 +18,10 @@
 .petbti-progressbar {
     background-color: var(--main-color);
     height: 10px;
-    width: 70%;
+    width: 0;
     position: absolute;
     top: 0;
     left: 0;
+    transition: width 0.3s ease-in-out;
 }
 

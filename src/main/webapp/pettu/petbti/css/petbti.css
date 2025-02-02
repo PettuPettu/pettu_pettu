@@ -27,6 +27,10 @@
     border: none;
 }
 
+.petbti_btn:hover {
+    background-color: #ffa08e;
+}
+
 .petbti-title h1{
     font-family: "Hakgyoansim Dunggeunmiso TTF B";
     font-size: 40px;
