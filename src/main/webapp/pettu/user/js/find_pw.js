@@ -35,7 +35,7 @@ $(document).ready(function () {
         }
 
         $.ajax({
-            url: '/api/register/check-email',
+            url: '/api/password-reset/check-email',
             method: 'POST',
             data: {email: email},
             success: function (response) {
@@ -44,7 +44,7 @@ $(document).ready(function () {
                 $('.verification-area').show();
             },
             error: function (xhr) {
-                $('#emailError').text('이미 존재하는 회원입니다').show();
+                $('#emailError').text('이메일 주소를 다시 확인해 주세요.').show();
                 $('.verification-area').hide();
             }
         });
@@ -73,31 +73,7 @@ $(document).ready(function () {
         });
     });
 
-    // 닉네임 중복 확인
-    $('#checkNicknameBtn').click(function () {
-        const nickname = $('#nicknameInput').val();
 
-        if (!nickname) {
-            $('#nicknameError').text('닉네임을 입력해주세요').show();
-            return;
-        }
-
-        $.ajax({
-            url: '/api/register/check-nickname',
-            method: 'POST',
-            data: {nickname: nickname},
-            success: function (response) {
-                $('#nicknameInput').prop('readonly', true);
-                $('#checkNicknameBtn').prop('disabled', true);
-                $('#nicknameError').hide();
-                isNicknameVerified = true; // 인증 성공 시 true로 변경
-                alert('사용 가능한 닉네임입니다.');
-            },
-            error: function (xhr) {
-                $('#nicknameError').text('이미 사용중인 닉네임입니다').show();
-            }
-        });
-    });
 
     // 폼 제출
     $('#signupForm').submit(function (e) {
@@ -105,8 +81,6 @@ $(document).ready(function () {
 
         const password1 = $('#password1').val();
         const password2 = $('#password2').val();
-        const name = $('#nameInput').val();
-        const nickname = $('#nicknameInput').val();
 
         // 필수 조건 검증
         if (!isEmailVerified) {
@@ -117,32 +91,26 @@ $(document).ready(function () {
             alert('비밀번호가 일치하지 않습니다');
             return;
         }
-        if (!isNicknameVerified) {
-            alert('닉네임 인증을 완료해주세요');
-            return;
-        }
 
 
         // 서버 전송 데이터 구성
         const formData = {
             userEmail: $('#emailInput').val(),    // email -> userEmail
             userPw: password1,                    // password -> userPw
-            userName: name,                       // name -> userName
-            userNickname: nickname               // nickname -> userNickname
         };
 
         // AJAX 회원가입 요청
         $.ajax({
-            url: '/api/register/save',
+            url: '/api/password/reset',
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(formData),
             success: function(response) {
-                alert('회원가입이 완료되었습니다!');
+                alert('비밀번호 변경이 완료되었습니다!');
                 window.location.href = '/login'; // 로그인 페이지로 리다이렉트
             },
             error: function(xhr) {
-                const errorMsg = xhr.responseJSON?.message || '회원가입에 실패했습니다';
+                const errorMsg = xhr.responseJSON?.message || '비밀번호 변경에 실패하였습니다.';
                 alert(errorMsg);
             }
         });
