@@ -33,11 +33,12 @@
     align-items: center;
     white-space: nowrap;
     overflow: hidden;
-    width: 100%;
+    width: 90%;
     position: relative;
 }
 
 .petbti-start-animation img{
+    width: 100%;
     height: 80%;
     transition: opacity 1s ease-in-out;
 }
