@@ -26,7 +26,7 @@
 }
 
 .petbti-start-animation {
-    height: 60%;
+    height: 70%;
     display: flex;
     gap: 50px;
     flex-direction: column;
@@ -38,7 +38,7 @@
 }
 
 .petbti-start-animation img{
-    height: 60%;
+    height: 80%;
     transition: opacity 1s ease-in-out;
 }
 

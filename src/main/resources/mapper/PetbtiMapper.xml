@@ -1,0 +1,31 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.pettu.mapper.PetbtiMapper">
+
+    <resultMap id="PetVOMap" type="com.spring.pettu.mypage.vo.PetVO">
+        <id property="petSeq" column="PET_SEQ"/>
+        <result property="petName" column="PET_NAME"/>
+        <result property="petBirth" column="PET_BIRTH"/>
+        <result property="petMbti" column="PET_MBTI"/>
+        <result property="petGender" column="PET_GENDER"/>
+        <result property="petKing" column="PET_KING"/>
+        <result property="userSeq" column="PET_USER_SEQ"/>
+        <result property="petType" column="PET_TYPE"/>
+        <result property="petDetailType" column="PET_DETAIL_TYPE"/>
+        <result property="petCreateat" column="PET_CREATEAT"/>
+        <result property="petUpdateat" column="PET_UPDATEAT"/>
+
+        <association property="fileVO" resultMap="FileVOMapPet"/>
+    </resultMap>
+
+    <update id="updatePetMbti" parameterType="com.spring.pettu.mypage.vo.PetVO">
+        UPDATE pet
+        SET pet_mbti = #{petMbti}
+        WHERE pet_seq = #{petSeq}
+    </update>
+
+</mapper>
+
+
