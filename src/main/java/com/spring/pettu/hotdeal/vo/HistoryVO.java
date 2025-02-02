@@ -10,7 +10,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class HistoryVO {
     int proSeq;
-    Date regitDate;
+    String regitDate;
     int rowPrice;
 
 }
