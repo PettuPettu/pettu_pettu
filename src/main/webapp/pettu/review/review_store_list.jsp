@@ -19,16 +19,20 @@
 
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/review/css/store_list.css" />
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/review/css/store_paging_style.css" />
 
 </head>
 <body>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="${pageContext.request.contextPath}/review/js/store_list.js"></script>
+    <script src="${pageContext.request.contextPath}/review/js/store_search_paging.js"></script>
 
-<div class="container">
+    <div class="container">
     <!-- HOT TOP Section -->
     <div class="hot-top-section" >
-        <h1>펫뚜펫뚜 <span>1월</span> HOT TOP 3</h1>
+
+        <h1> 애견동반 HOT한 <span>TOP 3</span>  시설 </h1>
         <div class="slide-cards" id="top3-result-div">
 
 
@@ -94,74 +98,39 @@
     </div>
     <!--  ---------------------- store list Section -------------------- -->
     <div class="second-section">
-        <h1>펫뚜펫뚜 <span>1월</span> 가게 정보 LIST </h1>
+        <div id="spot-list-title-div">
+            <img src="/assets/common/hot.svg" alt="불">
+            <span id="spot-list-title"><strong> 애견동반 시설 모음집</strong></span>
+            <img src="/assets/common/hot.svg" alt="불">
+        </div>
 
-
-        <div class="review-grid">
+        <div id="append-main-slide-section">
 
         </div>
-        <h1>펫뚜펫뚜 spot LIST </h1>
+        <div id="pagination"></div>
 
-        <div class="main-slide-section">
-            <!-- 카드 1 -->
+
+       <%-- <c:forEach items="${PAGING_SPOT_LIST}" var="spot">
             <div class="main-slide-card">
-                <img src="/assets/layout/github.svg" alt="카드 이미지 3">
+                <img src="${spot.spotPicture}" alt="${spot.spotName} 이미지">
                 <div class="main-slide-card-desc">
-                    <div class="main-slide-card-title">
-                        <strong>카드 1 제목</strong>
-                        <span>카드 1 설명</span>
-                    </div>
-                    <div class="main-slide-card-info">
-                        <strong>카드 1 정보</strong>
-                        <span>추가 정보 1</span>
+                    <div class="spot-card-category"><span>#${spot.categorySeq}</span></div>
+                    <div>${spot.spotName}
+                        <div class="main-slide-card-title">
+                            <strong>${spot.spotLocation}</strong>
+                        </div>
+                        <div class="main-slide-card-info">
+                            <strong>평점</strong>
+                            <span>${spot.spotSigunguCode}</span>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <!-- 카드 2 -->
-            <div class="main-slide-card">
-                <img src="/assets/layout/github.svg" alt="카드 이미지 3">
-                <div class="main-slide-card-desc">
-                    <div class="main-slide-card-title">
-                        <strong>카드 2 제목</strong>
-                        <span>카드 2 설명</span>
-                    </div>
-                    <div class="main-slide-card-info">
-                        <strong>카드 2 정보</strong>
-                        <span>추가 정보 2</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 카드 3 -->
-            <div class="main-slide-card">
-                <img src="/assets/layout/github.svg" alt="카드 이미지 3">
-                <div class="main-slide-card-desc">
-                    <div class="main-slide-card-title">
-                        <strong>카드 3 제목</strong>
-                        <span>카드 3 설명</span>
-                    </div>
-                    <div class="main-slide-card-info">
-                        <strong>카드 3 정보</strong>
-                        <span>추가 정보 3</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <c:forEach items="${PAGING_SPOT_LIST}" var="spot">
-                 <tr>
-                     <td>${spot.spotName}</td>
-                     <%--<td>${spot.spotLocation}</td>
-                     <td>${spot.spotPicture}</td>--%>
-                 </tr>
-                <br>
         </c:forEach>
         <div>
-            button
             <br>
             ${SPOT_PAGING_BUTTON}
-        </div>
+        </div>--%>
     </div>
 </div>
 </body>

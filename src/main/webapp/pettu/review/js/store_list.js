@@ -3,11 +3,38 @@ $(document).ready(function() {
     spotTop3OfAJAX();
     toggleMessage();
 
-    $('#search-type-btn').click(function() {
+ $('#search-type-btn').click(function() {
         spotListBySearchTypeOfAJAX();
+
     });
 
 });
+
+/*
+서버에서 페이징 처리하기 API
+function loadCtlData(){
+    var sectionCounter = 1;
+    var cardCounter = 0;
+
+    $('#append-main-slide-section').empty();
+
+    $('.main-slide-card').each(function(index) {
+        if (cardCounter % 3 === 0) {
+            if (cardCounter > 0) {
+                sectionCounter++;
+            }
+
+            var newSectionHtml = `<div class="main-slide-section" id="${sectionCounter}-main-slide-section"></div>`;
+
+            $('#append-main-slide-section').append(newSectionHtml);
+        }
+
+        $(this).appendTo(`#${sectionCounter}-main-slide-section`);
+
+        cardCounter++;
+    });
+}
+*/
 
 // top3 ajax 뿌리기
 function spotTop3OfAJAX(){
@@ -18,6 +45,9 @@ function spotTop3OfAJAX(){
         contentType: 'application/json',
         dataType: 'json',
         success: function(data) {
+
+
+            $('#top3-result-div').empty();
             successDivOfTop3API(data);
         },
         error: function(xhr, status, error) {
@@ -26,11 +56,12 @@ function spotTop3OfAJAX(){
     });
 }
 
+
+
 function spotListBySearchTypeOfAJAX(){
 
     if(isTagExists('검색어')){
         let searchKeywordElement = document.querySelector('.searchKeyword');
-        // value 값 읽기
         searchKeyword = searchKeywordElement.value;
     }
 
@@ -52,11 +83,70 @@ function spotListBySearchTypeOfAJAX(){
         success: function(data) {
 
             console.log("AJAX 요청 성공:"+data);
+            
+            // VO List 저장
+            allItems = data || []; // 배열로 저장
+            currentPage = 1; // 페이지 초기화
+            renderPage(currentPage); // 페이지 렌더링
+            renderPagination(); // 페이징 바
+
         },
         error: function(xhr, status, error) {
             console.error("AJAX 요청 실패:", error);
         }
     });
+}
+
+function renderPagingSearchSpot(data){
+    let sectionCounter = 1;
+    let cardCounter = 0;
+    const container = $('#append-main-slide-section');
+    container.empty();
+
+    if (data && data.length > 0) {
+        data.forEach(function(spot, index) {
+            // 3개의 카드가 추가 -> div 생성
+            if (cardCounter % 3 === 0) {
+                if (cardCounter > 0) {
+                    sectionCounter++;
+                }
+
+                var newSectionHtml = `<div class="main-slide-section" id="${sectionCounter}-main-slide-section"></div>`;
+
+                $('#append-main-slide-section').append(newSectionHtml);
+            }
+
+            renderSpotCard(spot, sectionCounter);
+            cardCounter++;
+        });
+    }
+}
+
+// 시설 정보 카드
+function renderSpotCard(spot,sectionCounter) {
+    var cardHtml = `
+       <div class="main-slide-card">
+        <!-- 이미지가 null일 경우 기본 이미지로 대체 -->
+        <img src="${spot.spotPicture != null && spot.spotPicture != '' ? spot.spotPicture : '/assets/layout/github.svg'}" alt="${spot.spotName} 이미지">
+        
+        <div class="main-slide-card-desc">
+            <div class="spot-card-category"><span>#${spot.categorySeq}</span></div>
+            <div class="main-card-content-div">
+                <!-- spotName이 null일 경우 '정보 없음' 표시 -->
+                <div>${spot.spotName != null ? spot.spotName : '정보 없음'}</div>
+                <div class="main-slide-card-title">
+                    <strong>${spot.spotLocation != null ? spot.spotLocation : '정보 없음'}</strong>
+                </div>
+                <div class="main-slide-card-info">
+                    <strong>평점 ${spot.spotSigunguCode != null ? spot.spotSigunguCode : '정보 없음'}</strong>
+                    <span></span> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    `;
+    $('#'+sectionCounter + '-main-slide-section').append(cardHtml);
 }
 
 //Top3 API 화면 출력 함수
@@ -88,20 +178,20 @@ function successDivOfTop3API(data){
             var avgScore = item.spotTotalAvgScore > 0 ? item.spotTotalAvgScore : '0';  // 별점 기본값 0
             var reviewMonthly = item.reviewMonthlyCnt || 0;
             var reviewTotal = item.reviewTotalCnt || 0;
+
             // 카테고리 한글 Mapping
             var category = categoryMap[item.categorySeq] || '기타';
 
             var infoContents = $('<div class="top-info-contents"></div>');
             infoContents.append('<div>' + spotName + '</div>');
-            infoContents.append('<div> <strong>위치</strong> : <br>' + spotLocation + '</div>');
+            infoContents.append('<div><br>' + spotLocation + '</div>');
             infoContents.append('<div>별점 ' + avgScore + '점</div>');
             infoContents.append('<div><strong>총 리뷰 수</strong><br>  이번달 ' + reviewMonthly + '개 / 총 ' + reviewTotal + '개</div>');
             infoContents.append('<div>카테고리 : ' + category + '</div>');
 
-            // 슬라이드 카드에 정보 추가
+
             slideCard.append(infoContents);
 
-            // 카드 목록에 추가 (예: .card-container에 넣기)
             $('#top3-result-div').append(slideCard);
         });
     }
@@ -168,14 +258,14 @@ function handleCheckboxChange(event) {
     const checkbox = event.target;
     // 분류코드 : value 값 가져오기
     const value = checkbox.value;
+
     // 분류 : class 값 가져오기 (위치/카테고리)
     const classType = checkbox.className;
+
     // 한글명 출력 : 라벨의 text 값 가져오기
     const label = checkbox.closest('label');
     const categoryText = label.textContent.trim();
-    /*
-        alert("value" + value + " / " + "categoryText:"+ categoryText);
-    */
+
     if (checkbox.checked) {
         addTag(categoryText, value, classType);
         checkedBoxAddList(checkbox,value);
@@ -187,7 +277,6 @@ function handleCheckboxChange(event) {
     toggleMessage();
 
 }
-
 
 
 // 검색어 라벨 생성/삭제하기
@@ -219,10 +308,10 @@ function isTagExists(categoryText) {
     const tagContainer = document.querySelector('.tags');
 
     // 검색어 태그를 찾기
-    let tagExists= Array.from(tagContainer.children).some(tag => tag.textContent.includes(categoryText));
+    if (tagContainer) {
+        return Array.from(tagContainer.children).some(tag => tag.textContent.includes(categoryText));
+    }
 
-    // T / F
-    return tagExists;
 }
 
 
@@ -309,7 +398,6 @@ function clickRemoveTag(event) {
                 checkedBoxRemoveList(realClass, realValue);
             }
         }
-        // 해당 'div.tag' 삭제
         tag.remove();
     }
 
