@@ -56,7 +56,7 @@ public class MyPageController {
 
 
 
-    // 반려동물 이미지 업로드
+    // 닉네임 중복확인
     @PostMapping("/mypage/user/nickname/{id}")
     @ResponseBody
     public ResponseEntity<?> petUpload( @PathVariable("id") long seq, @RequestParam("nickname") String nickname) {
@@ -85,7 +85,7 @@ public class MyPageController {
 
 
 
-
+    // 반려동물 리스트 불러오기
     @GetMapping("/mypage/pet/list/{userSeq}")
     @ResponseBody
     public List<PetVO> getPetList(@PathVariable("userSeq") long userSeq) {
@@ -93,7 +93,7 @@ public class MyPageController {
     }
 
 
-
+    // 반려동물 추가
     @PostMapping("/mypage/pet/save")
     @ResponseBody
     public ResponseEntity<String> createPet(@RequestBody PetVO petVO) {
@@ -105,7 +105,7 @@ public class MyPageController {
         }
     }
 
-
+    // 반려동물 삭제
     @DeleteMapping("/mypage/pet/delete/{id}")
     @ResponseBody
     public ResponseEntity<String> deletePet(@PathVariable("id") long seq) {
