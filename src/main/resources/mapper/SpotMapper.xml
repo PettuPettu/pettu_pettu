@@ -10,11 +10,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 -->
 
-    <select id="spotList" resultType="com.spring.pettu.review.vo.SpotVO">
+    <select id="spotList" resultType="com.spring.pettu.spot.vo.SpotVO">
         select * from spot
     </select>
 
-    <select id="spotListOfTop3" resultType="com.spring.pettu.review.vo.SpotVO">
+    <select id="spotListOfTop3" resultType="com.spring.pettu.spot.vo.SpotVO">
         <![CDATA[
         SELECT *
         FROM SPOT
@@ -35,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         ]]>
     </select>
 
-    <select id="spotListBySearchType" parameterType="com.spring.pettu.review.vo.SearchSpotType" resultType="com.spring.pettu.review.vo.SpotVO">
+    <select id="spotListBySearchType" parameterType="com.spring.pettu.spot.vo.SearchSpotType" resultType="com.spring.pettu.spot.vo.SpotVO">
 
         SELECT *
         FROM spot
@@ -73,7 +73,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select count(1) from spot
     </select>
 
-    <select id="spotListByPaging" resultType="com.spring.pettu.review.vo.SpotVO">
+    <select id="spotListByPaging" resultType="com.spring.pettu.spot.vo.SpotVO">
         select s.*
         from
             (

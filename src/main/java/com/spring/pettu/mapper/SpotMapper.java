@@ -1,8 +1,7 @@
 package com.spring.pettu.mapper;
 
-import com.spring.pettu.review.vo.ReviewVO;
-import com.spring.pettu.review.vo.SearchSpotType;
-import com.spring.pettu.review.vo.SpotVO;
+import com.spring.pettu.spot.vo.SearchSpotType;
+import com.spring.pettu.spot.vo.SpotVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;

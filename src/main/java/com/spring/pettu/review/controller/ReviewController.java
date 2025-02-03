@@ -1,6 +1,6 @@
 package com.spring.pettu.review.controller;
 
-import com.spring.pettu.review.vo.SpotVO;
+import com.spring.pettu.spot.vo.SpotVO;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,12 +43,6 @@ public class ReviewController {
     private final ReviewServiceImpl rSvc;
 
 
-    // spot top3 REST API
-    @GetMapping("/top3")
-    public ResponseEntity<List<SpotVO>> spotListOfTop3() {
-        System.out.println( "SpotRestController : spotListOfTop3 함수 실행 >> ");
-        List<SpotVO> slist = rSvc.svcSelectSpotTop3();
-        return new ResponseEntity<>(slist, HttpStatus.OK);
-    }
+
 
 }

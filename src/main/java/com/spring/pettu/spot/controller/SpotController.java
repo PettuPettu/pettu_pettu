@@ -1,8 +1,9 @@
-package com.spring.pettu.review.controller;
+package com.spring.pettu.spot.controller;
 
 import com.spring.pettu.common.paging.PagingUtil;
 import com.spring.pettu.review.service.ReviewServiceImpl;
-import com.spring.pettu.review.vo.SpotVO;
+import com.spring.pettu.spot.service.SpotServiceImpl;
+import com.spring.pettu.spot.vo.SpotVO;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,12 +24,10 @@ import java.util.List;
 public class SpotController {
 
     private static final Logger logger = LoggerFactory.getLogger(SpotController.class);
-    private final ReviewServiceImpl rSvc;
+    private final SpotServiceImpl rSvc;
 
     @GetMapping("/list")
     public String reviewStoreList(Model model, @RequestParam(value = "currentPage", defaultValue = "1") int currentPage ) {
-
-        System.out.println( "SpotController : reviewStoreList 함수 실행 >> ");
 
         // 전체 시설 목록 가져오기
         List<SpotVO> slist = rSvc.svcSelectAllSpot();
@@ -38,13 +37,12 @@ public class SpotController {
         // ---------------------------------- 페이징 처리 로직 ---------------------------------------
         // 전체 시설목록의 갯수
         int totRecord = slist.size();
-        System.out.println("list 총 갯수 >>> "+totRecord);
         int blockCount = 9;
         int blockPage = 2; // 3 or 5 으로 변경 해야함
 
         PagingUtil pg = new PagingUtil("/spot/list", currentPage, totRecord, blockCount, blockPage);
 
-        System.out.println( " pg.getPagingHtml().toString() >> "+pg.getPagingHtml().toString());
+//        System.out.println( " pg.getPagingHtml().toString() >> "+pg.getPagingHtml().toString());
         model.addAttribute("SPOT_PAGING_BUTTON", pg.getPagingHtml().toString());
         // ---------------------------------------------------------------------------------------
         List<SpotVO> pagingSpotlist = rSvc.svcSpotListByPaging(pg.getStartSeq(),pg.getEndSeq());
@@ -62,5 +60,6 @@ public class SpotController {
         List<SpotVO> slist = rSvc.svcSelectAllSpot();
         return new ResponseEntity<>(slist, HttpStatus.OK);
     }*/
+
 
 }

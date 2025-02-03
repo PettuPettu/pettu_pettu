@@ -1,4 +1,4 @@
-package com.spring.pettu.review.vo;
+package com.spring.pettu.spot.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
