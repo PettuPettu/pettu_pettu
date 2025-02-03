@@ -14,9 +14,11 @@
             type="text/css"
             href="${pageContext.request.contextPath}/admin/css/admin_page.css"
     />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 <jsp:include page="../layout/header.jsp" />
+<jsp:include page="/pettu/common/modal.jsp"/>
 <main class="main-content">
     <div class="top-controls">
         <div class="view-options">
@@ -24,6 +26,8 @@
             <button class="menu-item" onclick="location.href='/admin/place'">시설 관리</button>
             <button class="menu-item active" onclick="location.href='/admin/hotdeal'">상품 관리</button>
         </div>
+        <button class="add-button" data-page="/pettu/admin/admin_api_hotdeal_modal.jsp" data-width="fit-content"
+                data-height="fit-content">상품 API 불러오기</button>
     </div>
 
     <section class="content">
@@ -63,5 +67,16 @@
     </section>
 </main>
 <jsp:include page="../layout/footer.jsp" />
+<!-- jQuery 3.6.4 (최신 버전 사용 가능) -->
+<script>
+    $(document).ready(function() {
+        $(".add-button").click(function() {
+            const page = $(this).data("page");
+            console.log("Page URL:", page);
+            $("#modal-body").load(page);
+            $("#commonModal").show();
+        });
+    });
+</script>
 </body>
 </html>

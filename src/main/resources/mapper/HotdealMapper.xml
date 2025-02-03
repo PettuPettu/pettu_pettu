@@ -1,0 +1,55 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Mapper와 Interface의 경로와 이름이 같아야 한다. -->
+<mapper namespace="com.spring.pettu.mapper.HotdealMapper">
+
+    <resultMap id="HotdealMap" type="com.spring.pettu.hotdeal.vo.HotdealVO">
+        <id property="proSeq" column="PRO_SEQ"/>
+        <result property="title" column="TITLE"/>
+        <result property="image" column="IMAGE"/>
+        <result property="brand" column="BRAND"/>
+        <result property="maker" column="MAKER"/>
+        <result property="category1" column="CATEGORY1"/>
+        <result property="category2" column="CATEGORY2"/>
+        <result property="category3" column="CATEGORY3"/>
+        <result property="category4" column="CATEGORY4"/>
+        <result property="productId" column="PRODUCT_ID"/>
+        <result property="lowPrice" column="LOW_PRICE"/>
+    </resultMap>
+
+    <select id="selectAllHotdealData" resultMap="HotdealMap">
+        select * from hotdeal order by pro_seq asc; <!-- 조인 할 수도 있음 -->
+    </select>
+
+    <select id="selectByProductId" resultType="com.spring.pettu.hotdeal.vo.HotdealVO">
+        select * from hotdeal where product_id = #{productId}
+    </select>
+
+    <select id="checkProductId" resultType="int">
+        select count(1) from hotdeal where product_id = #{productId}
+    </select>
+
+    <select id="checkRegitDate" parameterType="com.spring.pettu.hotdeal.vo.HotdealVO" resultType="int">
+        select count(1) from history where pro_seq = #{hotdealvo.proSeq} and trunc(regit_date) = trunc(sysdate)
+    </select>
+
+    <update id="updateHistory">
+        update history set low_price = #{hotdeal.lprice} where pro_seq = #{hotdealvo.proSeq} and trunc(regit_date) = trunc(sysdate)
+    </update>
+    
+    <insert id="insertHotdealData" parameterType="com.spring.pettu.hotdeal.vo.HotdealDTO">
+        insert into hotdeal (pro_seq, title, link, image, brand, maker, category1, category2, category3, category4,
+                             product_id)
+        values(hotdeal_seq.nextval, #{hotdeal.title}, #{hotdeal.link}, #{hotdeal.image}, #{hotdeal.brand},
+               #{hotdeal.maker}, #{hotdeal.category1}, #{hotdeal.category2}, #{hotdeal.category3},
+               #{hotdeal.category4}, #{hotdeal.productId})
+    </insert>
+
+    <insert id="insertHistoryData" >
+        INSERT INTO History (pro_seq, low_price, regit_date)
+        VALUES (#{hotdealvo.proSeq}, #{hotdeal.lprice}, sysdate)
+    </insert>
+
+</mapper>
