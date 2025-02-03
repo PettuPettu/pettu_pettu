@@ -30,11 +30,6 @@ function scrollToSecondSection() {
 // ------------------------------------------------
 
 
-function reviewCreateOpenModal(){
-    const page = $(this).data("page");
-    $("#modal-body").load(page);
-    $("#commonModal").show();
-}
 
 // 작성 후 review 리스트 업데이트
 function reviewListRestAPI(){

@@ -77,7 +77,47 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         WHERE s.SPOT_SEQ = #{spotSeq}
     </select>
 
+    <insert id="insertReview" parameterType="com.spring.pettu.review.vo.ReviewVO">
+        INSERT INTO review (
+            review_seq,
+            review_title,
+            review_contents,
+            review_score,
+            user_seq,
+            spot_seq,
+            review_create_date
+        ) VALUES (
+                     review_seq.NEXTVAL,
+                     #{reviewTitle},
+                     #{reviewContents},
+                     #{reviewScore},
+                     #{userSeq},
+                     #{spotSeq},
+                     SYSDATE
+                 )
+    </insert>
 
+    <insert id="uploadReviewImage" parameterType="com.spring.pettu.mypage.vo.FileVO">
+        INSERT INTO file_info (
+            file_seq,
+            org_name,
+            sys_name,
+            regdate,
+            user_seq,
+            file_size,
+            file_type,
+            review_seq
+        ) VALUES (
+                     file_info_seq.NEXTVAL,
+                     #{orgName},
+                     #{sysName},
+                     SYSDATE,
+                     #{userSeq},
+                     #{fileSize},
+                     #{fileType},
+                     #{reviewSeq}
+                 )
+    </insert>
 
 </mapper>
 

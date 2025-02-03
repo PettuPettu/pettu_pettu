@@ -73,7 +73,7 @@
             <div style="width:80%" onclick="scrollToSecondSection()"> 리뷰 목록</div>
 
 
-            <button class="openModal review-create-btn create-btn" id="create-review-modal-btn" data-page="/pettu/review/review_create_modal.jsp" data-width="fit-content"
+            <button class="openModal review-create-btn create-btn" id="create-review-modal-btn" data-page="/pettu/review/review_create_modal" data-width="fit-content"
                     data-height="fit-content">리뷰 작성 버튼</button>
             <jsp:include page="/pettu/common/modal.jsp"/>
         </div>

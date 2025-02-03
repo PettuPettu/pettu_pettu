@@ -6,12 +6,13 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/review/css/create_review.css" />
 </head>
 <body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/review/js/create_review_modal.js"></script>
+
 <script>
-  $(document).ready(function() {
-    $(".close").click(function() {
-      $("#commonModal").hide();
-    });
-  });
+
+
+
 </script>
 <button class="close">x</button>
 
@@ -25,15 +26,35 @@
     <div class="review-modal-info-box">
       <div class="review-modal-image-box review-modal-flex-vertical-div">
         <div id="review-modal-image-content-div">
-          <img src="/assets/layout/github.svg" alt="카드 이미지 3" class="img-width-80">
+          <img id="imagePreview" src="/assets/layout/github.svg" alt="리뷰 이미지" class="img-width-80">
 
         </div>
-        <button class="review-modal-upload-btn">UPLOAD</button>
+<%--        <button class="review-modal-upload-btn" id="review-modal-upload-btn-click">UPLOAD</button>--%>
+        <h2>프로필 이미지 업로드</h2>
+
+
+        <!-- 파일 선택 버튼 -->
+        <input type="file" id="fileInput" accept="image/*" />
+
+        <!-- 업로드 버튼 -->
+        <div class="image-upload-buttons" style="display: none;">
+          <button id="uploadImageBtn" onclick="uploadImage()">업로드</button>
+          <button id="cancelImageBtn" onclick="cancelImage()">취소</button>
+        </div>
+
       </div>
       <div class="review-modal-info-fields">
         <div class="review-modal-info-field" id="spot-review-info"> # 카테고리: 카페  # 위치 :경기도  # 동물 분류 : 개 </div>
-        <div class="review-modal-info-field" id="review-score">평점: <input type="text" id="review-score-input" placeholder="점수을 입력하세요"></div>
-        <div class="review-modal-info-field" id="review-title">제목: <input type="text" id="review-title-input" placeholder="제목을 입력하세요"></div>
+        <div class="review-modal-info-field" id="review-score">
+          평점:
+            <span class="star" data-score="1">&#9733;</span>
+            <span class="star" data-score="2">&#9733;</span>
+            <span class="star" data-score="3">&#9733;</span>
+            <span class="star" data-score="4">&#9733;</span>
+            <span class="star" data-score="5">&#9733;</span>
+        </div>
+
+          <div class="review-modal-info-field" id="review-title">제목: <input type="text" id="review-title-input" placeholder="제목을 입력하세요"></div>
         <div class="review-modal-info-contents" id="review-contents">후기글:  <input type="text" id="review-contents-input" placeholder="후기글을 작성하세요"></div>
 
       </div>
