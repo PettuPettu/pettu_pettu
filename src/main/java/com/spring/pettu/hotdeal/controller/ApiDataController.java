@@ -35,7 +35,7 @@ public class ApiDataController {
             model.addAttribute("message", "데이터 삽입 및 갱신 실패");
         }
 
-        return "redirect:/";
+        return "admin_api_hotdeal_modal";
     }
 
 }
