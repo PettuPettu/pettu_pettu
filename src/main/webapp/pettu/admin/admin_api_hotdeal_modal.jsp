@@ -29,8 +29,10 @@
     </select>
 
     <!-- 개수 입력 -->
-    <label for="limit">검색 개수:</label>
-    <p>최대 100개 까지 가능</p>
+    <div>
+        <label for="limit">검색 개수:</label>
+        <span>최대 100개 까지 가능</span>
+    </div>
     <input type="number" id="limit" min="1" max="100" value="10">
 
     <!-- API 요청 버튼 -->
