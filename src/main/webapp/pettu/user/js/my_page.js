@@ -134,74 +134,6 @@ function savePetForm(formId) {
     });
 }
 
-
-
-
-
-
-/*
-function savePetForm(formId) {
-    const form = document.getElementById(formId);
-    const petCard = form.closest('.pet-card');
-    const petSeq = petCard.dataset.petSeq;
-    const editBtn = petCard.querySelector('.edit-btn');
-
-    const petData = {
-        petSeq: petSeq,
-        petName: form.querySelector('input[name="petName"]').value,
-        petType: form.querySelector('input[name="petType"]').value,
-        petDetailType: form.querySelector('input[name="petDetailType"]').value,
-        petBirth: form.querySelector('input[name="petBirth"]').value,
-        petGender: petCard.querySelector('.pet-name').textContent.includes('♂') ? 1 : 2,
-        userSeq: userSeq
-    };
-
-    const formData = new FormData();
-    formData.append('petData', new Blob([JSON.stringify(petData)], {type: 'application/json'}));
-
-    if (selectedImage) {
-        formData.append('image', selectedImage);
-    }
-
-    $.ajax({
-        url: '/mypage/pet/update/' + userSeq,
-        type: 'POST',
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function (response) {
-            petCard.querySelector('.pet-name').textContent =
-                petData.petName + ' ' + (petData.petGender == 1 ? '♂' : '♀');
-
-            const currentMbti = petCard.querySelector('.pet-details').innerHTML
-                .split('<br>')[2]?.trim()
-                .replace('mbti: ', '') || '';
-
-            petCard.querySelector('.pet-details').innerHTML =
-                `품종 : ${petData.petType} - ${petData.petDetailType}<br>
-                 생일 : ${petData.petBirth}<br>
-                 mbti: ${currentMbti}`;
-
-            form.style.display = 'none';
-            petCard.querySelector('.change-image-btn').style.display = 'none';
-            editBtn.style.display = 'block';  // 수정 버튼 다시 표시
-            selectedImage = null;
-            alert('저장되었습니다.');
-        },
-        error: function (xhr, status, error) {
-            console.error('Error:', error);
-            alert('저장에 실패했습니다.');
-        }
-    });
-}
-*/
-
-
-
-
-
-
-
 // 이미지 변경 버튼 클릭 이벤트
 $(document).on('click', '.change-image-btn', function (e) {
     e.stopPropagation();
@@ -333,7 +265,6 @@ function deletePet(petSeq) {
                 refreshPetList();
             },
             error: function(xhr, status, error) {
-                console.error('Error:', error);
                 alert('삭제에 실패했습니다.');
             }
         });
@@ -468,44 +399,6 @@ $('#addPetModal input[type="text"]').on('input', function() {
 
 
 
-
-
-
-
-
-
-
-/*// 반려동물 저장
-$(document).on('click', '#savePetBtn', function(e) {
-    e.preventDefault();
-
-    const modal = $('#addPetModal');
-    const formData = {
-        petName: modal.find('input[name="petName"]').val(),
-        petBirth: modal.find('input[name="petBirth"]').val(),
-        petType: modal.find('input[name="petType"]').val(),
-        petDetailType: modal.find('input[name="petDetailType"]').val(),
-        petGender: modal.find('select[name="petGender"]').val(),
-        userSeq: userSeq
-    };
-
-    $.ajax({
-        url: '/mypage/pet/save',
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify(formData),
-        success: function(response) {
-            closeModal();
-            refreshPetList();
-        },
-        error: function(xhr, status, error) {
-            alert('등록에 실패했습니다.');
-            console.error('Error:', error);
-        }
-    });
-});*/
-
-
 // 반려동물 리스트 다 불러오기
 function refreshPetList() {
     $.ajax({
@@ -515,6 +408,11 @@ function refreshPetList() {
             const petsContainer = $('.pets-section');
             const header = petsContainer.find('.pets-header').clone();
             petsContainer.empty().append(header);
+
+            if (!pets || pets.length === 0) {
+                petsContainer.append('<div class="no-pets-message">반려동물이 없어요</div>');
+                return;
+            }
 
             pets.forEach(pet => {
                 petsContainer.append(renderPetCard(pet));
@@ -526,44 +424,6 @@ function refreshPetList() {
         }
     });
 }
-
-
-
-
-
-/*
-$(document).on('click', '#savePetBtn', function(e) {
-    e.preventDefault();
-
-    const modal = $('#addPetModal');
-    const formData = {
-        petName: modal.find('input[name="petName"]').val(),
-        petBirth: modal.find('input[name="petBirth"]').val(),
-        petType: modal.find('input[name="petType"]').val(),
-        petDetailType: modal.find('input[name="petDetailType"]').val(),
-        petGender: modal.find('select[name="petGender"]').val(),
-        userSeq: userSeq
-    };
-
-    $.ajax({
-        url: '/mypage/pet/save',
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify(formData),
-        success: function(response) {
-            alert('반려동물이 추가되었습니다.');
-            closeModal();
-            location.reload();
-        },
-        error: function(xhr, status, error) {
-            alert('등록에 실패했습니다.');
-            console.error('Error:', error);
-        }
-    });
-});
-*/
-
-
 
 
 
@@ -622,12 +482,11 @@ function renderPetCard(pet) {
                 </div>  
                 <div class="pet-info">
                     <div class="pet-name">${pet.petName} ${pet.petGender == 1 ? '♂' : '♀'}
-                        ${pet.petKing == 1 ? '👑' : ''}
                     </div>
                     <div class="pet-details">
                         품종 : ${pet.petType} - ${pet.petDetailType}<br>
                         생일 : ${formatDate(pet.petBirth)}<br>
-                        mbti: ${pet.petMbti ? pet.petMbti : '검사 필요해요. <a href="/pettu/mbti/test">검사하러 가기</a>'}
+                        mbti: ${pet.petMbti ? pet.petMbti : '검사 필요해요. <a href="/petbti">검사하러 가기</a>'}
                     </div>
                 </div>
                 <div class="button-group">
@@ -650,7 +509,6 @@ function renderPetCard(pet) {
                 </div>
                 <div class="form-row">
                     <label>생일:</label>
-<!--                    <input type="date" name="petBirth" value="${pet.petBirth}">-->
                     <input type="date" name="petBirth" value="${formatDateDay(pet.petBirth)}">
                 </div>  
                 <div class="form-buttons">

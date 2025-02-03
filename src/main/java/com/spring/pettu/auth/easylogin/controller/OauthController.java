@@ -61,7 +61,7 @@ public class OauthController {
                               @RequestParam(value = "state", required = false) String state, HttpSession session) {
         //??????
         socialType = (SocialType) session.getAttribute("SESS_SOCIALTYPE");
-        log.info("socialType: " + socialType);
+//        log.info("socialType: " + socialType);
 
         //CODE를 사용해 ACCESS TOKEN 받기
         Map<String, String> responseMap = oauthService.svcRequestAccessToken(socialType, code, state);
