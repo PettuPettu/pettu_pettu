@@ -46,7 +46,7 @@
                                     <img src="/images/${userAndFileVO.fileVO.sysName}" alt="프로필 이미지">
                                 </c:when>
                                 <c:otherwise>
-                                    <img src="${pageContext.request.contextPath}/assets/layout/github.svg" alt="기본 프로필 이미지">
+                                    <img src="${pageContext.request.contextPath}/assets/layout/logo.svg" alt="기본 프로필 이미지">
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -93,6 +93,12 @@
                     <h2 class="section-title">내 반려동물</h2>
                     <button class="add-pet-btn">추가</button>
                 </div>
+
+            <c:choose>
+                <c:when test="${empty userAndFileVO.petList}">
+                    <div class="no-pets-message">반려동물이 없어요</div>
+                </c:when>
+                <c:otherwise>
                 <c:forEach var="pet" items="${userAndFileVO.petList}" varStatus="status">
                     <div class="pet-card" data-pet-seq="${pet.petSeq}">
                         <div class="pet-header">
@@ -103,7 +109,7 @@
                                             <img src="/images/${pet.fileVO.sysName}" alt="펫 사진">
                                         </c:when>
                                         <c:otherwise>
-                                            <img src="${pageContext.request.contextPath}/assets/layout/github.svg" alt="기본 펫 사진">
+                                            <img src="${pageContext.request.contextPath}/assets/layout/logo.svg" alt="기본 펫 사진">
                                         </c:otherwise>
                                     </c:choose>
                                 </div>
@@ -117,7 +123,7 @@
                                 <div class="pet-details">
                                     품종 : ${pet.petType} - ${pet.petDetailType}<br>
                                     생일 : <fmt:formatDate value='${pet.petBirth}' pattern='yyyy년 MM월 dd일'/><br>
-                                    mbti: ${not empty pet.petMbti ? pet.petMbti : '검사 필요해요. <a href="/pettu/mbti/test">검사하러 가기</a>'}
+                                    mbti: ${not empty pet.petMbti ? pet.petMbti : '검사 필요해요. <a href="/petbti">검사하러 가기</a>'}
                                 </div>
                             </div>
                             <button class="edit-btn" onclick="togglePetForm('petForm${pet.petSeq}')">수정</button>
@@ -152,6 +158,8 @@
                         </div>
                     </div>
                 </c:forEach>
+                </c:otherwise>
+            </c:choose>
             </div>
         </div>
     </div>
