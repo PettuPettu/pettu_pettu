@@ -1,22 +1,22 @@
-
-.container {
+.review-modal-container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-
-
 }
-.top-section {
+
+.review-modal-top-section {
     border: 3px solid #FFE4E4;
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
 }
-.info-box {
+
+.review-modal-info-box {
     display: flex;
     gap: 20px;
 }
-.image-box {
+
+.review-modal-image-box {
     width: 300px;
     height: 300px;
     border: 2px solid #FFE4E4;
@@ -26,21 +26,25 @@
     justify-content: center;
     background-color: #FFF5F5;
 }
-.flex-vertical-div {
+
+.review-modal-flex-vertical-div {
     display: flex;
     flex-direction: column;
 }
-.info-fields {
+
+.review-modal-info-fields {
     flex: 1;
 }
-.info-field {
+
+.review-modal-info-field {
     background-color: #FFF0F0;
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 10px;
     min-height: 30px;
 }
-.info-contents {
+
+.review-modal-info-contents {
     background-color: #FFF0F0;
     padding: 15px;
     margin-bottom: 10px;
@@ -48,9 +52,9 @@
     min-height: 120px;
 }
 
-#image-content-div {
-    height:65%;
-    width:85%;
+#review-modal-image-content-div {
+    height: 65%;
+    width: 85%;
     background-color: #FFFBFB;
     margin-bottom: 20px;
     margin-top: 10px;
@@ -58,10 +62,11 @@
     justify-content: center;
     align-items: center;
     border: 2px solid #FFE4E4;
-    text-align: center; /*글자 가운데*/
+    text-align: center; /* 글자 가운데 */
     display: flex;
 }
-.upload-btn {
+
+.review-modal-upload-btn {
     height: 18%;
     width: 85%;
     background-color: #FFF9F9;
@@ -73,23 +78,21 @@
     border: 2px solid #FFE4E4; /* 테두리 추가 */
 }
 
-
-.upload-btn:hover {
+.review-modal-upload-btn:hover {
     background-color: #FFDFDF; /* 호버 시 배경색 변경 */
 }
-.create-button-div {
+
+.review-modal-create-button-div {
     /* 정렬을 위한 flex */
     display: flex;
-    align-items: center;/* 세로 방향 가운데 정렬 */
+    align-items: center; /* 세로 방향 가운데 정렬 */
     justify-content: center; /* 가로 방향 가운데 정렬 */
-
-    text-align: center; /*글자 가운데*/
-
+    text-align: center; /* 글자 가운데 */
     height: 100%;
 }
 
-.create-btn {
-    margin-top: 10px ;
+.review-modal-create-btn {
+    margin-top: 10px;
     height: 50px;
     width: 100%;
     background-color: #FFF9F9;
@@ -98,9 +101,8 @@
     justify-content: center; /* 가로 방향 가운데 정렬 */
     border-radius: 10px;
     border: 2px solid #FFE4E4; /* 테두리 추가 */
-
 }
 
-.create-btn:hover {
+.review-modal-create-btn:hover {
     background-color: #FFDFDF; /* 호버 시 배경색 변경 */
 }

@@ -2,6 +2,7 @@ package com.spring.pettu.review.service;
 
 import com.spring.pettu.mapper.ReviewMapper;
 import com.spring.pettu.mapper.SpotMapper;
+import com.spring.pettu.spot.vo.SpotVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -16,16 +17,14 @@ import java.util.List;
 public class ReviewServiceImpl implements ReviewService {
 
     private final ReviewMapper reviewMapper;
-    private final SpotMapper spotMapper;
 
 
     @Override
-    public List<ReviewVO> findALl() {
-        List<ReviewVO> rlist = new ArrayList<>();
+    public SpotVO svcSpotAndReviewList(long storeId) {
+        SpotVO rlist = new SpotVO();
+        rlist = reviewMapper.selectAllSpotAndReviewList(storeId);
         return rlist;
     }
-
-
 
 
 }

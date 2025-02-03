@@ -2,13 +2,81 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- Mapper와 Interface의 경로와 이름이 같아야 한다. -->
 <mapper namespace="com.spring.pettu.mapper.ReviewMapper">
-<!--
-	<select id="reviewList" resultType="com.spring.pettu.com.spring.pettu.review.vo.ReviewVO">
-		select * from poto
-	</select>
--->
+
+
+    <resultMap id="SpotAndReviewList" type="com.spring.pettu.spot.vo.SpotVO">
+        <!-- SpotVO 필드 매핑 -->
+        <id property="spotSeq" column="SPOT_SEQ"/>
+        <result property="categorySeq" column="CATEGORY_SEQ"/>
+        <result property="spotName" column="SPOT_NAME"/>
+        <result property="spotLocation" column="SPOT_LOCATION"/>
+        <result property="spotSubLocation" column="SPOT_SUB_LOCATION"/>
+        <result property="spotSigunguCode" column="SPOT_SIGUNGU_CODE"/>
+        <result property="spotAreaCode" column="SPOT_AREA_CODE"/>
+        <result property="spotPicture" column="SPOT_PICTURE"/>
+        <result property="spotSubPicture" column="SPOT_SUB_PICTURE"/>
+        <result property="spotOpenDate" column="SPOT_OPEN_DATE"/>
+        <result property="spotCreateDate" column="SPOT_CREATE_DATE"/>
+        <result property="spotUpdateDate" column="SPOT_UPDATE_DATE"/>
+        <result property="spotOpenApiId" column="SPOT_OPEN_API_ID"/>
+        <result property="spotTotalAvgScore" column="SPOT_TOTAL_AVG_SCORE"/>
+
+        <!-- Top 3 리뷰 관련 컬럼 -->
+        <result property="reviewTotalCnt" column="REVIEW_TOTAL_CNT"/>
+        <result property="reviewMonthlyCnt" column="REVIEW_MONTHLY_CNT"/>
+
+        <!-- 리뷰 리스트 매핑 -->
+        <collection property="reviewList" ofType="com.spring.pettu.review.vo.ReviewVO">
+            <result property="reviewSeq" column="REVIEW_SEQ"/>
+            <result property="reviewScore" column="REVIEW_SCORE"/>
+            <result property="reviewTitle" column="REVIEW_TITLE"/>
+            <result property="reviewContents" column="REVIEW_CONTENTS"/>
+            <result property="reviewCreateDate" column="REVIEW_CREATE_DATE"/>
+            <result property="userSeq" column="USER_SEQ"/>
+        </collection>
+    </resultMap>
+
+
+    <!-- Spot 정보와 리뷰 리스트 조회 -->
+    <select id="selectAllSpotAndReviewList" resultMap="SpotAndReviewList">
+        SELECT
+            s.SPOT_SEQ,
+            s.CATEGORY_SEQ,
+            s.SPOT_NAME,
+            s.SPOT_LOCATION,
+            s.SPOT_SUB_LOCATION,
+            s.SPOT_SIGUNGU_CODE,
+            s.SPOT_AREA_CODE,
+            s.SPOT_PICTURE,
+            s.SPOT_SUB_PICTURE,
+            s.SPOT_OPEN_DATE,
+            s.SPOT_CREATE_DATE,
+            s.SPOT_UPDATE_DATE,
+            s.SPOT_OPEN_API_ID,
+            s.SPOT_TOTAL_AVG_SCORE,
+            -- 리뷰 관련 필드
+            r.REVIEW_TOTAL_CNT,
+            r.REVIEW_MONTHLY_CNT,
+            rev.REVIEW_SEQ,
+            rev.REVIEW_SCORE,
+            rev.REVIEW_TITLE,
+            rev.REVIEW_CONTENTS,
+            rev.REVIEW_CREATE_DATE,
+            rev.USER_SEQ
+        FROM SPOT s
+                 LEFT JOIN (
+            SELECT
+                SPOT_SEQ,
+                COUNT(*) AS REVIEW_TOTAL_CNT,
+                SUM(CASE WHEN REVIEW_CREATE_DATE > SYSDATE - INTERVAL '1' MONTH THEN 1 ELSE 0 END) AS REVIEW_MONTHLY_CNT
+            FROM REVIEW
+            GROUP BY SPOT_SEQ
+        ) r ON s.SPOT_SEQ = r.SPOT_SEQ
+                 LEFT JOIN REVIEW rev ON s.SPOT_SEQ = rev.SPOT_SEQ
+        WHERE s.SPOT_SEQ = #{spotSeq}
+    </select>
+
 
 
 </mapper>

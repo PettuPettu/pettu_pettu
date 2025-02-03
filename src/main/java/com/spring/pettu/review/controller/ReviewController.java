@@ -1,5 +1,6 @@
 package com.spring.pettu.review.controller;
 
+import com.spring.pettu.review.vo.ReviewVO;
 import com.spring.pettu.spot.vo.SpotVO;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -30,6 +31,10 @@ public class ReviewController {
 
     @GetMapping("/detail/{storeId}")
     public String reviewStoreDetail(@PathVariable("storeId") Long storeId, Model model) {
+        SpotVO svo = reviewService.svcSpotAndReviewList(storeId);
+
+        model.addAttribute("SPOT_ALL_INFO", svo);
+
 
         model.addAttribute("contentPage", "/pettu/review/review_store_detail.jsp");
         return "pettu/layout/layout";

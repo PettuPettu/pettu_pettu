@@ -271,3 +271,9 @@
     height: 100%; /* 부모 div의 높이에 맞게 */
     object-fit: contain;  /* 이미지 비율을 유지하면서 꽉 차게 보이도록 조정 */
 }
+
+.img-width-80 {
+    width: 95%;  /* 부모 div의 너비에 맞게 */
+    height: 95%; /* 부모 div의 높이에 맞게 */
+    object-fit: contain;  /* 이미지 비율을 유지하면서 꽉 차게 보이도록 조정 */
+}
