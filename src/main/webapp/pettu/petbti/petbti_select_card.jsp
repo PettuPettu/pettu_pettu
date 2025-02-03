@@ -17,10 +17,19 @@
     String birthYearStr = birthStr.substring(birthStr.length() - 4);
     int currentYear = new Date().getYear() + 1900;
     int birth = currentYear - Integer.parseInt(birthYearStr);
+
+    String contextPath = request.getContextPath();
+
+    String petImgPath;
+    if (petImg == null || petImg.trim().isEmpty()) {
+    petImgPath = contextPath + "/assets/layout/logo.svg"; // 기본 이미지 경로
+    } else {
+    petImgPath = "/images/" + petImg;
+    }
 %>
 
 <article class="petbti-select-card-fragment" data-select="false">
-    <img src="/images/<%=petImg%>"/>
+    <img src=<%=petImgPath%>/>
     <div class="petbti-select-card-info-fragment">
         <p class="petbti-select-card-info">
             <span class="petbti-select-card-pseq"><%= petSeq%></span>
