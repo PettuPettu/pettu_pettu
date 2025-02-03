@@ -23,4 +23,8 @@ public interface UserMapper {
     // 비밀번호 변경
     int updatePassWord(@Param("userPw") String userPw, @Param("userEmail") String userEmail );
 
+
+    // Oauth 조회
+
+    // Oauth
 }

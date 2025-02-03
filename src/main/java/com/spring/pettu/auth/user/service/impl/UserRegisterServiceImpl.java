@@ -33,13 +33,15 @@ public class UserRegisterServiceImpl implements UserRegisterService {
 
     @Override
     public int save(UserVO userVO) {
-
-        if(findByEmail(userVO.getUserEmail()) != null  || findByUserNickName(userVO.getUserNickname())){
+        // 중복 검사
+        if(findByEmail(userVO.getUserEmail()) != null || findByUserNickName(userVO.getUserNickname())) {
             return 0;
         }
 
-        // 비밀번호 암호화
-        userVO.setUserPw(passwordEncoder.encode(userVO.getUserPw()));
+        // OAuth 사용자 여부 확인
+        if (userVO.getUserProvider() == null) {  // 일반 회원가입인 경우
+            userVO.setUserPw(passwordEncoder.encode(userVO.getUserPw()));
+        }
 
         return userMapper.saveUser(userVO);
     }

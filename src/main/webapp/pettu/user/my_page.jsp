@@ -41,8 +41,16 @@
                 <div class="profile-container">
                     <div class="profile-image">
                         <div class="image-wrapper">
-                            <img src="/images/${userAndFileVO.fileVO.sysName}" alt="프로필 이미지">
+                            <c:choose>
+                                <c:when test="${not empty userAndFileVO.fileVO.sysName}">
+                                    <img src="/images/${userAndFileVO.fileVO.sysName}" alt="프로필 이미지">
+                                </c:when>
+                                <c:otherwise>
+                                    <img src="${pageContext.request.contextPath}/assets/layout/github.svg" alt="기본 프로필 이미지">
+                                </c:otherwise>
+                            </c:choose>
                         </div>
+
                         <button class="profile-image-change-btn">이미지 변경</button>
                         <div class="profile-image-buttons" style="display: none;">
                             <button type="button" class="save-btn">저장</button>
@@ -90,10 +98,18 @@
                         <div class="pet-header">
                             <div class="pet-image-container">
                                 <div class="pet-image">
-                                    <img src="/images/${pet.fileVO.sysName}" alt="펫 사진">
+                                    <c:choose>
+                                        <c:when test="${not empty pet.fileVO.sysName}">
+                                            <img src="/images/${pet.fileVO.sysName}" alt="펫 사진">
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img src="${pageContext.request.contextPath}/assets/layout/github.svg" alt="기본 펫 사진">
+                                        </c:otherwise>
+                                    </c:choose>
                                 </div>
                                 <button class="change-image-btn">이미지 변경</button>
                             </div>
+
                             <div class="pet-info">
                                 <div class="pet-name">${pet.petName} ${pet.petGender == 1 ? '♂' : '♀'}
                                         ${pet.petKing == 1 ? '👑' : ''}

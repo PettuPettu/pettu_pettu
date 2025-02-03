@@ -25,7 +25,8 @@
                 <value>classpath:properties/image.properties</value>
                 <!-- DB 경로 -->
                 <value>classpath:properties/database.properties</value>
-                <value>classpath:properties/naver_api.properties</value>
+               <value>classpath:properties/naver_api.properties</value>
+              <value>classpath:properties/oauth.properties</value>
             </list>
         </property>
         <property name="ignoreUnresolvablePlaceholders" value="true"/>

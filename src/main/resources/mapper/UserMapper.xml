@@ -24,7 +24,6 @@
     </update>
 
 
-    <!-- 이메일로 유저 가져오기 -->
     <update id="updatePassWord" >
         update user_app
         set user_pw = #{userPw}
@@ -51,15 +50,36 @@
     <!-- 회원가입 , 유저 추가 -->
     <insert id="saveUser" parameterType="com.spring.pettu.auth.user.vo.UserVO">
         INSERT INTO user_app (
-            user_seq, user_email, user_pw,
-            user_name, user_nickname, user_role,
-            user_status, user_create_at, user_update_at
+        user_seq, user_email, user_pw,
+        user_name, user_nickname, user_role,
+        user_status, user_create_at, user_update_at, user_provider
         ) VALUES (
-                     user_seq.NEXTVAL, #{userEmail}, #{userPw},
-                     #{userName}, #{userNickname}, 'ROLE_USER',
-                     #{userStatus}, SYSDATE, null
-                 )
+        user_seq.NEXTVAL, #{userEmail}, COALESCE(#{userPw}, 'OAUTH_USER'),
+        #{userName}, #{userNickname}, 'ROLE_USER',
+        #{userStatus}, SYSDATE, null,
+        <if test="userProvider != null and userProvider != ''">
+            #{userProvider}
+        </if>
+        <if test="userProvider == null or userProvider == ''">
+            null
+        </if>
+        )
     </insert>
+
+    <!--   <insert id="saveUser" parameterType="com.spring.pettu.auth.user.vo.UserVO">
+           INSERT INTO user_app (
+               user_seq, user_email, user_pw,
+               user_name, user_nickname, user_role,
+               user_status, user_create_at, user_update_at
+           ) VALUES (
+                        user_seq.NEXTVAL, #{userEmail},#{userPw}
+                        #{userName}, #{userNickname}, 'ROLE_USER',
+                        #{userStatus}, SYSDATE, null
+                    )
+       </insert>
+   -->
+
+ <!-- Oauth 유저 가입-->
 
 
 
