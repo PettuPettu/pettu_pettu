@@ -6,7 +6,14 @@
           href="${pageContext.request.contextPath}/petbti/css/petbti_select_user.css" />
 </head>
     <div class="petbti-title">
-        <h1>검사할 아이를<br/>선택해주세요</h1>
+        <c:choose>
+            <c:when test="${not empty petsList}">
+                <h1>검사할 아이를<br/>선택해주세요</h1>
+            </c:when>
+            <c:otherwise>
+                <h1>등록된 반려동물이<br/>없어요<br/><br/>반려동물을<br/>추가해주세요!😊</h1>
+            </c:otherwise>
+        </c:choose>
     </div>
     <div class="petbti-select-pet">
     <c:forEach var="pet" items="${petsList}">
@@ -21,9 +28,21 @@
         </c:import>
     </c:forEach>
     </div>
-    <jsp:include page="petbti_btn.jsp">
-        <jsp:param name="value" value="선택하기" />
-        <jsp:param name="onclick" value="selectedPetAndRedirect()" />
-    </jsp:include>
+
+    <c:choose>
+        <c:when test="${not empty petsList}">
+            <jsp:include page="petbti_btn.jsp">
+                <jsp:param name="value" value="선택하기" />
+                <jsp:param name="onclick" value="selectedPetAndRedirect()" />
+            </jsp:include>
+        </c:when>
+        <c:otherwise>
+            <jsp:include page="petbti_btn.jsp">
+                <jsp:param name="value" value="추가하기" />
+                <jsp:param name="onclick" value="location.href='/mypage'" />
+            </jsp:include>
+        </c:otherwise>
+    </c:choose>
+
 <script src="${pageContext.request.contextPath}/petbti/js/petbti_select_card.js"></script>
 <script src="${pageContext.request.contextPath}/petbti/js/petbti_select_user.js"></script>
