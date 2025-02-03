@@ -11,6 +11,7 @@ import org.apache.http.util.EntityUtils;  // 응답을 String으로 변환
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,9 +25,18 @@ public class ApiCallerServiceImpl implements ApiCallerService {
     @Autowired
     private HotdealMapper hotdealMapper;
 
-    private static final String API_URL = "https://openapi.naver.com/v1/search/shop.json";
-    private static final String CLIENT_ID = System.getenv("API_ID"); //환경변수에 저장한 값
-    private static final String CLIENT_SECRET = System.getenv("API_SECRET"); // 환경변수에 저장한 값
+    @Value("${naver.api.client-id}")
+    private String CLIENT_ID;
+
+    @Value("${naver.api.client-secret}")
+    private String CLIENT_SECRET;
+
+    @Value("${naver.api.url}")
+    private String API_URL;
+
+//    private static final String API_URL = apiUrl;
+//    private static final String CLIENT_ID = apiClientId; //properties
+//    private static final String CLIENT_SECRET = apiClientSecret; //properties
 
     @Override
     public JsonNode getApiData(String query, int displayCount) {
