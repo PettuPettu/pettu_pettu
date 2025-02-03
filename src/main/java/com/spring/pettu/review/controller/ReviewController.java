@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.spring.pettu.review.service.ReviewServiceImpl;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -27,8 +28,9 @@ public class ReviewController {
     /*-------------------------- jsp 페이지 mapping ---------------------------*/
 
 
-    @GetMapping("/detail")
-    public String reviewStoreDetail(Model model) {
+    @GetMapping("/detail/{storeId}")
+    public String reviewStoreDetail(@PathVariable("storeId") Long storeId, Model model) {
+
         model.addAttribute("contentPage", "/pettu/review/review_store_detail.jsp");
         return "pettu/layout/layout";
     }
@@ -38,10 +40,9 @@ public class ReviewController {
         model.addAttribute("contentPage", "/pettu/review/review_create_modal.jsp");
         return "pettu/layout/layout";
     }
+
+
     /*-----------------------------------------------------------------------*/
-
-    private final ReviewServiceImpl rSvc;
-
 
 
 
