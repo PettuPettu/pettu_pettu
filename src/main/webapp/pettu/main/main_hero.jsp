@@ -8,9 +8,10 @@ pageEncoding="UTF-8"%>
 </head>
 
 <section id="hero">
-  <img src="${pageContext.request.contextPath}/assets/main/hero-img.svg"/>
+  <img id="hero-img"src="${pageContext.request.contextPath}/assets/main/hero-img.svg"/>
+  <img id="hero-responsive-img" src="${pageContext.request.contextPath}/assets/layout/logo.svg"/>
   <div id="hero-desc">
-    <h1>우리 아이와의 <strong>반려 생활</strong>을 <br/>편리하게 즐겨요</h1>
+    <h1>우리 아이와의 <br id="hero-responsive-br"/><strong>반려 생활</strong>을 <br/>편리하게 즐겨요</h1>
     <div id="hero-desc-btn"></div>
   </div>
 </section>

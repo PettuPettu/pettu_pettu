@@ -40,8 +40,8 @@
                     for (Map<String, Object> product : products) {
             %>
             <article class="main-slide-card">
-                <span class="main-slide-card-category"><%= product.get("category") %></span>
                 <img src="<%= product.get("imagePath") %>" alt="상품 이미지">
+                <span class="main-slide-card-category"><%= product.get("category") %></span>
                 <div class="main-slide-card-desc">
                     <p class="main-slide-card-title">
                         <strong><%= product.get("title") %></strong>
