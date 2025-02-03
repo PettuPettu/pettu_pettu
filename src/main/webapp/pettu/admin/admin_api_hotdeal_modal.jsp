@@ -70,16 +70,15 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    $("#result").text(JSON.stringify(data, null, 2));
+                    alert(data.message);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('서버 오류가 발생했습니다!');
                 });
             });
         });
 
-    </script>
-
-    <script>
-    alert("<%= request.getAttribute("message") %>");
-        /*window.location.href = "/hotdeal-list";*/ // 성공 후 리스트 페이지로 이동
     </script>
 </body>
 </html>
