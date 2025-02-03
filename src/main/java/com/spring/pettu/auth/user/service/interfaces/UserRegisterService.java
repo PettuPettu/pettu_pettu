@@ -11,4 +11,5 @@ public interface UserRegisterService extends UserService{
     UserVO findByUserSeq(long userSeq);
     boolean findByUserNickName(String userNickname);
     int save(UserVO userVO);
+    int updateUserPwd(UserVO userVO);
 }

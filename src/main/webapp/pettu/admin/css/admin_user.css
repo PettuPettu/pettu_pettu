@@ -1,0 +1,174 @@
+@import "../../layout/css/color.css";
+@import "../../layout/css/reset.css";
+@import "../../layout/css/layout.css";
+
+/* Global Styles */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f7f6;
+    color: #333;
+}
+
+/* Top Controls */
+.top-controls {
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
+}
+.top-controls .view-options {
+    display: flex;
+    gap: 10px;
+}
+.top-controls .menu-item {
+    background-color: #e4f0ef;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.top-controls .menu-item.active {
+    background-color: #b2d8d6;
+    font-weight: bold;
+}
+.top-controls .menu-item:hover {
+    background-color: #cbe9e8;
+}
+
+/* Main Content */
+.main-content {
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+/* Content Wrapper */
+/*.content-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    width: 100%;
+    max-width: 1200px;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    box-sizing: border-box;
+    margin: 0 auto;
+
+}
+*/
+
+/* Left Section: User & Pet Info */
+.left-section {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+.user-info, .pet-info {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+.user-info h2, .pet-info h2 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    border-bottom: 2px solid #1f3d3b;
+    padding-bottom: 5px;
+}
+.info-row {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+.pet-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.pet-card img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+.pet-details {
+    font-size: 14px;
+}
+.pet-name {
+    font-weight: bold;
+}
+
+/* Right Section: Review Info & Deactivate Button */
+.right-section {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+.review-info {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+.review-info h2 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    border-bottom: 2px solid #1f3d3b;
+    padding-bottom: 5px;
+}
+.review-card {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.review-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.review-text {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.delete-button {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.delete-button:hover {
+    background-color: #c0392b;
+}
+
+.deactivate-user {
+    background-color: #1f3d3b;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.deactivate-user:hover {
+    background-color: #3c5c5a;
+}

@@ -11,6 +11,27 @@
         WHERE user_email = #{userEmail}
     </select>
 
+    <update id="updatePet" parameterType="com.spring.pettu.mypage.vo.PetVO">
+        UPDATE pet
+        SET pet_name = #{petName},
+            pet_birth = #{petBirth},
+            pet_gender = #{petGender},
+            pet_king = #{petKing},
+            pet_type = #{petType},
+            pet_detail_type = #{petDetailType},
+            pet_updateat = sysdate
+        WHERE pet_seq = #{petSeq}
+    </update>
+
+
+    <!-- 이메일로 유저 가져오기 -->
+    <update id="updatePassWord" >
+        update user_app
+        set user_pw = #{userPw}
+        where user_email = #{userEmail}
+
+    </update>
+
     <!-- 시퀀스로 유저 조회 -->
     <select id="findByUserSeq" parameterType="long" resultType="com.spring.pettu.auth.user.vo.UserVO">
         SELECT *
@@ -27,7 +48,7 @@
     </select>
 
 
-
+    <!-- 회원가입 , 유저 추가 -->
     <insert id="saveUser" parameterType="com.spring.pettu.auth.user.vo.UserVO">
         INSERT INTO user_app (
             user_seq, user_email, user_pw,

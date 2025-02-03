@@ -43,4 +43,11 @@ public class UserRegisterServiceImpl implements UserRegisterService {
 
         return userMapper.saveUser(userVO);
     }
+
+    // 비밀번호 변경
+    @Override
+    public int updateUserPwd(UserVO userVO) {
+        String userPw = passwordEncoder.encode(userVO.getUserPw());
+        return userMapper.updatePassWord(userPw, userVO.getUserEmail());
+    }
 }

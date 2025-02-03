@@ -2,15 +2,25 @@ $(document).ready(function () {
     $("form").submit(function (e) {
         e.preventDefault();
 
+        // URL에서 redirectURL 파라미터 가져오기
+        const urlParams = new URLSearchParams(window.location.search);
+        const redirectURL = urlParams.get('redirectURL');
+
         $.ajax({
             type: "POST",
             url: "/login",
             data: {
                 email: $('#email').val(),
-                password: $('#password').val()
+                password: $('#password').val(),
+                redirectURL: redirectURL
             },
             success: function (response) {
-                window.location.href = "/main";
+                // response 객체에서 redirectURL 확인
+                if (response.redirectURL) {
+                    window.location.href = response.redirectURL;
+                } else {
+                    window.location.href = "/";
+                }
             },
             error: function (xhr) {
                 // 에러 메시지를 표시할 div가 없으면 생성
