@@ -1,0 +1,57 @@
+@import "../../layout/css/reset.css";
+@import "../../layout/css/color.css";
+
+
+@font-face {
+    font-family: "Hakgyoansim Dunggeunmiso TTF B";
+    src: url("../../assets/common/Hakgyoansim Dunggeunmiso TTF B.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Hakgyoansim Dunggeunmiso TTF R";
+    src: url("../../assets/common/Hakgyoansim Dunggeunmiso TTF R.ttf") format("truetype");
+}
+
+body {
+    font-family: "Hakgyoansim Dunggeunmiso TTF R";
+    background-color: var(--font-gray-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#error-container {
+    background-color: var(--back-white-color);
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 50px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+}
+
+#error-code {
+    font-family: "Hakgyoansim Dunggeunmiso TTF B";
+    font-size: 48px;
+}
+
+#error-message {
+    font-family: "Hakgyoansim Dunggeunmiso TTF B";
+    font-size: 32px;
+}
+
+#error-text {
+    font-size: 24px;
+}
+
+#error-btn {
+    font-family: "Hakgyoansim Dunggeunmiso TTF B";
+    font-size: 24px;
+    color: var(--back-white-color);
+    text-decoration: none;
+    background-color: var(--main-color);
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px;
+}

@@ -7,5 +7,5 @@ import java.util.List;
 public interface ReviewService {
 
     List<ReviewVO> findALl();
-    int addTestEntity(ReviewVO reviewVO);
+
 }

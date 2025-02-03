@@ -45,3 +45,9 @@
 .petbti-select-card-pseq {
     display: none;
 }
+
+@media screen and (max-width: 450px) {
+    .petbti-select-card-info-fragment p, .petbti-select-card-info span {
+        font-size: 12px;
+    }
+}
