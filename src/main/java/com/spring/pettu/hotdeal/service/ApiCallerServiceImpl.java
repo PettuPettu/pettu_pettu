@@ -32,7 +32,7 @@ public class ApiCallerServiceImpl implements ApiCallerService {
     public JsonNode getApiData(String query, int displayCount) {
         try (CloseableHttpClient client = HttpClients.createDefault()) {
             String encodingQuery = URLEncoder.encode(query, "UTF-8");
-            String API_URL_Option = API_URL + "?query=" + encodingQuery + "&display=" + displayCount;
+            String API_URL_Option = API_URL + "?query=" + encodingQuery + "&sort=sim&display=" + displayCount;
             HttpGet request = new HttpGet(API_URL_Option);
 
             request.setHeader("X-Naver-Client-Id", CLIENT_ID);
@@ -101,9 +101,6 @@ public class ApiCallerServiceImpl implements ApiCallerService {
                 hvo = hotdealMapper.selectByProductId(h.getProductId());
                 hotdealMapper.insertHistoryData(h, hvo);
             }
-
         }
     }
-
-
 }
