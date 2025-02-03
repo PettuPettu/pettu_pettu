@@ -62,9 +62,16 @@
                             <div class="review-card-header">
                                 <div class="reviewer-info">
                                     <div class="reviewer-image">
-                                        <img src="${pageContext.request.contextPath}/images/${reviewList.myReviewFileVO.sysName}"
-                                             alt="Profile" width="40" height="40">
+                                    <c:choose>
+                                        <c:when test="${not empty reviewList.myReviewFileVO.sysName}">
+                                            <img src="/images/${reviewList.myReviewFileVO.sysName}" alt="Profile" width="40" height="40">
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img src="${pageContext.request.contextPath}/assets/layout/github.svg" alt="Profile" width="40" height="40">
+                                        </c:otherwise>
+                                    </c:choose>
                                     </div>
+
                                     <div class="reviewer-details">
                                         <span class="reviewer-name">${reviewList.userNickname}</span>
                                         <span class="review-date">

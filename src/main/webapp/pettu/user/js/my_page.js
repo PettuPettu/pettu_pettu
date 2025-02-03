@@ -615,10 +615,11 @@ function renderPetCard(pet) {
             <div class="pet-header">
                 <div class="pet-image-container">
                     <div class="pet-image">
-                        <img src="/images/${pet.fileVO.sysName}" alt="펫 사진">
+                        <img src="${pet.fileVO?.sysName ? '/images/' + pet.fileVO.sysName : 'assets/layout/logo.svg'}" 
+                             alt="${pet.fileVO?.sysName ? '펫 사진' : '기본 펫 사진'}">
                     </div>
                     <button class="change-image-btn">이미지 변경</button>
-                </div>
+                </div>  
                 <div class="pet-info">
                     <div class="pet-name">${pet.petName} ${pet.petGender == 1 ? '♂' : '♀'}
                         ${pet.petKing == 1 ? '👑' : ''}

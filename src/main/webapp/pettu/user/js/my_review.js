@@ -67,18 +67,20 @@ $(document).ready(function () {
     }
 
 
-    // 리뷰 목록 HTML 업데이트 함수
+    // 리뷰 목록 업데이트 함수
     function updateReviewList(data) {
-
 
         const reviewListHtml = data.reviewReviewVOList.map(review => `
             <div class="review-card">
                 <div class="review-card-header">
                     <div class="reviewer-info">
-                        <div class="reviewer-image">
-                            <img src="/images/${data.myReviewFileVO.sysName}" 
-                                 alt="Profile" width="40" height="40">
+                       <div class="reviewer-image">
+                            <img src="${data.myReviewFileVO?.sysName ? '/images/' + data.myReviewFileVO.sysName : 'assets/layout/logo.svg'}" 
+                                 alt="${data.myReviewFileVO?.sysName ? 'Profile' : '기본 프로필'}" 
+                                 width="40" 
+                                 height="40">
                         </div>
+
                         <div class="reviewer-details">
                             <span class="reviewer-name">${data.userNickname}</span>
                             <span class="review-date">${formatDate(review.reviewCreateDate)}</span>

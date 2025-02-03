@@ -22,5 +22,6 @@ public class UserVO {
     private int userStatus;
     private Date userCreateAt;
     private Date userUpdateAt;
+    private String userProvider;
 
 }
