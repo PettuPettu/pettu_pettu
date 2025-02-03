@@ -1,6 +1,7 @@
 package com.spring.pettu.review.service;
 
 import com.spring.pettu.mapper.ReviewMapper;
+import com.spring.pettu.mapper.SpotMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import java.util.List;
 public class ReviewServiceImpl implements ReviewService {
 
     private final ReviewMapper reviewMapper;
+    private final SpotMapper spotMapper;
 
 
     @Override
@@ -23,8 +25,7 @@ public class ReviewServiceImpl implements ReviewService {
         return rlist;
     }
 
-    @Override
-    public int addTestEntity(ReviewVO reviewVO) {
-        return 0;
-    }
+
+
+
 }

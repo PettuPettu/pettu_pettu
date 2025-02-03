@@ -1,0 +1,53 @@
+@import "../../layout/css/color.css";
+@import "../../layout/css/reset.css";
+@import "../../layout/css/layout.css";
+
+/* 닫기 버튼 */
+.close {
+    float: right;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Select 태그 스타일 */
+select {
+    width: 60%;
+    padding: 8px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Input 필드 스타일 */
+input[type="number"] {
+    width: 50%;
+    padding: 8px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* 버튼 스타일 */
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* 결과 스타일 */
+pre {
+    text-align: left;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+}
