@@ -16,15 +16,119 @@
         <result property="category3" column="CATEGORY3"/>
         <result property="category4" column="CATEGORY4"/>
         <result property="productId" column="PRODUCT_ID"/>
-        <result property="lowPrice" column="LOW_PRICE"/>
     </resultMap>
+
+    <select id="findHotdeals" resultType="com.spring.pettu.hotdeal.vo.HotdealJoinHistoryVO">
+        SELECT * FROM (
+        SELECT ROWNUM AS rnum, h.*
+        FROM (
+                 SELECT h1.pro_seq, h1.title, h1.image, h2.low_price, h2.regit_date
+                 FROM hotdeal h1
+                          JOIN history h2
+                               ON h1.pro_seq = h2.pro_seq
+                 WHERE h2.regit_date = (
+                     SELECT MAX(h3.regit_date)
+                     FROM history h3
+                     WHERE h3.pro_seq = h2.pro_seq
+                 )
+                 ORDER BY h1.pro_seq DESC
+        ) h
+        WHERE ROWNUM &lt;= #{hotdealPagingVO.end}
+        )
+        WHERE rnum > #{hotdealPagingVO.start}
+    </select>
+
+    <select id="countHotdeals" resultType="int">
+        SELECT COUNT(*) FROM hotdeal
+    </select>
+
+    <select id="selectProductRecently" resultType="com.spring.pettu.hotdeal.vo.HotdealJoinHistoryVO">
+        select *
+        from
+            (
+                select ROWNUM as rn, title, low_price, image, brand, category3
+                from
+                    (
+                        select * from hotdeal hot, history his
+                        where hot.pro_seq = his.pro_seq order by regit_date desc
+                    ) h
+            )
+        where rn between 1 and 10
+    </select>
+
+    <select id="selectSearch" resultType="com.spring.pettu.hotdeal.vo.HotdealJoinHistoryVO">
+        SELECT * FROM (
+        SELECT ROWNUM AS rnum, a.*
+        FROM (
+        SELECT hd.pro_seq, hd.title, hd.image, hd.category3, hd.category4, hs.low_price
+        FROM hotdeal hd
+        JOIN history hs
+        ON hd.pro_seq = hs.pro_seq
+        JOIN (
+        SELECT pro_seq, MAX(regit_date) AS latest_regit_date
+        FROM history
+        GROUP BY pro_seq
+        ) h_latest
+        ON hs.pro_seq = h_latest.pro_seq
+        AND hs.regit_date = h_latest.latest_regit_date
+        WHERE hd.title LIKE '%' || #{keyword} || '%'
+        OR hd.category3 LIKE '%' || #{keyword} || '%'
+        OR hd.category4 LIKE '%' || #{keyword} || '%'
+        ORDER BY hd.pro_seq DESC
+        ) a
+        WHERE ROWNUM &lt;= #{hotdealPagingVO.end}
+        )
+        WHERE rnum > #{hotdealPagingVO.start}
+
+    </select>
+
+<!--
+    <select id="selectSearch" parameterType="String" resultType="com.spring.pettu.hotdeal.vo.HotdealJoinHistoryVO">
+        select a.*
+        from
+            (
+                select hd.pro_seq, hd.title, hd.image, hd.category3, hd.category4, hs.low_price  from
+                hotdeal hd, history hs
+                where hd.pro_seq = hs.pro_seq
+            ) a
+        where a.title like '%' || #{keyword} || '%'
+           or a.category3 like '%' || #{keyword} || '%'
+           or a.category4 like '%' || #{keyword} || '%'
+        order by a.pro_seq desc
+    </select>
+-->
+    <select id="countSearch" parameterType="String" resultType="int">
+        select count(*)
+        from
+            (
+                select hd.pro_seq, hd.title, hd.image, hd.category3, hd.category4, hs.low_price  from
+                                                                                                     hotdeal hd, history hs
+                where hd.pro_seq = hs.pro_seq
+            ) a
+        where a.title like '%' || #{keyword} || '%'
+           or a.category3 like '%' || #{keyword} || '%'
+           or a.category4 like '%' || #{keyword} || '%'
+        order by a.pro_seq desc
+    </select>
+
 
     <select id="selectAllHotdealData" resultMap="HotdealMap">
         select * from hotdeal order by pro_seq asc; <!-- 조인 할 수도 있음 -->
     </select>
 
-    <select id="selectByProductId" resultType="com.spring.pettu.hotdeal.vo.HotdealVO">
+    <select id="selectByProductId" parameterType="String" resultType="com.spring.pettu.hotdeal.vo.HotdealVO">
         select * from hotdeal where product_id = #{productId}
+    </select>
+
+    <select id="selectByProductSeq" parameterType="int" resultType="com.spring.pettu.hotdeal.vo.HotdealVO">
+        select * from hotdeal where pro_seq = #{proSeq}
+    </select>
+
+    <select id="selectHistoryByProSeq" parameterType="int" resultType="com.spring.pettu.hotdeal.vo.HistoryVO">
+        SELECT *
+        FROM history h
+        WHERE h.pro_seq = #{proSeq}
+        order by regit_date desc
     </select>
 
     <select id="checkProductId" resultType="int">
@@ -33,6 +137,37 @@
 
     <select id="checkRegitDate" parameterType="com.spring.pettu.hotdeal.vo.HotdealVO" resultType="int">
         select count(1) from history where pro_seq = #{hotdealvo.proSeq} and trunc(regit_date) = trunc(sysdate)
+    </select>
+
+    <select id="selectDiscount" resultType="com.spring.pettu.hotdeal.vo.DiscountVO">
+        WITH History_Filtered AS (
+            -- 1. 같은 상품에 대해 가장 최근 날짜와 그 이전 날짜를 가져옴
+            SELECT h1.pro_seq, h1.regit_date AS recent_date, h1.low_price AS recent_price,
+                   h2.regit_date AS prev_date, h2.low_price AS prev_price
+            FROM history h1
+                     JOIN history h2
+                          ON h1.pro_seq = h2.pro_seq
+                              AND h1.regit_date > h2.regit_date
+            WHERE h1.regit_date = (SELECT MAX(regit_date) FROM history h3 WHERE h3.pro_seq = h1.pro_seq)
+        )
+
+        SELECT *
+        FROM
+            (
+                SELECT
+                    hf.pro_seq,
+                    hf.recent_price,
+                    hf.prev_price,
+                    trunc(((hf.prev_price - hf.recent_price) / hf.prev_price) * 100,2) AS discount_rate,  -- 할인율 계산
+                    d.title,
+                    d.image,
+                    d.category3,
+                    d.brand
+                FROM History_Filtered hf
+                         JOIN hotdeal d ON hf.pro_seq = d.pro_seq
+                ORDER BY discount_rate DESC  -- 할인율 높은 순 정렬
+            )
+        WHERE DISCOUNT_RATE > 0
     </select>
 
     <update id="updateHistory">
@@ -51,5 +186,7 @@
         INSERT INTO History (pro_seq, low_price, regit_date)
         VALUES (#{hotdealvo.proSeq}, #{hotdeal.lprice}, sysdate)
     </insert>
+
+
 
 </mapper>

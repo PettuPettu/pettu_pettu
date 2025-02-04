@@ -22,31 +22,45 @@
 
 <main>
 <!-- Search Section -->
-<section class="search-section">
-    <h1>🔥 내 반려동물을 위한 핫딜 정보 찾아드려요 🔥</h1>
-    <input type="text" class="search-bar" placeholder="검색어를 입력하세요">
-    <button class="search-button">🔍</button>
-</section>
+    <section class="search-section">
+        <h1>🔥 내 반려동물을 위한 핫딜 정보 찾아드려요 🔥</h1>
 
-<!-- Hotdeal Section -->
-<section class="hotdeal-section">
-    <h3>레비앙독 연어</h3>
-    <div class="product-grid">
-        <!-- 상품 카드 -->
-        <div class="product-card">
-            <img src="https://img.danawa.com/prod_img/500000/310/728/img/14728310_1.jpg?shrink=330:*&_v=20230809110951" alt="상품 이미지">
-            <div class="product-info">
-                <p class="product-name">상품명: 레비앙독 연어</p>
-                <p class="product-category">카테고리: 강아지 사료</p>
-                <p class="product-price">가격: 18,000원</p>
-                <p class="product-discount">할인율: 10%</p>
-                <p class="product-link">
-                    <a href="https://smartstore.naver.com/startist/products/6440886992?nl-query=%EB%9D%BC%EB%B9%84%EC%95%99%EB%8F%85%EC%97%B0%EC%96%B4&nl-ts-pid=iHBFXlpzLi0sshVBeSsssssssao-022340&NaPm=ct%3Dm6gketqw%7Cci%3D0e1654cf425830b1474ba9b783fe43bbe93d0571%7Ctr%3Dsls%7Csn%3D5716306%7Chk%3D58bb13b9f4fc218dc8a942a6d072bf79a1b7ee88">이 제품 보러 가기</a>
-                </p>
+        <form id="searchForm" action="/hotdeal/search" method="GET">
+            <input type="text" name="keyword" class="search-bar" placeholder="검색어를 입력하세요">
+            <button type="submit" class="search-button">🔍</button>
+        </form>
+    </section>
+
+    <!-- Hotdeal Section -->
+    <section class="hotdeal-section">
+        <h3>${hvo.title}</h3>
+        <div class="product-grid">
+            <!-- 상품 카드 -->
+            <div class="product-card">
+                <img src="${hvo.image}" alt="상품 이미지">
+                <div class="product-info">
+                    <c:set var="myList" value="${htlist}" />
+                    <p class="product-name">상품명: ${hvo.title}</p>
+                    <p class="product-category">카테고리: ${hvo.category3}</p>
+                    <p class="product-price"><fmt:formatNumber value="${myList[0].lowPrice}" pattern="###,###,###"/>원</p>
+                    <p class="product-discount">
+                        <c:choose>
+                            <c:when test="${empty myList[1] or myList[1].lowPrice == 0}">
+                                할인율: 0.0%
+                            </c:when>
+                            <c:otherwise>
+                                할인율: <fmt:formatNumber value="${((myList[1].lowPrice - myList[0].lowPrice) / myList[1].lowPrice) * 100}" type="number" maxFractionDigits="2"/> %
+                            </c:otherwise>
+                        </c:choose>
+                    </p>
+
+                    <p class="product-link">
+                        <a href="${hvo.link}">이 제품 보러 가기</a>
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 <!-- Chart Section -->
     <!-- Chart Section -->

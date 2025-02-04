@@ -31,7 +31,6 @@
     </div>
 
     <section class="content">
-        <h1>시설 관리</h1>
         <table class="facility-table">
             <thead>
             <tr>
