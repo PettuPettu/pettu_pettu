@@ -1,5 +1,6 @@
 package com.spring.pettu.hotdeal.service;
 
+import com.spring.pettu.common.exception.BusinessException;
 import com.spring.pettu.hotdeal.vo.HotdealDTO;
 import com.spring.pettu.hotdeal.vo.HotdealVO;
 import com.spring.pettu.mapper.HotdealMapper;
@@ -18,6 +19,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.spring.pettu.common.exception.ErrorCode.MISS_PARSSING;
 
 @Service
 public class ApiCallerServiceImpl implements ApiCallerService {
@@ -39,10 +42,17 @@ public class ApiCallerServiceImpl implements ApiCallerService {
 //    private static final String CLIENT_SECRET = apiClientSecret; //properties
 
     @Override
-    public JsonNode getApiData(String query, int displayCount) {
+    public JsonNode getApiData(String query,  int displayCount) {
         try (CloseableHttpClient client = HttpClients.createDefault()) {
+            CategoryMapper categoryMapper = new CategoryMapper();
+            String category = categoryMapper.getCategory3(query);
+
             String encodingQuery = URLEncoder.encode(query, "UTF-8");
-            String API_URL_Option = API_URL + "?query=" + encodingQuery + "&sort=sim&display=" + displayCount;
+            String category2 = URLEncoder.encode("반려동물", "UTF-8");
+            String category3 = URLEncoder.encode(category, "UTF-8");
+
+            //String category3 = URLEncoder.encode(category, "UTF-8");
+            String API_URL_Option = API_URL + "?query=" + encodingQuery + "&category2" + category2 + "&category3" + category3 + "&sort=sim&display=" + displayCount;
             HttpGet request = new HttpGet(API_URL_Option);
 
             request.setHeader("X-Naver-Client-Id", CLIENT_ID);
@@ -75,7 +85,7 @@ public class ApiCallerServiceImpl implements ApiCallerService {
                     list.add(hotdealDTO);
                 } catch (Exception e) {
                     //System.out.println("fail to transfer: " + item.toString());
-                    throw new RuntimeException("리스트 변환 실패", e);
+                    throw new BusinessException(MISS_PARSSING);
                 }
             }
         }
