@@ -180,11 +180,11 @@
                     <input type="date" name="petBirth" required>
                 </div>
                 <div class="form-row">
-                    <label>품종:</label>
+                    <label>종류:</label>
                     <input type="text" name="petType" required>
                 </div>
                 <div class="form-row">
-                    <label>상세종류:</label>
+                    <label>품종:</label>
                     <input type="text" name="petDetailType" required>
                 </div>
                 <div class="form-row">

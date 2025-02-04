@@ -1,0 +1,15 @@
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Mapper와 Interface의 경로와 이름이 같아야 한다. -->
+<mapper namespace="com.spring.pettu.mapper.TrafficMapper">
+	<insert id="saveTrafficLog" parameterType="com.spring.pettu.auth.traffic.vo.TrafficLogVO">
+		INSERT INTO Traffic_Log (traffic_seq, client_ip, user_agent,request_uri, access_time)
+		VALUES (traffic_log_seq.NEXTVAL, #{clientIp}, #{userAgent}, #{requestUri}, SYSDATE)
+	</insert>
+
+
+</mapper>
+
+
