@@ -75,6 +75,7 @@
         </form>
     </div>
 </div>
+<jsp:include page="${pageContext.request.contextPath}/pettu/common/loading.jsp" />
 <div class="footer-wrapper">
     <jsp:include page="/pettu/layout/footer.jsp" />
 </div>
