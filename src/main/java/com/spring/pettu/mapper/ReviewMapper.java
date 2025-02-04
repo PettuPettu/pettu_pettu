@@ -11,10 +11,11 @@ import java.util.List;
 @Repository
 @Mapper
 public interface ReviewMapper {
-    SpotVO selectAllSpotAndReviewList(long storeId);
+    SpotVO selectAllSpotAndReviewList(long spotSeq);
     int uploadReviewImage(FileVO fileVO);
 
     int insertReview(ReviewVO reviewVO);
 
+    List<ReviewVO> reviewListWithImage(long spotSeq);
 }
 

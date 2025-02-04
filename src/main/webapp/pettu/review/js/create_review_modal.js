@@ -1,15 +1,39 @@
+// 선택된 이미지 파일 저장 변수
+let selectedReviewImage = null;
+// 평점 저장 변수
+let selectedStarScore = null;
+
+
 
 $(document).ready(function() {
     $(".close").click(function() {
-        closeModal();
+        resetModalData();
     });
     starEvent();
+    getSpotDetailInfo();
 });
+
+function resetModalData() {
+    cancelImage();  // 이미지 초기화
+    resetStars();   // 별점 초기화
+    closeModal();
+}
 
 function closeModal(){
     $("#commonModal").hide();
 }
-let selectedImage = null; // 선택된 이미지 파일을 저장할 변수
+
+function resetStars() {
+    const stars = $('.star');
+    stars.removeClass('selected'); // 별 초기화
+    selectedStarScore = null; // 별점 초기화
+}
+
+// 리뷰쓰는 가게의 정보 추가하기
+function getSpotDetailInfo(){
+    const spotSeq= document.getElementById('spot-detail-spotName').value;
+    $("#spot-name").append(spotSeq);
+}
 
 // 파일 입력 변경 시 미리보기
 document.getElementById('fileInput').addEventListener('change', function(e) {
@@ -19,7 +43,7 @@ document.getElementById('fileInput').addEventListener('change', function(e) {
         reader.onload = function(event) {
             // 미리보기 이미지 업데이트
             document.getElementById('imagePreview').src = event.target.result;
-            selectedImage = file; // 선택한 파일을 저장
+            selectedReviewImage = file; // 선택한 파일을 저장
             document.querySelector('.image-upload-buttons').style.display = 'block'; // 업로드/취소 버튼 보이기
         };
         reader.readAsDataURL(file);
@@ -31,21 +55,36 @@ function uploadImage() {
 
     const reviewTitle = $("#review-title-input").val();
     const reviewContents = $("#review-contents-input").val();
-    /*const reviewScore = $("#review-score").data("score");
-*/
-    const reviewScore = 5;
-    var userSeq = 1;  // 사용자 시퀀스
-    var spotSeq = 2;  // 장소 시퀀스
+    const reviewScore = selectedStarScore;
+    console.log("reviewScore >> "+reviewScore);
+
+    // null 또는 빈 값 처리
+    if (!reviewTitle) {
+        alert("제목을 입력해주세요.");
+        return; // 또는 다른 방식으로 처리
+    }
+
+    if (!reviewContents) {
+        alert("내용을 입력해주세요.");
+        return;
+    }
+
+    if (!reviewScore || reviewScore <= 0) {
+        alert("평점을 선택해주세요.");
+        return;
+    }
+
+    // 장소 시퀀스
+    var spotSeq = document.getElementById('spot-detail-spotSeq').value;
 
     // formData 객체에 데이터 추가
     var formData = new FormData();
     formData.append("reviewTitle", reviewTitle);
     formData.append("reviewContents", reviewContents);
     formData.append("reviewScore", reviewScore);
-    if (selectedImage) {
-        formData.append('file', selectedImage);
+    if (selectedReviewImage) {
+        formData.append('file', selectedReviewImage);
     }
-    formData.append("userSeq", userSeq);  // 사용자 시퀀스
     formData.append("spotSeq", spotSeq);  // 장소 시퀀스
 
     // 서버로 데이터 전송
@@ -57,7 +96,8 @@ function uploadImage() {
         contentType: false, // 콘텐츠 타입을 자동으로 설정하지 않음
         success: function(response) {
             alert("리뷰가 성공적으로 업로드되었습니다.");
-            closeModal(); // 모달 닫기
+            resetModalData(); // 모달 닫기
+            reviewListRestAPI();
         },
         error: function(xhr, status, error) {
             // 더 구체적인 오류 확인을 위해 콘솔에 출력
@@ -73,16 +113,19 @@ function cancelImage() {
     // 이미지 미리보기를 기본 이미지로 되돌림
     document.getElementById('imagePreview').src = '/assets/layout/github.svg';
     document.querySelector('.image-upload-buttons').style.display = 'none'; // 업로드/취소 버튼 숨기기
-    selectedImage = null; // 선택한 이미지 초기화
+    selectedReviewImage = null; // 선택한 이미지 초기화
 
     // input 파일 요소 초기화 (이미지 선택 초기화)
     const fileInput = document.getElementById('fileInput');
     fileInput.value = '';
 }
+
+
 // 별 클릭 이벤트
 function starEvent(){
 
     const star = $('.star');
+
     star.click(function() {
         // 클릭한 별의 점수 가져오기
         selectedStarScore = $(this).data('score');
@@ -93,29 +136,8 @@ function starEvent(){
             star.eq(i).addClass('selected');
         }
 
-        // 선택된 점수를 서버로 전송 (AJAX)
-        //sendRatingToServer(selectedScore);
     });
-}
-
-
-function sendRatingToServer(score) {
-  $.ajax({
-    url: '/your-server-endpoint', // 서버 URL
-    type: 'POST',
-    contentType: 'application/json',
-    data: JSON.stringify({ rating: score }), // 점수를 JSON 형식으로 보냄
-    success: function(response) {
-      console.log('성공:', response);
-    },
-    error: function(xhr, status, error) {
-      console.error('에러:', error);
-    }
-  });
-}
-
-
-function uploadClickFunction(e){
 
 }
+
 

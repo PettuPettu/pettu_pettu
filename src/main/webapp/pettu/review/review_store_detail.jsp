@@ -16,7 +16,7 @@
 <head>
 
     <meta charset="UTF-8">
-    <title>가게 상세</title>
+    <title>가게 상세 </title>
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/review/css/store_detail.css" />
 
@@ -27,7 +27,8 @@
 
 
 <div class="review-store-title-div" >
-    <div >가게이름</div>
+
+    <input type="text" id="spot-detail-spotName" value="${SPOT_ALL_INFO.spotName}" >
 
 </div>
 
@@ -40,7 +41,7 @@
                     <img src="/assets/layout/github.svg" alt="카드 이미지 3" class="img-full">
                 </div>
 
-                <div class="place-score-div">평점  :  ${SPOT_ALL_INFO.spotTotalAvgScore}</div>
+                <div class="place-score-div" data-score="${SPOT_ALL_INFO.spotTotalAvgScore}" >평점  : </div>
 
             </div>
             <c:if test="${not empty SPOT_ALL_INFO}">
@@ -48,7 +49,7 @@
                     <input type="hidden" id="spot-detail-spotSeq" value="${SPOT_ALL_INFO.spotSeq}" >
                     <div class="info-field" id="spot-detail-category"> #카테고리  |  ${SPOT_ALL_INFO.spotName}</div>
                     <div class="info-field" id="spot-detail-location" > #위치  |   ${SPOT_ALL_INFO.spotLocation}</div>
-                    <div class="info-field" id="spot-detail-open-date"> #개업일  |   ${SPOT_ALL_INFO.spotOpenDate}  </div>
+                    <div class="info-field" id="spot-detail-open-date"> #개업일  |   <fmt:formatDate value="${SPOT_ALL_INFO.spotOpenDate}" pattern="yyyy-MM-dd" />  </div>
                     <div class="info-contents" id="spot-detail-spotTotalAvgScore"> #총 리뷰 갯수  |  <c:out value="${fn:length(SPOT_ALL_INFO.reviewList)}" />
                     </div>
                     <div class="info-field" id="spot-detail-reviewMonthlyCnt">#한달동안 리뷰 갯수  |  ${SPOT_ALL_INFO.reviewMonthlyCnt}  </div>
@@ -62,7 +63,7 @@
     <div class="second-section" id="move-second-section" >
 
         <div class="review-store-name-div">
-            <div>
+           <div>
                 <label for="custom-select-box"></label>
                 <select id="custom-select-box" name="sort-order">
                     <option value="newest">최신순</option>
@@ -79,36 +80,7 @@
         </div>
 
         <div class="review-grid">
-            <!-- reviewList를 반복해서 출력 -->
-            <c:if test="${not empty SPOT_ALL_INFO.reviewList}">
-                <c:forEach items="${SPOT_ALL_INFO.reviewList}" var="review">
-                    <div class="review-box">
-                        <div class="review-image">
-                            <!-- 리뷰 이미지 (예시로, 리뷰에 이미지가 있을 경우 출력) -->
-                            <%--<c:if test="${not empty review.reviewFile}">
-                                <img src="${pageContext.request.contextPath}/images/${review.reviewFile.sysName}" alt="Review Image">
-                            </c:if>--%>
-                        </div>
 
-                        <div class="review-content">
-                            <!-- 리뷰 제목 -->
-                            <div class="review-title">${review.reviewTitle}</div>
-                            <!-- 리뷰 내용 -->
-                            <div class="review-text">${review.reviewContents}</div>
-                            <!-- 리뷰 평점 -->
-                            <div class="review-rating">
-                                <c:forEach begin="1" end="${review.reviewScore}" varStatus="status">
-                                    ★
-                                </c:forEach>
-                            </div>
-                        </div>
-                    </div>
-                </c:forEach>
-            </c:if>
-
-            <c:if test="${empty SPOT_ALL_INFO.reviewList}">
-                <div>작성한 리뷰가 없습니다.</div>
-            </c:if>
         </div>
 
         <div class="review-box-end-layer">

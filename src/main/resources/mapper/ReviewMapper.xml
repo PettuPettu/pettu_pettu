@@ -37,7 +37,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </collection>
     </resultMap>
 
-
     <!-- Spot 정보와 리뷰 리스트 조회 -->
     <select id="selectAllSpotAndReviewList" resultMap="SpotAndReviewList">
         SELECT
@@ -76,25 +75,75 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                  LEFT JOIN REVIEW rev ON s.SPOT_SEQ = rev.SPOT_SEQ
         WHERE s.SPOT_SEQ = #{spotSeq}
     </select>
+    <resultMap id="reviewListWithImageResultMap" type="com.spring.pettu.review.vo.ReviewVO">
+        <id property="reviewSeq" column="REVIEW_SEQ" />
+        <result property="reviewScore" column="REVIEW_SCORE" />
+        <result property="reviewTitle" column="REVIEW_TITLE" />
+        <result property="reviewContents" column="REVIEW_CONTENTS" />
+        <result property="reviewCreateDate" column="REVIEW_CREATE_DATE" />
+        <result property="spotSeq" column="SPOT_SEQ" />
+        <result property="userSeq" column="USER_SEQ" />
+
+        <!-- FileVO 매핑 -->
+        <association property="fileVO" javaType="com.spring.pettu.mypage.vo.FileVO">
+            <id property="fileSeq" column="FILE_SEQ" />
+            <result property="orgName" column="ORG_NAME" />
+            <result property="sysName" column="SYS_NAME" />
+            <result property="regdate" column="REGDATE" />
+            <result property="userSeq" column="USER_SEQ" />
+            <result property="fileSize" column="FILE_SIZE" />
+            <result property="fileType" column="FILE_TYPE" />
+            <result property="petSeq" column="PET_SEQ" />
+            <result property="reviewSeq" column="REVIEW_SEQ" />
+        </association>
+    </resultMap>
+
+    <select id="reviewListWithImage" resultMap="reviewListWithImageResultMap">
+        SELECT
+            r.REVIEW_SEQ AS REVIEW_SEQ,
+            r.REVIEW_SCORE AS REVIEW_SCORE,
+            r.REVIEW_TITLE AS REVIEW_TITLE,
+            r.REVIEW_CONTENTS AS REVIEW_CONTENTS,
+            r.REVIEW_CREATE_DATE AS REVIEW_CREATE_DATE,
+            r.SPOT_SEQ AS SPOT_SEQ,
+            r.USER_SEQ AS USER_SEQ,
+            f.FILE_SEQ AS FILE_SEQ,
+            f.ORG_NAME AS ORG_NAME,
+            f.SYS_NAME AS SYS_NAME,
+            f.REGDATE AS REGDATE,
+            f.FILE_SIZE AS FILE_SIZE,
+            f.FILE_TYPE AS FILE_TYPE,
+            f.PET_SEQ AS PET_SEQ,
+            f.REVIEW_SEQ AS REVIEW_SEQ
+        FROM REVIEW r
+                 LEFT JOIN FILE_INFO f ON r.REVIEW_SEQ = f.REVIEW_SEQ
+        WHERE r.SPOT_SEQ = #{spotSeq}
+        order by regdate asc
+    </select>
 
     <insert id="insertReview" parameterType="com.spring.pettu.review.vo.ReviewVO">
+        <!-- selectKey로 review_seq 값을 가져옴 -->
+        <selectKey keyProperty="reviewSeq" resultType="long" order="BEFORE">
+            SELECT review_seq.NEXTVAL FROM dual
+        </selectKey>
+
         INSERT INTO review (
-            review_seq,
-            review_title,
-            review_contents,
-            review_score,
-            user_seq,
-            spot_seq,
-            review_create_date
+        review_seq,
+        review_title,
+        review_contents,
+        review_score,
+        user_seq,
+        spot_seq,
+        review_create_date
         ) VALUES (
-                     review_seq.NEXTVAL,
-                     #{reviewTitle},
-                     #{reviewContents},
-                     #{reviewScore},
-                     #{userSeq},
-                     #{spotSeq},
-                     SYSDATE
-                 )
+        #{reviewSeq},
+        #{reviewTitle},
+        #{reviewContents},
+        #{reviewScore},
+        #{userSeq},
+        #{spotSeq},
+        SYSDATE
+        )
     </insert>
 
     <insert id="uploadReviewImage" parameterType="com.spring.pettu.mypage.vo.FileVO">

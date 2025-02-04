@@ -5,7 +5,6 @@ $(document).ready(function() {
 
     $('#search-type-btn').click(function() {
         spotListBySearchTypeOfAJAX();
-
     });
 
     $('#append-main-slide-section').on('click', '.main-slide-card', function() {
@@ -16,7 +15,6 @@ $(document).ready(function() {
 });
 
 function sendReviewPage(element) {
-
     var storeId = element.data('store-id');
     var url = '/review/detail/' + storeId;
     alert(url);

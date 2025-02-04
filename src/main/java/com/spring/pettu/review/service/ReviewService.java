@@ -13,4 +13,5 @@ public interface ReviewService {
     int saveReviewWithImage(String reviewTitle, String reviewContents, int reviewScore,
                             MultipartFile file, long userSeq, long spotSeq);
 
+    List<ReviewVO> svcReviewListWithImage(long spotSeq);
 }
