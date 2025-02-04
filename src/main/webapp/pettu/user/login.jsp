@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -26,16 +27,17 @@
             <div class="error-message"></div>  <!-- 여기에 추가 -->
 
             <div class="social-buttons">
-                <button type="button" class="social-login-btn">
-                    <img src="/user/icon/kakao_login.png" alt="카카오 로그인">
-                </button>
-                <button type="button" class="social-login-btn">
-                    <img src="/user/icon/naver_login.png" alt="네이버 로그인">
-                </button>
-                <button type="button" class="social-login-btn">
+                <a href="<c:url value='/login/GOOGLE'/>" class="social-login-btn">
                     <img src="/user/icon/google_login.svg" alt="구글 로그인">
-                </button>
+                </a>
+                <a href="<c:url value='/login/KAKAO'/>" class="social-login-btn">
+                    <img src="/user/icon/kakao_login.png" alt="카카오 로그인">
+                </a>
+                <a href="<c:url value='/login/NAVER'/>" class="social-login-btn">
+                    <img src="/user/icon/naver_login.png" alt="네이버 로그인">
+                </a>
             </div>
+
 
             <button type="submit" class="login-btn">로그인</button>
         </form>
@@ -46,8 +48,20 @@
         </div>
     </div>
 </div>
+
+<c:if test="${not empty sessionScope.ANOTHER_EMAIL}">
+    <script>
+        alert('${sessionScope.ANOTHER_EMAIL}');
+        <% session.removeAttribute("ANOTHER_EMAIL"); %>
+    </script>
+</c:if>
+
+<jsp:include page="${pageContext.request.contextPath}/pettu/common/loading.jsp" />
+
 <div class="footer-wrapper">
     <jsp:include page="/pettu/layout/footer.jsp"/>
 </div>
+
+
 </body>
 </html>

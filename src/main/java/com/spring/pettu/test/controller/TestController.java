@@ -85,56 +85,63 @@ public class TestController {
                     put("imagePath", "/assets/layout/github.svg");
                     put("title", "[복슬 강아지] 무항생제 오리안심 육포22222");
                     put("description", "첨가물 없이 만드는 반려견 간식 (생후 4개월 이상)");
-                    put("price", "6,000원");
+                    put("price", "600000000");
                     put("info", "7일 전보다 2,000원 저렴해요!");
+                    put("detailPath", "/list");
                 }},
                 new HashMap<String, String>() {{
                     put("category", "간식");
                     put("imagePath", "/assets/layout/github.svg");
                     put("title", "[복슬 강아지] 무항생제 오리안심 육포");
                     put("description", "첨가물 없이 만드는 반려견 간식 (생후 4개월 이상)");
-                    put("price", "6,000원");
+                    put("price", "6000");
                     put("info", "7일 전보다 2,000원 저렴해요!");
+                    put("detailPath", "/list");
                 }},
                 new HashMap<String, String>() {{
                     put("category", "간식");
                     put("imagePath", "/assets/layout/github.svg");
                     put("title", "[복슬 강아지] 무항생제 오리안심 육포");
                     put("description", "첨가물 없이 만드는 반려견 간식 (생후 4개월 이상)");
-                    put("price", "6,000원");
+                    put("price", "6000");
                     put("info", "7일 전보다 2,000원 저렴해요!");
+                    put("detailPath", "/list");
                 }},
                 new HashMap<String, String>() {{
                     put("category", "간식");
                     put("imagePath", "/assets/layout/github.svg");
                     put("title", "[복슬 강아지] 무항생제 오리안심 육포");
                     put("description", "첨가물 없이 만드는 반려견 간식 (생후 4개월 이상)");
-                    put("price", "6,000원");
+                    put("price", "6000");
                     put("info", "7일 전보다 2,000원 저렴해요!");
+                    put("detailPath", "/list");
                 }},
                 new HashMap<String, String>() {{
                     put("category", "간식");
                     put("imagePath", "/assets/layout/github.svg");
                     put("title", "[복슬 강아지] 무항생제 오리안심 육포");
                     put("description", "첨가물 없이 만드는 반려견 간식 (생후 4개월 이상)");
-                    put("price", "6,000원");
+                    put("price", "6000");
                     put("info", "7일 전보다 2,000원 저렴해요!");
+                    put("detailPath", "/list");
                 }},
                 new HashMap<String, String>() {{
                     put("category", "간식");
                     put("imagePath", "/assets/layout/github.svg");
                     put("title", "[복슬 강아지] 무항생제 오리안심 육포");
                     put("description", "첨가물 없이 만드는 반려견 간식 (생후 4개월 이상)");
-                    put("price", "6,000원");
+                    put("price", "6000");
                     put("info", "7일 전보다 2,000원 저렴해요!");
+                    put("detailPath", "/list");
                 }},
                 new HashMap<String, String>() {{
                     put("category", "간식");
                     put("imagePath", "/assets/layout/github.svg");
                     put("title", "[복슬 강아지] 무항생제 오리안심 육포");
                     put("description", "첨가물 없이 만드는 반려견 간식 (생후 4개월 이상)");
-                    put("price", "6,000원");
+                    put("price", "6000");
                     put("info", "7일 전보다 2,000원 저렴해요!");
+                    put("detailPath", "/list");
                 }}
 
         ));
@@ -147,6 +154,8 @@ public class TestController {
                     put("description", "경기 성남시 분당구 새마을로51번길 5");
                     put("price", "리뷰 4.9점");
                     put("info", "최근 리뷰 - 사장님이 엄청 친절하고 시설이 좋아요 :)");
+                    put("detailPath", "/list");
+
                 }},
                 new HashMap<String, String>() {{
                     put("category", "카페");
@@ -155,6 +164,7 @@ public class TestController {
                     put("description", "경기 성남시 분당구 새마을로51번길 5");
                     put("price", "리뷰 4.9점");
                     put("info", "최근 리뷰 - 사장님이 엄청 친절하고 시설이 좋아요 :)");
+                    put("detailPath", "/list");
                 }},
                 new HashMap<String, String>() {{
                     put("category", "카페");
@@ -163,6 +173,7 @@ public class TestController {
                     put("description", "경기 성남시 분당구 새마을로51번길 5");
                     put("price", "리뷰 4.9점");
                     put("info", "최근 리뷰 - 사장님이 엄청 친절하고 시설이 좋아요 :)");
+                    put("detailPath", "/list");
                 }},
                 new HashMap<String, String>() {{
                     put("category", "카페");
@@ -171,6 +182,7 @@ public class TestController {
                     put("description", "경기 성남시 분당구 새마을로51번길 5");
                     put("price", "리뷰 4.9점");
                     put("info", "최근 리뷰 - 사장님이 엄청 친절하고 시설이 좋아요 :)");
+                    put("detailPath", "/list");
                 }},
                 new HashMap<String, String>() {{
                     put("category", "카페");
@@ -179,6 +191,7 @@ public class TestController {
                     put("description", "경기 성남시 분당구 새마을로51번길 5");
                     put("price", "리뷰 4.9점");
                     put("info", "최근 리뷰 - 사장님이 엄청 친절하고 시설이 좋아요 :)");
+                    put("detailPath", "/list");
                 }},
                 new HashMap<String, String>() {{
                     put("category", "카페");
@@ -187,6 +200,7 @@ public class TestController {
                     put("description", "경기 성남시 분당구 새마을로51번길 5");
                     put("price", "리뷰 4.9점");
                     put("info", "최근 리뷰 - 사장님이 엄청 친절하고 시설이 좋아요 :)");
+                    put("detailPath", "/list");
                 }}
         ));
 

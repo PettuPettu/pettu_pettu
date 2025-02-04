@@ -25,7 +25,8 @@
                 <value>classpath:properties/image.properties</value>
                 <!-- DB 경로 -->
                 <value>classpath:properties/database.properties</value>
-                <value>classpath:properties/naver_api.properties</value>
+               <value>classpath:properties/naver_api.properties</value>
+              <value>classpath:properties/oauth.properties</value>
             </list>
         </property>
         <property name="ignoreUnresolvablePlaceholders" value="true"/>
@@ -132,10 +133,21 @@
 
             <bean class="com.spring.pettu.auth.interceptor.AuthInterceptor"/>
         </mvc:interceptor>
+
+        <mvc:interceptor>
+            <!-- 인증이 필요한 특정 경로만 매핑 -->
+            <mvc:mapping path="/**"/>
+
+            <!-- 정적 리소스 제외 -->
+            <mvc:exclude-mapping path="/resources/**"/>
+            <mvc:exclude-mapping path="/assets/**"/>
+            <mvc:exclude-mapping path="/**/css/**"/>
+            <mvc:exclude-mapping path="/user/icon/**"/>
+            <mvc:exclude-mapping path="/**/js/**"/>
+            <mvc:exclude-mapping path="/images/**"/>
+
+            <bean class="com.spring.pettu.auth.interceptor.TrafficInterceptor"/>
+        </mvc:interceptor>
     </mvc:interceptors>
-
-
-
-
 
 </beans>

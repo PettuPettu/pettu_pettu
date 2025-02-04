@@ -19,5 +19,6 @@
         <jsp:include page="<%= contentPage %>" />
     </div>
     <jsp:include page="footer.jsp" />
+    <jsp:include page="${pageContext.request.contextPath}/pettu/common/loading.jsp" />
 </body>
 </html>

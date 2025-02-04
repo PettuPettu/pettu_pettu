@@ -12,7 +12,7 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <!-- JS 파일 -->
-    <script src="${pageContext.request.contextPath}/user/js/register.js"></script>
+    <script src="${pageContext.request.contextPath}/user/js/easy_register.js"></script>
 
 
 </head>
@@ -28,35 +28,13 @@
         <form id="signupForm">
             <div class="input-group">
                 <div class="email-group">
-                    <input type="email" id="emailInput" class="input-field email-input" placeholder="Email">
-                    <button type="button" id="sendVerificationBtn" class="verify-btn">인증번호 발송</button>
-                </div>
-                <div class="error-message" id="emailError"></div>
-                <div class="verification-area">
-                    <div class="email-group">
-                        <input type="text" id="verificationCode" class="input-field" placeholder="인증번호 입력">
-                        <button type="button" id="verifyCodeBtn" class="verify-btn">인증확인</button>
-                    </div>
+                    <input type="email" id="emailInput" class="input-field email-input"
+                           value="${sessionScope.SESS_EMAIL}" readonly placeholder="Email">
                 </div>
             </div>
-
             <div class="input-group">
-                <div class="password-group">
-                    <input type="password" id="password1" class="input-field" placeholder="Password">
-                    <img src="/user/icon/see_pw.svg" alt="비밀번호 보기">
-                </div>
-            </div>
-
-            <div class="input-group">
-                <div class="password-group">
-                    <input type="password" id="password2" class="input-field" placeholder="Password">
-                    <img src="/user/icon/see_pw.svg" alt="비밀번호 보기">
-                </div>
-                <div id="pwdMatchMessage"></div>
-            </div>
-
-            <div class="input-group">
-                <input type="text" id="nameInput" class="input-field" placeholder="이름을 입력하세요" required>
+                <input type="text" id="nameInput" class="input-field"
+                       value="${sessionScope.SESS_NAME}" readonly placeholder="이름을 입력하세요">
             </div>
 
             <div class="input-group">
@@ -75,7 +53,6 @@
         </form>
     </div>
 </div>
-<jsp:include page="${pageContext.request.contextPath}/pettu/common/loading.jsp" />
 <div class="footer-wrapper">
     <jsp:include page="/pettu/layout/footer.jsp" />
 </div>
