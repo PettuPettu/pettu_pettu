@@ -11,6 +11,6 @@ import java.util.Date;
 public class HistoryVO {
     int proSeq;
     String regitDate;
-    int rowPrice;
+    int lowPrice;
 
 }
