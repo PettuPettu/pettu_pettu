@@ -10,6 +10,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class HotdealJoinHistoryVO {
     int proSeq;
+    String title;
     String link;
     String image;
     String brand;
