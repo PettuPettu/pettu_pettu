@@ -21,79 +21,96 @@
 <main>
     <section class="search-section">
         <h1>🔥 내 반려동물을 위한 핫딜 정보 찾아드려요 🔥</h1>
-        <input type="text" class="search-bar" placeholder="검색어를 입력하세요">
-        <button class="search-button">🔍</button>
+
+        <form id="searchForm" action="/hotdeal/search" method="GET">
+            <input type="text" name="keyword" class="search-bar" placeholder="검색어를 입력하세요">
+            <button type="submit" class="search-button">🔍</button>
+        </form>
     </section>
 
     <section class="category-section">
-        <button class="category">사료</button>
-        <button class="category">장난감</button>
-        <button class="category">배변</button>
-        <button class="category">간식</button>
-        <button class="category">의류</button>
+        <%
+            String[] categories = {"사료", "장난감", "배변", "간식", "패션", "기타"};
+        %>
+
+        <% for (String category : categories) { %>
+        <button class="category" data-query="<%= category %>"><%= category %></button>
+        <% } %>
     </section>
 
     <section class="hotdeal-section">
-        <h2>🌟 가장 많이 찾은 상품 핫딜 정보</h2>
-        <div class="product-grid">
-            <%-- 반복될 상품 카드 영역 --%>
-            <c:forEach begin="1" end="5"> <!--나중에 리스트 길이로 변경하기 && 슬라이드 적용-->
-            <div class="product-card">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfZbTaFxjSTrlVVdzmfSbeIDxhiY80j0tWdQ&s" alt="상품 이미지">
-                <div class="product-info">
-                    <p class="product-name">우리 아이가 좋아하는 사료</p>
-                    <p class="product-price">5000원</p>
-                </div>
-            </div>
-            </c:forEach>
-        </div>
+        <jsp:include page="../common/slide.jsp">
+            <jsp:param name="attributeName" value="hlist" />
+            <jsp:param name="slideTitle" value="최근 등록된 상품 정보" />
+            <jsp:param name="slideIndex" value="0" />
+        </jsp:include>
     </section>
 
     <section class="hotdeal-section">
-        <h2>🌟 할인율 높은 상품 핫딜 정보</h2>
-        <div class="product-grid">
-            <%-- 반복될 상품 카드 영역 --%>
-            <c:forEach begin="1" end="5"> <!--나중에 리스트 길이로 변경하기 && 슬라이드 적용-->
-            <div class="product-card">
-                <img src="https://i.pinimg.com/474x/5c/93/51/5c9351acd5c3d3bc32a342aad65f48b0.jpg" alt="상품 이미지">
-                <div class="product-info">
-                    <p class="product-name">우리 아이가 좋아하는 사료</p>
-                    <p class="product-price">5000원</p>
-                </div>
-            </div>
-            </c:forEach>
-        </div>
+        <jsp:include page="../common/slide.jsp">
+            <jsp:param name="attributeName" value="dlist" />
+            <jsp:param name="slideTitle" value="할인율이 높은 반려동물 상품 정보" />
+            <jsp:param name="slideIndex" value="1" />
+        </jsp:include>
     </section>
 
     <section class="hotdeal-section">
         <h2>🔥 반려동물 상품 핫딜 정보</h2>
         <div class="product-grid">
-            <%-- 반복될 상품 카드 영역 --%>
-            <c:forEach begin="0" end="21" varStatus="status">
+            <c:forEach items="${viewAll}" var="hotdeal" varStatus="status">
 
-            <!--한줄 시작 -->
+                <!-- 한 줄 시작 -->
+                <c:if test="${status.index == 0 || status.index % 4 == 0}">
+                    <div class="row">
+                </c:if>
 
-            <c:if test="${status.index == 0 || status.index % 4 == 0}">
-                <div class="row">
+                <div class="product-card">
+                    <img src="${hotdeal.image}" alt="상품 이미지">
+                    <div class="product-info">
+                        <p class="product-name"><a href="/hotdeal/detail?proSeq=${hotdeal.proSeq}">${hotdeal.title}</a></p>
+                        <p class="product-price"><fmt:formatNumber value="${hotdeal.lowPrice}" pattern="###,###,###"/>원</p>
+                    </div>
+                </div>
+
+                <!-- 한 줄 끝 -->
+                <c:if test="${(status.index % 4 == 3) || status.last}">
+                    </div>
+                </c:if>
+
+            </c:forEach>
+        </div>
+        <!-- 페이징 기능 추가 -->
+        <div class="pagination">
+            <c:if test="${paging.startPage != 1}">
+                <a href="/hotdeal/home?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}">&lt;</a>
             </c:if>
 
-            <div class="product-card">
-                <img src="https://i.namu.wiki/i/c18xKUGWXNtJppHYSUG2FcmnQgTjmp5o48jB-btMtbNrXiLhm2jCJEOsCoiXFovA6YQQILcACi1CDUCxhjUPGg.gif" alt="상품 이미지">
-                <div class="product-info">
-                    <p class="product-name">2만원 ↘️ 큰 강아지 기저귀</p>
-                    <p class="product-price">18,000원</p>
-                    <div class="product-rating">⭐⭐⭐⭐☆</div>
-                </div>
-            </div>
+            <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p">
+                <c:choose>
+                    <c:when test="${p == paging.nowPage}">
+                        <b>${p}</b>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="/hotdeal/home?nowPage=${p}&cntPerPage=${paging.cntPerPage}">${p}</a>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
 
-            <!-- 한 줄 끝 -->
-            <c:if test="${(status.index % 4 == 3) || status.last}">
-                </div>
+            <c:if test="${paging.endPage != paging.lastPage}">
+                <a href="/hotdeal/home?nowPage=${paging.endPage + 1}&cntPerPage=${paging.cntPerPage}">&gt;</a>
             </c:if>
-        </c:forEach>
         </div>
     </section>
 </main>
 <jsp:include page="../layout/footer.jsp" />
+<script>
+    document.querySelectorAll(".category").forEach(button => {
+        button.addEventListener("click", function() {
+            const query = this.dataset.query;// 버튼의 데이터 값 가져오기
+            console.log("query:", query);
+            window.location.href = "search?keyword=" + query; // 검색 요청
+        });
+    });
+</script>
 </body>
 </html>
