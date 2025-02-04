@@ -10,7 +10,9 @@ public enum ErrorCode {
     DUPLICATE_EMAIL(400, "이미 존재하는 이메일입니다."),
     INVALID_INPUT(400,  "잘못된 입력값입니다."),
     FILE_UPLOAD_ERROR(400,  "파일 업로드중 오류가 발생했습니다."),
-    SORTING_ERROR(400,  "정렬 중 오류가 발생하였습니다");
+    SORTING_ERROR(400,  "정렬 중 오류가 발생하였습니다"),
+    MISS_PARSSING(400, " JSON 파싱중 오류가 발생하였습니다.");
+
 
 
     private int status;
