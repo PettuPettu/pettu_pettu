@@ -37,10 +37,6 @@ public class ApiCallerServiceImpl implements ApiCallerService {
     @Value("${naver.api.url}")
     private String API_URL;
 
-//    private static final String API_URL = apiUrl;
-//    private static final String CLIENT_ID = apiClientId; //properties
-//    private static final String CLIENT_SECRET = apiClientSecret; //properties
-
     @Override
     public JsonNode getApiData(String query,  int displayCount) {
         try (CloseableHttpClient client = HttpClients.createDefault()) {
@@ -51,7 +47,6 @@ public class ApiCallerServiceImpl implements ApiCallerService {
             String category2 = URLEncoder.encode("반려동물", "UTF-8");
             String category3 = URLEncoder.encode(category, "UTF-8");
 
-            //String category3 = URLEncoder.encode(category, "UTF-8");
             String API_URL_Option = API_URL + "?query=" + encodingQuery + "&category2" + category2 + "&category3" + category3 + "&sort=sim&display=" + displayCount;
             HttpGet request = new HttpGet(API_URL_Option);
 
@@ -70,7 +65,6 @@ public class ApiCallerServiceImpl implements ApiCallerService {
         }
     }
 
-    //수정해야 함!!!
     @Override
     public List<HotdealDTO> setHotdealData(JsonNode jsonNode) {
 
@@ -80,11 +74,9 @@ public class ApiCallerServiceImpl implements ApiCallerService {
         if (jsonNode.has("items") && jsonNode.get("items").isArray()) {
             for (JsonNode item : jsonNode.get("items")) {
                 try {
-                    //System.out.println("attempt to transfer: " + item.toString());
                     HotdealDTO hotdealDTO = mapper.treeToValue(item, HotdealDTO.class);
                     list.add(hotdealDTO);
                 } catch (Exception e) {
-                    //System.out.println("fail to transfer: " + item.toString());
                     throw new BusinessException(MISS_PARSSING);
                 }
             }
