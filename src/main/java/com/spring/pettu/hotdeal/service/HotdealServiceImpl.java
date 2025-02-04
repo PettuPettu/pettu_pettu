@@ -66,7 +66,7 @@ public class HotdealServiceImpl implements HotdealService {
         List<Map<String, Object>> hashList = dlist.stream().map(product -> {
             Map<String, Object> map = new HashMap<>();
             map.put("category", product.getCategory3());
-            map.put("price", product.getRecentPrice() + "원");
+            map.put("price", product.getRecentPrice());
             map.put("info", "할인율:" + product.getDiscountRate() + "%");
             map.put("description", product.getBrand());
             map.put("title", product.getTitle());
@@ -83,7 +83,7 @@ public class HotdealServiceImpl implements HotdealService {
         List<Map<String, Object>> hashList = rlist.stream().map(product -> {
             Map<String, Object> map = new HashMap<>();
             map.put("category", product.getCategory3());
-            map.put("price", product.getLowPrice() + "원");
+            map.put("price", product.getLowPrice());
             map.put("info", " ");
             map.put("description", product.getBrand());
             map.put("title", product.getTitle());
