@@ -8,12 +8,8 @@ import com.spring.pettu.hotdeal.vo.HotdealPagingVO;
 import com.spring.pettu.mapper.UserMapper;
 import com.spring.pettu.mypage.service.MyPageServiceImpl;
 import com.spring.pettu.myreview.service.MyReviewServiceImpl;
-import com.spring.pettu.spot.service.SpotService;
-import com.spring.pettu.spot.service.SpotServiceImpl;
-import com.spring.pettu.spot.vo.SpotVO;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,11 +17,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/admin")
+@Slf4j
 public class AdminController {
 
     private final HotdealServiceImpl hotdealService;
@@ -33,12 +28,11 @@ public class AdminController {
     private final MyReviewServiceImpl myReviewService;
     private final UserMapper userMapper;
     private final MyPageServiceImpl myPageService;
-    private static final Logger logger = LoggerFactory.getLogger(com.spring.pettu.hotdeal.controller.HotdealController.class);
 
     @GetMapping("/user")
     public String adminUser(Model model, PagingVO pagingVO,
                             @RequestParam(value="nowPage", required = false, defaultValue = "1") int nowPage,
-                            @RequestParam(value = "cntPerPage", required = false, defaultValue = "5") int cntPerPage) {
+                            @RequestParam(value = "cntPerPage", required = false, defaultValue = "10") int cntPerPage) {
 
         int total = adminService.getCountUser();
 
@@ -76,7 +70,7 @@ public class AdminController {
     public String adminHotdeal(Model model, HotdealPagingVO hotdealpagingVO,
                                @RequestParam(value="nowPage", required = false, defaultValue = "1") int nowPage,
                                @RequestParam(value = "cntPerPage", required = false, defaultValue = "10") int cntPerPage) {
-        // 핫딜 페이징 vo 그냥 pagingvo에 합치는 것도 좋을 듯
+
         int total = hotdealService.getTotalHotdealCount();
 
         hotdealpagingVO = new HotdealPagingVO(total, nowPage, cntPerPage);
@@ -95,7 +89,6 @@ public class AdminController {
         UserVO uvo = userMapper.findByUserSeq(userSeq);
         model.addAttribute("user", uvo);
         model.addAttribute("plist", myPageService.findUserAndFileById(userSeq));
-        //model.addAttribute("rlist", adminService.getReviewByUserSeq(userSeq));
         model.addAttribute("urlist", myReviewService.findUserAndReviewById(userSeq));
 
         model.addAttribute("contentPage", "/pettu/admin/admin_user_detail.jsp");
