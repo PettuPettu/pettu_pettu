@@ -1,5 +1,6 @@
 package com.spring.pettu.mapper;
 
+import com.spring.pettu.main.vo.MainVO;
 import com.spring.pettu.spot.vo.SearchSpotType;
 import com.spring.pettu.spot.vo.SpotVO;
 import org.apache.ibatis.annotations.Mapper;
@@ -26,5 +27,8 @@ public interface SpotMapper {
 
     // 페이징 처리된 페이지별 Spot 리스트
     List<SpotVO> spotListByPaging(@Param("startSeq") int startSeq, @Param("endSeq") int endSeq);
+
+    // 최근 개업한(오늘 날짜로 부터 3개월 전까지) Spot
+    List<MainVO> getRecentlyOpenedSpots();
 }
 
