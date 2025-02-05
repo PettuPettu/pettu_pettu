@@ -34,30 +34,29 @@ public class ReviewRestController {
         return new ResponseEntity<>(slist, HttpStatus.OK);
     }
 
-    //
 
     @PostMapping("/upload")
-    public String uploadReview(@RequestParam("reviewTitle") String reviewTitle,
+    public ResponseEntity<String> uploadReview(@RequestParam("reviewTitle") String reviewTitle,
                                @RequestParam("reviewContents") String reviewContents,
                                @RequestParam("reviewScore") int reviewScore,
                                @RequestParam(value = "file", required = false) MultipartFile file,
                                @RequestParam("spotSeq") long spotSeq,
                                HttpSession session) {
 
-        // 세션에서 로그인한 유저 seq 가져오기
+
         long userSeq = (long) session.getAttribute("SESSION_USER_CODE");
 
 
         try {
-            // 리뷰와 파일을 업로드하고 리뷰 시퀀스를 반환
+
             int reviewSeq = rSvc.saveReviewWithImage(reviewTitle, reviewContents, reviewScore, file, userSeq, spotSeq);
             if (reviewSeq > 0) {
-                return "리뷰 업로드 성공!";
+                return new ResponseEntity<>("리뷰 업로드 성공!", HttpStatus.OK);
             } else {
-                return "리뷰 업로드 실패";
+                return new ResponseEntity<>("리뷰 업로드 실패", HttpStatus.BAD_REQUEST);
             }
         } catch (Exception e) {
-            return "업로드 중 오류가 발생했습니다: " + e.getMessage();
+            return new ResponseEntity<>("업로드 중 오류가 발생했습니다: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

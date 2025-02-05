@@ -76,9 +76,7 @@
 
 
             <c:if test="${not empty sessionScope.SESSION_USER_CODE}">
-      <%--          <button class="add-button review-create-btn create-btn" id="create-review-modal-btn" data-page="/pettu/review/create_review_modal.jsp" data-width="fit-content"
-                        data-height="fit-content">리뷰 작성 버튼</button>--%>
-                <button class="add-button review-create-btn create-btn" data-page="/pettu/review/review_create_modal.jsp" data-width="fit-content"
+           <button class="add-button review-create-btn create-btn" data-page="/pettu/review/review_create_modal.jsp" data-width="fit-content"
                         data-height="fit-content">리뷰 작성</button>
             </c:if>
 

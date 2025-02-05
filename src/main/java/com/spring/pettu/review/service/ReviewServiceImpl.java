@@ -48,10 +48,6 @@ public class ReviewServiceImpl implements ReviewService {
     public int saveReviewWithImage(String reviewTitle, String reviewContents, int reviewScore,
                                    MultipartFile file, long userSeq, long spotSeq) {
 
-/*
-        userSeq = 2;
-        spotSeq = 1;
-*/
 
         // 리뷰 정보를 먼저 DB에 저장
         ReviewVO reviewVO = new ReviewVO();

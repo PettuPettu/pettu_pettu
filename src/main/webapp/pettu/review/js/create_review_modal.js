@@ -107,6 +107,7 @@ function uploadImage(selectedReviewImage, selectedStarScore) {
         processData: false,
         contentType: false,
         success: function(response) {
+            console.log(response);
             alert("리뷰가 업로드되었습니다.");
             resetModalData();
             reviewListRestAPI();

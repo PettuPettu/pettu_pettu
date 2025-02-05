@@ -26,8 +26,6 @@ public class ReviewController {
     private static final Logger logger = LoggerFactory.getLogger(ReviewController.class);
 
 
-    /*-------------------------- jsp 페이지 mapping ---------------------------*/
-
 
     @GetMapping("/detail/{storeId}")
     public String reviewStoreDetail(@PathVariable("storeId") Long storeId, Model model) {
@@ -46,8 +44,6 @@ public class ReviewController {
         return "pettu/layout/layout";
     }
 
-
-    /*-----------------------------------------------------------------------*/
 
 
 

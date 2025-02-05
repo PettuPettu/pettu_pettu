@@ -73,6 +73,7 @@
     justify-content: center; /* 가로 방향 가운데 정렬 */
     text-align: center; /* 글자 가운데 */
     height: 100%;
+    margin-bottom: 10px;
 }
 
 .review-modal-create-btn {

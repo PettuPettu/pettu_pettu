@@ -19,7 +19,7 @@
 <div class="review-modal-container">
   <div class="review-modal-top-section">
     <div>
-      <div class="review-modal-create-button-div" style="margin-bottom: 10px">
+      <div class="review-modal-create-button-div">
         <h1 id="spot-name">  </h1>
       </div>
     </div>
