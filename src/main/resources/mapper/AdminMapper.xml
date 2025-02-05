@@ -4,16 +4,19 @@
 
 <!-- Mapper와 Interface의 경로와 이름이 같아야 한다. -->
 <mapper namespace="com.spring.pettu.mapper.AdminMapper">
-    <select id="selectSpotPaging" resultType="com.spring.pettu.spot.vo.SpotVO">
+    <select id="selectSpotPaging" resultType="com.spring.pettu.admin.vo.SpotJoinCategoryVO">
 
-        select *
-        from
-        (
-        select rownum as rn, a.*
-        from
-        (select * from spot order by spot_seq asc) a
+        SELECT *
+        FROM (
+        SELECT rownum AS rn, b.*
+        FROM (
+        SELECT s.*, c.category_name
+        FROM spot s
+        INNER JOIN category c ON s.category_seq = c.category_seq
+        ORDER BY s.spot_seq ASC
         ) b
-        where rn > #{pagingVO.start} and  rn &lt;= #{pagingVO.end}
+        ) a
+        where <![CDATA[a.rn > #{pagingVO.start}]]> and <![CDATA[a.rn <= #{pagingVO.end}]]>
 
     </select>
 
@@ -30,7 +33,7 @@
                 from
                         (select * from user_app order by user_seq asc) a
             ) b
-        where rn > #{pagingVO.start} and  rn &lt;= #{pagingVO.end}
+        where <![CDATA[rn > #{pagingVO.start}]]> and <![CDATA[rn <= #{pagingVO.end}]]>
 
     </select>
 
