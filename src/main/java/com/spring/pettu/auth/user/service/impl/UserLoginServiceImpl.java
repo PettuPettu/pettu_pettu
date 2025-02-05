@@ -17,7 +17,6 @@ public class UserLoginServiceImpl implements UserLoginService {
     @Override
     public UserVO login(String userEmail, String password) {
         UserVO user = userMapper.findByUserEmail(userEmail);
-
         // 사용자가 존재하고 비밀번호가 일치하는 경우에만 로그인 성공
         if (user != null && passwordEncoder.matches(password, user.getUserPw())) {
             return user;
