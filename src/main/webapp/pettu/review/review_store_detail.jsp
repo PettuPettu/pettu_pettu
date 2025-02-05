@@ -87,7 +87,7 @@
 
             <c:if test="${empty sessionScope.SESSION_USER_CODE}">
                 <!-- userSeq가 세션에 없으면 로그인 페이지로 리디렉션 -->
-                <button class="review-create-btn create-btn" onclick="location.href='/login';">
+                <button class="review-create-btn create-btn" onclick="location.href='/login?redirectURL=/review/detail/'+${SPOT_ALL_INFO.spotSeq}">
                     리뷰 작성
                 </button>
             </c:if>
