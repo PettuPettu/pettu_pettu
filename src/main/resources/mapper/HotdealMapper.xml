@@ -141,33 +141,39 @@
 
     <select id="selectDiscount" resultType="com.spring.pettu.hotdeal.vo.DiscountVO">
         WITH History_Filtered AS (
-            -- 1. 같은 상품에 대해 가장 최근 날짜와 그 이전 날짜를 가져옴
-            SELECT h1.pro_seq, h1.regit_date AS recent_date, h1.low_price AS recent_price,
-                   h2.regit_date AS prev_date, h2.low_price AS prev_price
-            FROM history h1
-                     JOIN history h2
-                          ON h1.pro_seq = h2.pro_seq
-                              AND h1.regit_date > h2.regit_date
-            WHERE h1.regit_date = (SELECT MAX(regit_date) FROM history h3 WHERE h3.pro_seq = h1.pro_seq)
+            -- 각 상품의 현재 날짜 기준 가장 최근 가격(recent_price)과 그 직전 가격(prev_price)을 가져오기
+            SELECT
+                pro_seq,
+                regit_date AS recent_date,  -- 최신 날짜
+                low_price AS recent_price,  -- 최신 가격
+                LEAD(regit_date) OVER (PARTITION BY pro_seq ORDER BY regit_date DESC) AS prev_date,  -- 직전 날짜
+                    LEAD(low_price) OVER (PARTITION BY pro_seq ORDER BY regit_date DESC) AS prev_price  -- 직전 가격
+            FROM history
         )
 
         SELECT *
-        FROM
-            (
-                SELECT
-                    hf.pro_seq,
-                    hf.recent_price,
-                    hf.prev_price,
-                    trunc(((hf.prev_price - hf.recent_price) / hf.prev_price) * 100,2) AS discount_rate,  -- 할인율 계산
-                    d.title,
-                    d.image,
-                    d.category3,
-                    d.brand
-                FROM History_Filtered hf
-                         JOIN hotdeal d ON hf.pro_seq = d.pro_seq
-                ORDER BY discount_rate DESC  -- 할인율 높은 순 정렬
-            )
-        WHERE DISCOUNT_RATE > 0
+        FROM (
+                 SELECT
+                     hf.pro_seq,
+                     hf.recent_price,
+                     hf.prev_price,
+                     CASE
+                         WHEN hf.prev_price IS NULL OR hf.prev_price = 0 THEN NULL  -- 직전 가격이 0 또는 NULL이면 할인율 계산 X
+                         ELSE TRUNC(((hf.prev_price - hf.recent_price) / hf.prev_price) * 100, 2)
+                         END AS discount_rate,
+                     d.title,
+                     d.image,
+                     d.category3,
+                     d.brand
+                 FROM History_Filtered hf
+                          JOIN hotdeal d ON hf.pro_seq = d.pro_seq
+                 WHERE hf.prev_price IS NOT NULL  -- 직전 가격이 존재하는 경우만 계산
+                   AND hf.prev_price > hf.recent_price  -- 현재 가격이 이전 가격보다 낮아진 경우만 조회
+                   AND TRUNC(hf.recent_date) = TRUNC(SYSDATE)  -- 현재 날짜 기준 가장 최근 데이터만 조회
+                 ORDER BY discount_rate DESC  -- 할인율 높은 순 정렬
+             )
+        WHERE discount_rate > 0
+
     </select>
 
     <update id="updateHistory">
