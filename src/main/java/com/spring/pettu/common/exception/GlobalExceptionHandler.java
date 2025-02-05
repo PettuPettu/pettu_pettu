@@ -32,13 +32,14 @@ public class GlobalExceptionHandler {
                 HttpStatus.valueOf(ex.getErrorCode().getStatus()));
     }
 
+    // 400 BadRequest 에러 처리
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public String handleBadRequest(Model model, MethodArgumentTypeMismatchException ex) {
+    public String handleBadRequest(Model model) {
         model.addAttribute("errorCode", "400");
         model.addAttribute("errorMessage", "잘못된 요청입니다.");
         model.addAttribute("errorText", "잘못된 요청 입니다. 관리자에게 문의해 주세요.");
-        return "pettu/error/error"; // 커스텀 에러 페이지의 뷰 이름
+        return "pettu/error/error";
     }
 
 
