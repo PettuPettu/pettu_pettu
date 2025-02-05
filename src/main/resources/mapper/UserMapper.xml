@@ -56,7 +56,7 @@
         ) VALUES (
         user_seq.NEXTVAL, #{userEmail}, COALESCE(#{userPw}, 'OAUTH_USER'),
         #{userName}, #{userNickname}, 'ROLE_USER',
-        #{userStatus}, SYSDATE, null,
+        1, SYSDATE, null,
         <if test="userProvider != null and userProvider != ''">
             #{userProvider}
         </if>
