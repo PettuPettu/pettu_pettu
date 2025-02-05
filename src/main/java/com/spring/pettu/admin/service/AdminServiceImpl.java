@@ -1,10 +1,10 @@
 package com.spring.pettu.admin.service;
 
 import com.spring.pettu.admin.vo.PagingVO;
+import com.spring.pettu.admin.vo.SpotJoinCategoryVO;
 import com.spring.pettu.auth.user.vo.UserVO;
 import com.spring.pettu.mapper.AdminMapper;
 import com.spring.pettu.mypage.vo.PetVO;
-import com.spring.pettu.spot.vo.SpotVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ public class AdminServiceImpl implements AdminService {
     private final AdminMapper adminMapper;
 
     @Override
-    public List<SpotVO> getSpotPaging(PagingVO pagingVO) {
+    public List<SpotJoinCategoryVO> getSpotPaging(PagingVO pagingVO) {
         return adminMapper.selectSpotPaging(pagingVO);
     }
 
