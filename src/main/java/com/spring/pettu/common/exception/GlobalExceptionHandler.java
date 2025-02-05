@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 import java.util.HashMap;
@@ -30,6 +31,16 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse,
                 HttpStatus.valueOf(ex.getErrorCode().getStatus()));
     }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String handleBadRequest(Model model, MethodArgumentTypeMismatchException ex) {
+        model.addAttribute("errorCode", "400");
+        model.addAttribute("errorMessage", "잘못된 요청입니다.");
+        model.addAttribute("errorText", "잘못된 요청 입니다. 관리자에게 문의해 주세요.");
+        return "pettu/error/error"; // 커스텀 에러 페이지의 뷰 이름
+    }
+
 
     // 403 Forbidden 에러 처리
     @ExceptionHandler(AccessDeniedException.class)
