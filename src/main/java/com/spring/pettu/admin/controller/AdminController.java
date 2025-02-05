@@ -85,7 +85,6 @@ public class AdminController {
     @GetMapping("/user/detail")
     public String adminUserDetail(Model model, @RequestParam("userSeq") Long userSeq) {
 
-        //쿼리 추가해서 jsp에 던지기
         UserVO uvo = userMapper.findByUserSeq(userSeq);
         model.addAttribute("user", uvo);
         model.addAttribute("plist", myPageService.findUserAndFileById(userSeq));
