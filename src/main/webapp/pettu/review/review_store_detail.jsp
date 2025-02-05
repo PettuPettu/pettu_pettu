@@ -66,6 +66,7 @@
            <div>
                 <label for="custom-select-box"></label>
                 <select id="custom-select-box" name="sort-order">
+                    <option value="basic">기본</option>
                     <option value="newest">최신순</option>
                     <option value="oldest">오래된 순</option>
                 </select>
@@ -74,9 +75,25 @@
             <div style="width:80%" onclick="scrollToSecondSection()"> 리뷰 목록</div>
 
 
-            <button class="openModal review-create-btn create-btn" id="create-review-modal-btn" data-page="/pettu/review/review_create_modal" data-width="fit-content"
-                    data-height="fit-content">리뷰 작성 버튼</button>
+            <c:if test="${not empty sessionScope.SESSION_USER_CODE}">
+      <%--          <button class="add-button review-create-btn create-btn" id="create-review-modal-btn" data-page="/pettu/review/create_review_modal.jsp" data-width="fit-content"
+                        data-height="fit-content">리뷰 작성 버튼</button>--%>
+                <button class="add-button review-create-btn create-btn" data-page="/pettu/review/review_create_modal.jsp" data-width="fit-content"
+                        data-height="fit-content">리뷰 작성</button>
+            </c:if>
+
             <jsp:include page="/pettu/common/modal.jsp"/>
+
+
+            <c:if test="${empty sessionScope.SESSION_USER_CODE}">
+                <!-- userSeq가 세션에 없으면 로그인 페이지로 리디렉션 -->
+                <button class="review-create-btn create-btn" onclick="location.href='/login';">
+                    리뷰 작성
+                </button>
+            </c:if>
+
+
+
         </div>
 
         <div class="review-grid">
@@ -87,7 +104,17 @@
         </div>
     </div>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $(".add-button").click(function() {
+            const page = $(this).data("page");
+            console.log("Page URL:", page);
+            $("#modal-body").load(page);
+            $("#commonModal").show();
+        });
+    });
+</script>
 
 </body>
 </html>

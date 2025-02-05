@@ -1,15 +1,17 @@
-// 선택된 이미지 파일 저장 변수
-let selectedReviewImage = null;
-// 평점 저장 변수
-let selectedStarScore = null;
-
-
-
 $(document).ready(function() {
     $(".close").click(function() {
         resetModalData();
     });
-    starEvent();
+
+    $("#uploadImageBtn").on('click', function() {
+        const starScoreObject = getSelectedStarScore();
+        const selectedStarScore = starScoreObject.selectedStarScore;
+        const file = document.getElementById('fileInput').files[0];
+
+        console.log(selectedStarScore +  "file  >>> " +  file);  // 3 (값만 출력됨)
+        uploadImage(file,selectedStarScore)
+    });
+    changeStarEvent();
     getSpotDetailInfo();
 });
 
@@ -20,18 +22,21 @@ function resetModalData() {
 }
 
 function closeModal(){
-    $("#commonModal").hide();
+    $("#commonModal").hide();  // 모달 숨기기
+    $("#imagePreview").attr('src', '/assets/layout/github.svg');  // 이미지 초기화
+    $(".image-upload-buttons").hide();  // 버튼 숨기기
 }
 
+
+// 별점 초기화
 function resetStars() {
     const stars = $('.star');
     stars.removeClass('selected'); // 별 초기화
-    selectedStarScore = null; // 별점 초기화
 }
 
 // 리뷰쓰는 가게의 정보 추가하기
 function getSpotDetailInfo(){
-    const spotSeq= document.getElementById('spot-detail-spotName').value;
+    const spotSeq = document.getElementById('spot-detail-spotName').value;
     $("#spot-name").append(spotSeq);
 }
 
@@ -41,22 +46,26 @@ document.getElementById('fileInput').addEventListener('change', function(e) {
     if (file) {
         const reader = new FileReader();
         reader.onload = function(event) {
-            // 미리보기 이미지 업데이트
-            document.getElementById('imagePreview').src = event.target.result;
-            selectedReviewImage = file; // 선택한 파일을 저장
-            document.querySelector('.image-upload-buttons').style.display = 'block'; // 업로드/취소 버튼 보이기
+            updateImagePreview(event.target.result, file); // 이미지 미리보기 업데이트
         };
         reader.readAsDataURL(file);
     }
 });
 
+// 이미지 미리보기 업데이트
+function updateImagePreview(imageSrc, file) {
+    document.getElementById('imagePreview').src = imageSrc;
+    document.querySelector('.image-upload-buttons').style.display = 'block'; // 업로드/취소 버튼 보이기
+
+}
+
+
+
 // 이미지 업로드
-function uploadImage() {
+function uploadImage(selectedReviewImage, selectedStarScore) {
 
     const reviewTitle = $("#review-title-input").val();
     const reviewContents = $("#review-contents-input").val();
-    const reviewScore = selectedStarScore;
-    console.log("reviewScore >> "+reviewScore);
 
     // null 또는 빈 값 처리
     if (!reviewTitle) {
@@ -69,7 +78,7 @@ function uploadImage() {
         return;
     }
 
-    if (!reviewScore || reviewScore <= 0) {
+    if (!selectedStarScore || selectedStarScore <= 0) {
         alert("평점을 선택해주세요.");
         return;
     }
@@ -81,12 +90,15 @@ function uploadImage() {
     var formData = new FormData();
     formData.append("reviewTitle", reviewTitle);
     formData.append("reviewContents", reviewContents);
-    formData.append("reviewScore", reviewScore);
+    formData.append("reviewScore", selectedStarScore);
     if (selectedReviewImage) {
         formData.append('file', selectedReviewImage);
     }
     formData.append("spotSeq", spotSeq);  // 장소 시퀀스
 
+    for (let [key, value] of formData.entries()) {
+        console.log(key + ": " + value);
+    }
     // 서버로 데이터 전송
     $.ajax({
         url: "/rest/review/upload",  // 서버의 업로드 엔드포인트
@@ -100,7 +112,6 @@ function uploadImage() {
             reviewListRestAPI();
         },
         error: function(xhr, status, error) {
-            // 더 구체적인 오류 확인을 위해 콘솔에 출력
             console.error('AJAX 오류:', error);
             alert("AJAX 리뷰 업로드 중 오류가 발생했습니다.");
         }
@@ -110,34 +121,44 @@ function uploadImage() {
 // 이미지 취소
 function cancelImage() {
     // 이미지 미리보기를 기본 이미지로 되돌림
-    // 이미지 미리보기를 기본 이미지로 되돌림
-    document.getElementById('imagePreview').src = '/assets/layout/github.svg';
+    document.getElementById('imagePreview').src = '/assets/layout/github.svg';  // 기본 이미지
     document.querySelector('.image-upload-buttons').style.display = 'none'; // 업로드/취소 버튼 숨기기
-    selectedReviewImage = null; // 선택한 이미지 초기화
 
-    // input 파일 요소 초기화 (이미지 선택 초기화)
+    // 파일 입력 요소 초기화 (이미지 선택 초기화)
     const fileInput = document.getElementById('fileInput');
-    fileInput.value = '';
+    fileInput.value = ''; // 파일 입력값 초기화
+
 }
 
-
 // 별 클릭 이벤트
-function starEvent(){
+function changeStarEvent() {
+    const stars = $('.star');
+    let selectedStarScore = null;  // 선택된 별점
 
-    const star = $('.star');
-
-    star.click(function() {
+    stars.click(function() {
         // 클릭한 별의 점수 가져오기
         selectedStarScore = $(this).data('score');
 
         // 선택된 별만 색상 변경
-        star.removeClass('selected');
+        stars.removeClass('selected');
         for (let i = 0; i < selectedStarScore; i++) {
-            star.eq(i).addClass('selected');
+            stars.eq(i).addClass('selected');
         }
-
     });
-
 }
 
+function getSelectedStarScore() {
+    const stars = $('.star');
+    let selectedStarScore = null;
+
+    // 클릭된 별점 값 찾기
+    stars.each(function() {
+        if ($(this).hasClass('selected')) {
+            selectedStarScore = $(this).data('score');
+        }
+    });
+
+    // 객체로 반환
+    return { selectedStarScore: selectedStarScore }; // 객체 형태로 반환
+}
 

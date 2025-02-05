@@ -17,6 +17,8 @@ $(document).ready(function() {
 
 });
 
+
+
 function getStars() {
     const score = parseFloat(document.querySelector('.place-score-div').getAttribute('data-score'));
 
@@ -24,7 +26,7 @@ function getStars() {
     let halfStar = (score % 1) >= 0.5 ? true : false; // 반 별 체크
     let emptyStars = 5 - fullStars - (halfStar ? 1 : 0); // 빈 별 계산
 
-    let stars = '';
+    let stars = ' 평점 : ';
 
     // 채워진 별
     for (let i = 0; i < fullStars; i++) {

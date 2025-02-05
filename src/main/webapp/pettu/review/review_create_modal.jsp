@@ -58,7 +58,7 @@
     <div>
       <div class="review-modal-create-button-div">
 
-        <button class="review-modal-create-btn" id="uploadImageBtn" onclick="uploadImage()">작성 완료</button>
+        <button class="review-modal-create-btn" id="uploadImageBtn">작성 완료</button>
       </div>
     </div>
   </div>
