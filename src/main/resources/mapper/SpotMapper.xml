@@ -83,6 +83,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where page_spot_seq between #{startSeq} and #{endSeq}
     </select>
 
+    <select id="getRecentlyOpenedSpots" resultType="com.spring.pettu.main.vo.MainVO">
+        SELECT s.SPOT_SEQ, s.SPOT_PICTURE, c.CATEGORY_NAME, s.SPOT_NAME, s.SPOT_LOCATION, s.SPOT_OPEN_DATE, s.SPOT_TOTAL_AVG_SCORE
+        FROM spot s, category c
+        WHERE (c.category_seq = s.category_seq) and
+            s.SPOT_OPEN_DATE
+                BETWEEN ADD_MONTHS(SYSDATE, -3) AND SYSDATE
+        ORDER BY s.SPOT_OPEN_DATE DESC
+    </select>
+
 
 </mapper>
 

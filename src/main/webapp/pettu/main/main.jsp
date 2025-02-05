@@ -12,13 +12,13 @@ pageEncoding="UTF-8"%>
     <jsp:param name="attributeName" value="productsSlide" />
     <jsp:param name="slideTitle" value="할인율 높은 상품" />
     <jsp:param name="slideIndex" value="0" />
-    <jsp:param name="moreItemsButton" value="/list" />
+    <jsp:param name="moreItemsButton" value="/hotdeal/home" />
   </jsp:include>
   <jsp:include page="../common/slide.jsp">
     <jsp:param name="attributeName" value="placeSlide" />
-    <jsp:param name="slideTitle" value="최근에 등록된 시설" />
+    <jsp:param name="slideTitle" value="최근에 개업한 시설" />
     <jsp:param name="slideIndex" value="1" />
-    <jsp:param name="moreItemsButton" value="/list" />
+    <jsp:param name="moreItemsButton" value="/spot/list" />
   </jsp:include>
 </body>
 </html>
