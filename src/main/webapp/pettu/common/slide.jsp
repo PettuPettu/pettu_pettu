@@ -44,7 +44,7 @@
                         String formattedPrice = "";
                         if (priceObj != null) {
                             try {
-                                formattedPrice = priceFormatter.format(Integer.parseInt(priceObj.toString()));
+                                formattedPrice = priceFormatter.format(Integer.parseInt(priceObj.toString()))+"원";
                             } catch (NumberFormatException e) {
                                 formattedPrice = priceObj.toString();
                             }
@@ -59,7 +59,7 @@
                         <span><%= product.get("description") %></span>
                     </p>
                     <p class="main-slide-card-info">
-                        <strong><%= formattedPrice %>원</strong>
+                        <strong><%= formattedPrice %></strong>
                         <span><%= product.get("info") %></span>
                     </p>
                 </div>

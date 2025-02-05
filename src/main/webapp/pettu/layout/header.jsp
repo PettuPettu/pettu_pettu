@@ -15,6 +15,9 @@
         <a href="/hotdeal/home">핫딜</a>
         <a href="/spot/list">시설</a>
         <a href="/petbti">펫BTI</a>
+        <% if("ROLE_ADMIN".equals(String.valueOf(session.getAttribute("SESSION_USER_ROLE")))){%>
+            <a href="/admin/user">어드민</a>
+        <% } %>
     </div>
     <div id="header-auth">
         <% if(session.getAttribute("SESSION_USER_CODE") != null){%>
