@@ -20,12 +20,14 @@
     <select id="category">
         <option value="강아지 사료">강아지 사료</option>
         <option value="고양이 사료">고양이 사료</option>
-        <option value="반려동물 용품">강아지 장난감</option>
-        <option value="반려동물 용품">고양이 장난감</option>
-        <option value="반려동물 용품">강아지 옷</option>
-        <option value="반려동물 용품">고양이 옷</option>
-        <option value="반려동물 용품">강아지 배변</option>
-        <option value="반려동물 용품">고양이 배변</option>
+        <option value="강아지 간식">강아지 간식</option>
+        <option value="고양이 간식">고양이 간식</option>
+        <option value="강아지 장난감">강아지 장난감</option>
+        <option value="고양이 장난감">고양이 장난감</option>
+        <option value="강아지 옷">강아지 옷</option>
+        <option value="고양이 옷">고양이 옷</option>
+        <option value="강아지 배변패드">강아지 배변패드</option>
+        <option value="고양이 모래">고양이 모래</option>
     </select>
 
     <!-- 개수 입력 -->

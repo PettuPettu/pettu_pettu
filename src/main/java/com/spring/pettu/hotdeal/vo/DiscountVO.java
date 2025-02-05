@@ -3,23 +3,17 @@ package com.spring.pettu.hotdeal.vo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.util.Date;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class HotdealJoinHistoryVO {
+public class DiscountVO {
     int proSeq;
+    int recentPrice;
+    int prevPrice;
+    double discountRate;
     String title;
-    String link;
     String image;
-    String brand;
-    String maker;
-    String category1;
-    String category2;
     String category3;
-    String category4;
-    int productId;
-    int lowPrice;
-    Date regitDate;
+    String brand;
 }
