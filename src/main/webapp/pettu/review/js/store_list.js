@@ -3,12 +3,23 @@ $(document).ready(function() {
     spotTop3OfAJAX();
     toggleMessage();
 
- $('#search-type-btn').click(function() {
+    $('#search-type-btn').click(function() {
         spotListBySearchTypeOfAJAX();
-
     });
 
+    $('#append-main-slide-section').on('click', '.main-slide-card', function() {
+        sendReviewPage($(this));
+    });
+
+
 });
+
+function sendReviewPage(element) {
+    var storeId = element.data('store-id');
+    var url = '/review/detail/' + storeId;
+    window.location.href = url;
+}
+
 
 /*
 서버에서 페이징 처리하기 API
@@ -125,7 +136,7 @@ function renderPagingSearchSpot(data){
 // 시설 정보 카드
 function renderSpotCard(spot,sectionCounter) {
     var cardHtml = `
-       <div class="main-slide-card">
+       <div class="main-slide-card" data-store-id="${spot.spotSeq}">
         <!-- 이미지가 null일 경우 기본 이미지로 대체 -->
         <img src="${spot.spotPicture != null && spot.spotPicture != '' ? spot.spotPicture : '/assets/layout/github.svg'}" alt="${spot.spotName} 이미지">
         
@@ -386,12 +397,11 @@ function clickRemoveTag(event) {
             const realValue = hiddenInput.value; 
             const realClass = hiddenInput.className; 
 
-            // 해당 realValue 값을 가진 체크박스를 찾음
+
             const checkbox = document.querySelector(`input[type="checkbox"][value="${realValue}"]`);
 
             if (checkbox) {
-                //alert("zzzzclickRemoveTag >>> " + realClass + realValue + "hiddenInput.value >>> " + hiddenInput.value);
-                checkedBoxRemoveList(realClass, realValue);  // 배열 항목 제거
+                checkedBoxRemoveList(realClass, realValue);
                 checkbox.checked = false;  
 
             }else{

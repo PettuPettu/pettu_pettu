@@ -1,22 +1,22 @@
-
-.container {
+.review-modal-container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-
-
 }
-.top-section {
+
+.review-modal-top-section {
     border: 3px solid #FFE4E4;
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
 }
-.info-box {
+
+.review-modal-info-box {
     display: flex;
     gap: 20px;
 }
-.image-box {
+
+.review-modal-image-box {
     width: 300px;
     height: 300px;
     border: 2px solid #FFE4E4;
@@ -26,21 +26,25 @@
     justify-content: center;
     background-color: #FFF5F5;
 }
-.flex-vertical-div {
+
+.review-modal-flex-vertical-div {
     display: flex;
     flex-direction: column;
 }
-.info-fields {
+
+.review-modal-info-fields {
     flex: 1;
 }
-.info-field {
+
+.review-modal-info-field {
     background-color: #FFF0F0;
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 10px;
     min-height: 30px;
 }
-.info-contents {
+
+.review-modal-info-contents {
     background-color: #FFF0F0;
     padding: 15px;
     margin-bottom: 10px;
@@ -48,9 +52,9 @@
     min-height: 120px;
 }
 
-#image-content-div {
-    height:65%;
-    width:85%;
+#review-modal-image-content-div {
+    height: 65%;
+    width: 85%;
     background-color: #FFFBFB;
     margin-bottom: 20px;
     margin-top: 10px;
@@ -58,38 +62,22 @@
     justify-content: center;
     align-items: center;
     border: 2px solid #FFE4E4;
-    text-align: center; /*글자 가운데*/
+    text-align: center; /* 글자 가운데 */
     display: flex;
 }
-.upload-btn {
-    height: 18%;
-    width: 85%;
-    background-color: #FFF9F9;
-    margin-bottom: 10px;
-    display: flex; /* Flexbox 사용 */
-    align-items: center; /* 세로 방향 가운데 정렬 */
-    justify-content: center; /* 가로 방향 가운데 정렬 */
-    border-radius: 10px;
-    border: 2px solid #FFE4E4; /* 테두리 추가 */
-}
 
-
-.upload-btn:hover {
-    background-color: #FFDFDF; /* 호버 시 배경색 변경 */
-}
-.create-button-div {
+.review-modal-create-button-div {
     /* 정렬을 위한 flex */
     display: flex;
-    align-items: center;/* 세로 방향 가운데 정렬 */
+    align-items: center; /* 세로 방향 가운데 정렬 */
     justify-content: center; /* 가로 방향 가운데 정렬 */
-
-    text-align: center; /*글자 가운데*/
-
+    text-align: center; /* 글자 가운데 */
     height: 100%;
+    margin-bottom: 10px;
 }
 
-.create-btn {
-    margin-top: 10px ;
+.review-modal-create-btn {
+    margin-top: 10px;
     height: 50px;
     width: 100%;
     background-color: #FFF9F9;
@@ -98,9 +86,87 @@
     justify-content: center; /* 가로 방향 가운데 정렬 */
     border-radius: 10px;
     border: 2px solid #FFE4E4; /* 테두리 추가 */
-
 }
 
-.create-btn:hover {
+.review-modal-create-btn:hover {
     background-color: #FFDFDF; /* 호버 시 배경색 변경 */
 }
+
+/*--------이미지 변경---------*/
+.profile-image-change-btn {
+    width: 100%;
+    padding: 8px;
+    background: #FFD1D1;
+    border: none;
+    border-radius: 4px;
+    color: #666;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.profile-image-buttons {
+    width: 100%;
+    display: flex;
+    gap: 8px;
+}
+
+.profile-image-buttons button {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.profile-image-buttons .save-btn {
+    background: #FFD1D1;
+    color: #666;
+}
+
+.profile-image-buttons .cancel-btn {
+    background: #eee;
+    color: #666;
+}
+
+input[type="file"]::file-selector-button {
+
+    padding: 10px 20px; /* 버튼 안쪽 여백 */
+    font-size: 16px; /* 글자 크기 */
+    cursor: pointer; /* 클릭 커서 */
+    transition: background-color 0.3s; /* 호버 시 배경 색상 전환 */
+    height: 70%;
+    width: 100%;
+    margin-bottom: 10px;
+    display: flex; /* Flexbox 사용 */
+    align-items: center; /* 세로 방향 가운데 정렬 */
+    justify-content: center; /* 가로 방향 가운데 정렬 */
+    border-radius: 10px;
+    border: 2px solid #FFD1D1;
+    background-color: #FFF9F9;
+}
+
+
+/* 호버 시 버튼 스타일 변경 */
+input[type="file"]::file-selector-button:hover {
+    height: 70%;
+    width: 100%;
+    background-color: #FFDFDF;
+    border-radius: 10px;
+}
+
+/*-------별점 css----------*/
+.star {
+    font-size: 15px;
+    color: #ccc; /* 기본 비활성화 색 */
+    cursor: pointer;
+}
+
+.star.selected {
+    color: #f39c12; /* 선택된 색 */
+}
+
+.review-list-margin{
+    margin-top:  20px ;
+}
+
