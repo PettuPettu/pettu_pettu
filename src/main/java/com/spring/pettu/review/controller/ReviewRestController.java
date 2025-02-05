@@ -26,9 +26,11 @@ public class ReviewRestController {
     // spot REST API
     @GetMapping("/list/{spotId}")
     public ResponseEntity<List<ReviewVO>> reviewListWithImage(@PathVariable("spotId") long spotId) {
-        System.out.println("reviewListWithImage start");
+
+
         List<ReviewVO> slist = rSvc.svcReviewListWithImage(spotId);
-        System.out.println("리스트 사이즈 "+slist.size());
+
+
         return new ResponseEntity<>(slist, HttpStatus.OK);
     }
 
@@ -44,13 +46,8 @@ public class ReviewRestController {
 
         // 세션에서 로그인한 유저 seq 가져오기
         long userSeq = (long) session.getAttribute("SESSION_USER_CODE");
-//
-//        if (userSeq == null){
-//
-//        } else {
-//        }
 
-        System.out.println("ReviewRestController uploadReview >>>>>> ");
+
         try {
             // 리뷰와 파일을 업로드하고 리뷰 시퀀스를 반환
             int reviewSeq = rSvc.saveReviewWithImage(reviewTitle, reviewContents, reviewScore, file, userSeq, spotSeq);

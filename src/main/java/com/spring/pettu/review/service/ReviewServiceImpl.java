@@ -48,7 +48,6 @@ public class ReviewServiceImpl implements ReviewService {
     public int saveReviewWithImage(String reviewTitle, String reviewContents, int reviewScore,
                                    MultipartFile file, long userSeq, long spotSeq) {
 
-        System.out.println("saveReviewWithImage >>>");
 /*
         userSeq = 2;
         spotSeq = 1;
@@ -66,7 +65,6 @@ public class ReviewServiceImpl implements ReviewService {
         int reviewResult = reviewMapper.insertReview(reviewVO);
 
 
-        System.out.println("파일 file >>> "+file+ ""+file.getName());
         // 파일이 null이면 리뷰만 저장하고 종료
         if (file == null || file.isEmpty()) {
             return reviewResult; // 리뷰 정보만 저장
@@ -75,7 +73,6 @@ public class ReviewServiceImpl implements ReviewService {
 
         // 파일 처리
         try {
-            System.out.println("파일 처리 >>> ");
             // 파일 저장 경로 설정
             Path uploadPath = Paths.get(uploadDir);
 
@@ -104,7 +101,6 @@ public class ReviewServiceImpl implements ReviewService {
                     .reviewSeq(reviewVO.getReviewSeq())                 // 리뷰 시퀀스
                     .build();
 
-            System.out.println(fileVo.toString());
             // 파일 메타데이터 DB에 저장
             int fileUploadResult = reviewMapper.uploadReviewImage(fileVo);
 
@@ -116,9 +112,9 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public List<ReviewVO> svcReviewListWithImage(long spotSeq) {
-        System.out.println("svcReviewListWithImage >>");
+
         List<ReviewVO> rlist = reviewMapper.reviewListWithImage(spotSeq);
-        System.out.println(rlist.size()+" >> "+ rlist);
+
         return rlist;
     }
 

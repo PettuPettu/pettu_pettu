@@ -17,7 +17,6 @@ $(document).ready(function() {
 function sendReviewPage(element) {
     var storeId = element.data('store-id');
     var url = '/review/detail/' + storeId;
-    alert(url);
     window.location.href = url;
 }
 
@@ -398,11 +397,11 @@ function clickRemoveTag(event) {
             const realValue = hiddenInput.value; 
             const realClass = hiddenInput.className; 
 
-            // 해당 realValue 값을 가진 체크박스를 찾음
+
             const checkbox = document.querySelector(`input[type="checkbox"][value="${realValue}"]`);
 
             if (checkbox) {
-                checkedBoxRemoveList(realClass, realValue);  // 배열 항목 제거
+                checkedBoxRemoveList(realClass, realValue);
                 checkbox.checked = false;  
 
             }else{
