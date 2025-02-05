@@ -36,32 +36,44 @@
             <tr>
                 <th>상품 번호</th>
                 <th>상품명</th>
-                <th>등록 날짜</th>
-                <th>상태</th>
+                <th>상품 갱신 날짜</th>
                 <th>상세페이지</th>
             </tr>
             </thead>
             <tbody>
             <!-- Example rows -->
-            <c:forEach begin="1" end="10">
+            <c:forEach var="hvo" items="${hlist}">
+                <fmt:formatDate value="${hvo.regitDate}" pattern="yyyy-MM-dd" var="formattedDate" />
                 <tr>
-                    <td>1</td>
-                    <td>펫즈 사료</td>
-                    <td>2024/05/21 오후 2시</td>
-                    <td>판매 중</td>
-                    <td><a href="웹주소">보기</a></td>
+                    <td>${hvo.proSeq}</td>
+                    <td>${hvo.title}</td>
+                    <td>${formattedDate}</td>
+                    <td><a href="/hotdeal/detail?proSeq=${hvo.proSeq}">보기</a></td>
                 </tr>
             </c:forEach>
             <!-- Add more rows dynamically -->
             </tbody>
         </table>
         <div class="pagination">
-            <button class="pagination-button">&lt;</button>
-            <button class="pagination-button active">1</button>
-            <button class="pagination-button">2</button>
-            <button class="pagination-button">...</button>
-            <button class="pagination-button">10</button>
-            <button class="pagination-button">&gt;</button>
+            <c:if test="${paging.startPage != 1}">
+                <a href="/admin/hotdeal?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}">&lt;</a>
+            </c:if>
+
+            <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p">
+                <c:choose>
+                    <c:when test="${p == paging.nowPage}">
+                        <button class="pagination-button active">${p}</button>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="/admin/hotdeal?nowPage=${p}&cntPerPage=${paging.cntPerPage}" class="pagination-button">${p}</a>
+
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+
+            <c:if test="${paging.endPage != paging.lastPage}">
+                <a href="/admin/hotdeal?nowPage=${paging.endPage + 1}&cntPerPage=${paging.cntPerPage}" class="pagination-button">&gt;</a>
+            </c:if>
         </div>
     </section>
 </main>
