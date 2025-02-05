@@ -15,6 +15,7 @@
             href="${pageContext.request.contextPath}/admin/css/admin_page.css"
     />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="${pageContext.request.contextPath}/admin/js/admin_place_delete.js"></script>
 </head>
 <body>
 <jsp:include page="../layout/header.jsp" />
@@ -42,20 +43,12 @@
             <tbody>
             <!-- Example rows -->
             <c:forEach var="svo" items="${slist}">
-                <c:set var="categoryName" value="
-                      ${svo.categorySeq eq 12 ? '관광지' :
-                      svo.categorySeq eq 14 ? '문화시설' :
-                      svo.categorySeq eq 15 ? '축제공연행사' :
-                      svo.categorySeq eq 28 ? '레포츠' :
-                      svo.categorySeq eq 32 ? '숙박' :
-                      svo.categorySeq eq 38 ? '쇼핑' :
-                      svo.categorySeq eq 39 ? '음식점' : '기타'}" />
                 <fmt:formatDate value="${svo.spotOpenDate}" pattern="yyyy-MM-dd" var="formattedDate" />
                 <tr>
                     <td>${svo.spotSeq}</td>
                     <td>${svo.spotName}</td>
                     <td>${formattedDate}</td>
-                    <td>${categoryName}</td>
+                    <td>${svo.categoryName}</td>
                     <td><button class="delete-button" data-spot-id="${svo.spotSeq}">삭제하기</button></td>
                 </tr>
             </c:forEach>
@@ -87,30 +80,5 @@
     </section>
 </main>
 <jsp:include page="../layout/footer.jsp" />
-<script>
-    $(document).ready(function() {
-        $(".delete-button").click(function() {
-            if (!confirm("삭제하시겠습니까?")) {
-                return;
-            }
-
-            let spotSeq = $(this).data("spot-id");
-            console.log("seq", spotSeq);
-            $.ajax({
-                type: "POST",
-                url: "/admin/place/delete",
-                data: { spotSeq: spotSeq },
-
-                success: function(response) {
-                    alert("장소가 삭제되었습니다.");
-                    location.reload();
-                },
-                error: function(xhr) {
-                    alert("삭제 중 오류가 발생했습니다: " + xhr.responseText);
-                }
-            });
-        });
-    });
-</script>
 </body>
 </html>
