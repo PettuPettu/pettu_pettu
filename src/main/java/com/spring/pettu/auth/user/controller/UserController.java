@@ -48,7 +48,11 @@ public class UserController {
         if (user == null) {
             return ResponseEntity
                     .status(HttpStatus.UNAUTHORIZED)
-                    .body("아이디 또는 비밀번호가 오류 입니다.");
+                    .build();
+        } else if(user.getUserStatus() != 1){
+            return ResponseEntity
+                    .status(HttpStatus.UNAUTHORIZED)
+                    .body("errorcode_1");
         } else {
             session.setAttribute("SESSION_USER_EMAIL", user.getUserEmail());
             session.setAttribute("SESSION_USER_CODE", user.getUserSeq());
