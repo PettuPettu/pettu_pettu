@@ -46,10 +46,10 @@
         select *
         from
             (
-                select ROWNUM as rn, title, low_price, image, brand, category3
+                select ROWNUM as rn, pro_seq, title, low_price, image, brand, category3
                 from
                     (
-                        select * from hotdeal hot, history his
+                        select hot.pro_seq, hot.title, his.low_price, hot.image, hot.brand, hot.category3 from hotdeal hot, history his
                         where hot.pro_seq = his.pro_seq order by regit_date desc
                     ) h
             )
