@@ -21,4 +21,5 @@ public class FileVO {
     private String fileSize;
     private int fileType;
     private long petSeq;
+    private long reviewSeq;
 }
