@@ -67,10 +67,11 @@ public class HotdealServiceImpl implements HotdealService {
             Map<String, Object> map = new HashMap<>();
             map.put("category", product.getCategory3());
             map.put("price", product.getRecentPrice());
-            map.put("info", "할인율:" + product.getDiscountRate() + "%");
-            map.put("description", product.getBrand());
+            map.put("info", "어제보다 " + product.getDiscountRate() + "% 저렴해요!");
+            map.put("description", product.getBrand() != null ? product.getBrand() : "");
             map.put("title", product.getTitle());
             map.put("imagePath", product.getImage());
+            map.put("detailPath", "/hotdeal/detail?proSeq=" + product.getProSeq());
             return map;
         }).collect(Collectors.toList());
 
@@ -85,9 +86,10 @@ public class HotdealServiceImpl implements HotdealService {
             map.put("category", product.getCategory3());
             map.put("price", product.getLowPrice());
             map.put("info", " ");
-            map.put("description", product.getBrand());
+            map.put("description", product.getBrand() != null ? product.getBrand() : "");
             map.put("title", product.getTitle());
             map.put("imagePath", product.getImage());
+            map.put("detailPath", "/hotdeal/detail?proSeq=" + product.getProSeq());
             return map;
         }).collect(Collectors.toList());
 
