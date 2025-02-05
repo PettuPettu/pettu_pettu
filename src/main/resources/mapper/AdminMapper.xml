@@ -1,0 +1,74 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Mapper와 Interface의 경로와 이름이 같아야 한다. -->
+<mapper namespace="com.spring.pettu.mapper.AdminMapper">
+    <select id="selectSpotPaging" resultType="com.spring.pettu.admin.vo.SpotJoinCategoryVO">
+
+        SELECT *
+        FROM (
+        SELECT rownum AS rn, b.*
+        FROM (
+        SELECT s.*, c.category_name
+        FROM spot s
+        INNER JOIN category c ON s.category_seq = c.category_seq
+        ORDER BY s.spot_seq ASC
+        ) b
+        ) a
+        where <![CDATA[a.rn > #{pagingVO.start}]]> and <![CDATA[a.rn <= #{pagingVO.end}]]>
+
+    </select>
+
+    <select id="countSpot" resultType="int">
+        select count(*) from spot
+    </select>
+
+    <select id="selectUserPaging" resultType="com.spring.pettu.auth.user.vo.UserVO">
+
+        select *
+        from
+            (
+                select rownum as rn, a.*
+                from
+                        (select * from user_app order by user_seq asc) a
+            ) b
+        where <![CDATA[rn > #{pagingVO.start}]]> and <![CDATA[rn <= #{pagingVO.end}]]>
+
+    </select>
+
+    <select id="countUser" resultType="int">
+        select count(*) from user_app
+    </select>
+
+    <!-- 유저시퀀스 기준으로 리뷰 및 펫 정보 가져오는 api 작성
+
+    <select id="selectUserAll" resultType="com.spring.pettu.auth.user.vo.UserVO">
+
+        select * from user_app order by user_seq asc
+
+    </select>-->
+
+    <select id="selectPetByUserSeq" parameterType="long"  resultType="com.spring.pettu.mypage.vo.PetVO">
+
+        select * from pet where user_seq = #{userSeq}
+
+    </select>
+
+    <select id="selectUserStatusByUserSeq" parameterType="long" resultType="int">
+        select user_status from user_app where user_seq = #{userSeq}
+    </select>
+
+    <update id="updateUserStatusZero" parameterType="long">
+        update user_app set user_status = 0 where user_seq = #{userSeq}
+    </update>
+
+    <update id="updateUserStatusOne" parameterType="long">
+        update user_app set user_status = 1 where user_seq = #{userSeq}
+    </update>
+
+    <delete id="deleteSpotById" parameterType="long">
+        delete from spot where spot_seq = #{spotSeq}
+    </delete>
+
+</mapper>

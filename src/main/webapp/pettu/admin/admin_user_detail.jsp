@@ -14,6 +14,8 @@
             type="text/css"
             href="${pageContext.request.contextPath}/admin/css/admin_user.css"
     />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="${pageContext.request.contextPath}/admin/js/admin_user_detail.js"></script>
 </head>
 <body>
     <jsp:include page="../layout/header.jsp" />
@@ -23,49 +25,60 @@
             <div class="left-section">
                 <div class="user-info">
                     <h2>사용자 정보</h2>
-                    <div class="info-row"><strong>이름:</strong> 홍길동</div>
-                    <div class="info-row"><strong>닉네임:</strong> 길동이</div>
-                    <div class="info-row"><strong>아이디:</strong> hong</div>
-                    <div class="info-row"><strong>이메일:</strong> test@test.com</div>
+                    <div class="info-row"><strong>이름:</strong> ${user.userName}</div>
+                    <div class="info-row"><strong>닉네임:</strong> ${user.userNickname}</div>
+                    <div class="info-row"><strong>아이디(이메일):</strong> ${user.userEmail}</div>
                 </div>
 
                 <div class="pet-info">
                     <h2>반려동물 정보</h2>
-                    <div class="pet-card">
-                        <img src="https://mblogthumb-phinf.pstatic.net/MjAxODA0MjFfMTUz/MDAxNTI0MjkzNzA1MzUx.M724HJZtHYfe-0lfFkLkL9wJI9SiKqpZTqLdcI2hjXog.kmN-oSyxtYicuXvphps90uSpdXtzphqKXxUIHdiqgyIg.JPEG.qw1460/IMG_3312.jpg?type=w800" alt="반려동물 사진">
-                        <div class="pet-details">
-                            <div class="pet-name">복순이 <span>♀</span></div>
-                            <div class="pet-breed">리트리버</div>
-                            <div class="pet-age">2개월 - 3kg</div>
-                        </div>
-                    </div>
-                    <div class="pet-card">
-                        <img src="https://mblogthumb-phinf.pstatic.net/MjAxODA0MjFfMTUz/MDAxNTI0MjkzNzA1MzUx.M724HJZtHYfe-0lfFkLkL9wJI9SiKqpZTqLdcI2hjXog.kmN-oSyxtYicuXvphps90uSpdXtzphqKXxUIHdiqgyIg.JPEG.qw1460/IMG_3312.jpg?type=w800" alt="반려동물 사진">
-                        <div class="pet-details">
-                            <div class="pet-name">복순이 <span>♀</span></div>
-                            <div class="pet-breed">리트리버</div>
-                            <div class="pet-age">2개월 - 3kg</div>
-                        </div>
-                    </div>
+                    <c:if test="${empty plist.petList}">
+                        <p>등록된 반려동물이 없습니다.</p>
+                    </c:if>
+                    <c:if test="${not empty plist.petList}">
+                        <c:forEach var="pet" items="${plist.petList}">
+                            <div class="pet-card">
+                                <img src="/images/${pet.fileVO.sysName}" alt="반려동물 사진">
+                                <div class="pet-details">
+                                    <div class="pet-name">${pet.petName} <span>♀</span></div>
+                                    <div class="pet-breed">${pet.petDetailType}</div>
+                                    <div class="pet-mbti">${pet.petMbti}</div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </c:if>
                 </div>
             </div>
 
             <div class="right-section">
                 <div class="review-info">
                     <h2>리뷰 목록</h2>
-                    <div class="review-card">
-                        <div class="review-title">🍴 좋은 카페</div>
-                        <div class="review-text">정가가 없고 반려견 간식이 무료 제공됩니다! 정말 추천드려요.</div>
-                        <button class="delete-button">삭제</button>
-                    </div>
-                    <div class="review-card">
-                        <div class="review-title">🍴 좋은 카페</div>
-                        <div class="review-text">정가가 없고 반려견 간식이 무료 제공됩니다! 정말 추천드려요.</div>
-                        <button class="delete-button">삭제</button>
-                    </div>
+                    <c:if test="${empty urlist.reviewReviewVOList}">
+                        <p>리뷰 목록이 없습니다.</p>
+                    </c:if>
+                    <c:if test="${not empty urlist.reviewReviewVOList}">
+                        <c:forEach var="rvo" items="${urlist.reviewReviewVOList}">
+                            <div class="review-card">
+                                <div class="review-title">${rvo.reviewTitle}</div>
+                                <div class="review-text">${rvo.reviewContents}</div>
+                                <button class="delete-button"
+                                        data-review-id="${rvo.reviewSeq}"
+                                        data-user-id="${param.userSeq}">삭제</button>
+                            </div>
+                        </c:forEach>
+                    </c:if>
                 </div>
 
-                <button class="deactivate-user">사용자 비활성화</button>
+                <c:choose>
+                    <c:when test="${user.userStatus == 1}">
+                        <button class="deactivate-user" data-user-id="${user.userSeq}" data-user-status="1">사용자 비활성화</button>
+                    </c:when>
+                    <c:otherwise>
+                        <button class="activate-user" data-user-id="${user.userSeq}" data-user-status="0">사용자 활성화</button>
+                    </c:otherwise>
+                </c:choose>
+
+
             </div>
     </main>
     <jsp:include page="../layout/footer.jsp" />

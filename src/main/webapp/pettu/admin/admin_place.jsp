@@ -14,6 +14,8 @@
             type="text/css"
             href="${pageContext.request.contextPath}/admin/css/admin_page.css"
     />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="${pageContext.request.contextPath}/admin/js/admin_place_delete.js"></script>
 </head>
 <body>
 <jsp:include page="../layout/header.jsp" />
@@ -24,7 +26,7 @@
             <button class="menu-item active" onclick="location.href='/admin/place'">시설 관리</button>
             <button class="menu-item" onclick="location.href='/admin/hotdeal'">상품 관리</button>
         </div>
-        <button class="add-button">시설 추가</button>
+<%--        <button class="add-button">시설 추가</button>--%>
     </div>
 
     <section class="content">
@@ -33,32 +35,47 @@
             <tr>
                 <th>시설 번호</th>
                 <th>시설명</th>
-                <th>등록 날짜</th>
+                <th>오픈 날짜</th>
                 <th>카테고리</th>
                 <th>삭제</th>
             </tr>
             </thead>
             <tbody>
             <!-- Example rows -->
-            <c:forEach begin="1" end="10">
+            <c:forEach var="svo" items="${slist}">
+                <fmt:formatDate value="${svo.spotOpenDate}" pattern="yyyy-MM-dd" var="formattedDate" />
                 <tr>
-                    <td>1</td>
-                    <td>일동명이가페</td>
-                    <td>2024/05/21 오후 2시</td>
-                    <td>카페</td>
-                    <td><button class="delete-button">삭제하기</button></td>
+                    <td>${svo.spotSeq}</td>
+                    <td>${svo.spotName}</td>
+                    <td>${formattedDate}</td>
+                    <td>${svo.categoryName}</td>
+                    <td><button class="delete-button" data-spot-id="${svo.spotSeq}">삭제하기</button></td>
                 </tr>
             </c:forEach>
             <!-- Add more rows dynamically -->
             </tbody>
         </table>
+
         <div class="pagination">
-            <button class="pagination-button">&lt;</button>
-            <button class="pagination-button active">1</button>
-            <button class="pagination-button">2</button>
-            <button class="pagination-button">...</button>
-            <button class="pagination-button">10</button>
-            <button class="pagination-button">&gt;</button>
+            <c:if test="${paging.startPage != 1}">
+                <a href="/admin/place?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}">&lt;</a>
+            </c:if>
+
+            <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p">
+                <c:choose>
+                    <c:when test="${p == paging.nowPage}">
+                        <button class="pagination-button active">${p}</button>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="/admin/place?nowPage=${p}&cntPerPage=${paging.cntPerPage}" class="pagination-button">${p}</a>
+
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+
+            <c:if test="${paging.endPage != paging.lastPage}">
+                <a href="/admin/place?nowPage=${paging.endPage + 1}&cntPerPage=${paging.cntPerPage}" class="pagination-button">&gt;</a>
+            </c:if>
         </div>
     </section>
 </main>

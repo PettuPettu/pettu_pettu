@@ -14,6 +14,7 @@
             type="text/css"
             href="${pageContext.request.contextPath}/admin/css/admin_page.css"
     />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 <div class="wrapper">
@@ -40,25 +41,39 @@
             </thead>
             <tbody>
             <!-- Example rows -->
-            <c:forEach begin="1" end="10">
+            <c:forEach var="uvo" items="${ulist}">
+                <fmt:formatDate value="${uvo.userCreateAt}" pattern="yyyy-MM-dd" var="formattedDate" />
                 <tr>
-                    <td>1</td>
-                    <td>홍길동</td>
-                    <td>2024/05/21 오후 2시</td>
-                    <td>활성화</td>
-                    <td><a href="${pageContext.request.contextPath}/admin/user/detail">보기</a></td>
+                    <td>${uvo.userSeq}</td>
+                    <td>${uvo.userNickname}</td>
+                    <td>${formattedDate}</td>
+                    <td>${uvo.userStatus}</td>
+                    <td><a href="${pageContext.request.contextPath}/admin/user/detail?userSeq=${uvo.userSeq}">보기</a></td>
                 </tr>
             </c:forEach>
             <!-- Add more rows dynamically -->
             </tbody>
         </table>
         <div class="pagination">
-            <button class="pagination-button">&lt;</button>
-            <button class="pagination-button active">1</button>
-            <button class="pagination-button">2</button>
-            <button class="pagination-button">...</button>
-            <button class="pagination-button">10</button>
-            <button class="pagination-button">&gt;</button>
+            <c:if test="${paging.startPage != 1}">
+                <a href="/admin/user?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}">&lt;</a>
+            </c:if>
+
+            <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p">
+                <c:choose>
+                    <c:when test="${p == paging.nowPage}">
+                        <button class="pagination-button active">${p}</button>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="/admin/user?nowPage=${p}&cntPerPage=${paging.cntPerPage}" class="pagination-button">${p}</a>
+
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+
+            <c:if test="${paging.endPage != paging.lastPage}">
+                <a href="/admin/user?nowPage=${paging.endPage + 1}&cntPerPage=${paging.cntPerPage}" class="pagination-button">&gt;</a>
+            </c:if>
         </div>
     </section>
 </main>
