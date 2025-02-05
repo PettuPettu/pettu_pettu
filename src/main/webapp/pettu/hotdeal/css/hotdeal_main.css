@@ -138,3 +138,23 @@ body {
     gap: 20px; /* 내부 요소 간 간격 */
     margin-bottom: 20px; /* 각 행의 아래쪽 여백 */
 }
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.pagination-button {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    margin: 0 5px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.pagination-button.active, .pagination-button:hover {
+    background-color: #1f3d3b;
+    color: #fff;
+}
