@@ -40,7 +40,7 @@ public class HotdealController {
         model.addAttribute("paging", hotdealPagingVO);
         model.addAttribute("viewAll", hotdealService.getPagedHotdeals(hotdealPagingVO));
         model.addAttribute("contentPage", "/pettu/hotdeal/hotdeal_main.jsp");
-        return "pettu/hotdeal/hotdeal_main";
+        return "pettu/layout/layout";
     }
 
     @GetMapping("/detail")
@@ -49,7 +49,7 @@ public class HotdealController {
         model.addAttribute("hvo", hotdealService.getHotdealData(proSeq));
         model.addAttribute("htlist", hotdealService.getHistoryByProSeq(proSeq));
         model.addAttribute("contentPage", "/pettu/hotdeal/hotdeal_detail.jsp");
-        return "pettu/hotdeal/hotdeal_detail";
+        return "pettu/layout/layout";
     }
 
     @PostMapping("/chart")
@@ -71,7 +71,7 @@ public class HotdealController {
         model.addAttribute("slist", hotdealService.getSearchHotdeals(hotdealPagingVO, keyword));
         model.addAttribute("keyword", keyword);
         model.addAttribute("contentPage", "/pettu/hotdeal/hotdeal_search.jsp");
-        return "pettu/hotdeal/hotdeal_search";
+        return "pettu/layout/layout";
     }
 
 
