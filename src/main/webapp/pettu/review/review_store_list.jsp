@@ -105,32 +105,47 @@
         </div>
 
         <div id="append-main-slide-section">
+            <c:forEach items="${PAGING_SPOT_LIST}" var="spot" varStatus="status">
+                <!-- 3개마다 새로운 div 추가 -->
+                <c:if test="${status.index % 3 == 0}">
+                    <div class="main-slide-section" > <!-- 새로운 div 시작 -->
+                </c:if>
 
-        </div>
-        <div id="pagination"></div>
+                <div class="main-slide-card" data-store-id="${spot.spotSeq}">
+                    <!-- 이미지가 null일 경우 기본 이미지로 대체 -->
+                    <img src="${spot.spotPicture != null && spot.spotPicture != '' ? spot.spotPicture : '/assets/layout/github.svg'}" alt="${spot.spotName != null ? spot.spotName : '정보 없음'} 이미지">
 
-
-       <%-- <c:forEach items="${PAGING_SPOT_LIST}" var="spot">
-            <div class="main-slide-card">
-                <img src="${spot.spotPicture}" alt="${spot.spotName} 이미지">
-                <div class="main-slide-card-desc">
-                    <div class="spot-card-category"><span>#${spot.categorySeq}</span></div>
-                    <div>${spot.spotName}
-                        <div class="main-slide-card-title">
-                            <strong>${spot.spotLocation}</strong>
-                        </div>
-                        <div class="main-slide-card-info">
-                            <strong>평점</strong>
-                            <span>${spot.spotSigunguCode}</span>
+                    <div class="main-slide-card-desc">
+                        <div class="spot-card-category"><span>#${spot.categoryName}</span></div>
+                        <div>${spot.spotName != null ? spot.spotName : '정보 없음'}
+                            <div class="main-slide-card-title">
+                                <strong>${spot.spotLocation != null ? spot.spotLocation : '정보 없음'}</strong>
+                            </div>
+                            <div class="main-slide-card-info">
+                                <strong>평점 ${spot.spotTotalAvgScore != null ? spot.spotTotalAvgScore : '정보 없음'}</strong>
+                                <span></span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </c:forEach>
+
+                <!-- 3개마다 새로운 div 닫기 -->
+                <c:if test="${status.index % 3 == 2}">
+                    </div> <!-- 새로운 div 종료 -->
+                </c:if>
+            </c:forEach>
+
+        </div>
+        <div id="pagination">
+
+            ${SPOT_PAGING_BUTTON}
+        </div>
+
+
         <div>
             <br>
-            ${SPOT_PAGING_BUTTON}
-        </div>--%>
+
+        </div>
     </div>
 </div>
 </body>

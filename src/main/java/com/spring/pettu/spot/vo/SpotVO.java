@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class SpotVO {
     private long spotOpenApiId;
 
     // 리뷰 전체 평점
-    private int spotTotalAvgScore;
+    private BigDecimal spotTotalAvgScore;
 
     /*----------- top3 ---------------*/
     // 리뷰 총 갯수 : (top3 위한 컬럼)
@@ -38,7 +39,7 @@ public class SpotVO {
     private int reviewMonthlyCnt;
     /*--------------------------------*/
 
-
+    private String categoryName;
     /*----------- store-detail.jsp 의 리뷰 리스트 ---------------*/
     // 해당하는 시설의 리뷰 리스트 :
     List<ReviewVO> reviewList;

@@ -57,40 +57,41 @@ public class PagingUtil {
 		//################## HTML 만들기 ###################
 		// [이전] HTML
 		pagingHtml = new StringBuffer();
+
+// [이전] 버튼
 		if (currentPage > blockPage) {
-			pagingHtml.append("<a href='"+ url +"?&currentPage="  + (startPage - 1) + "'>");
-			pagingHtml.append("이전");
+			pagingHtml.append("<a href='" + url + "?&currentPage=" + (startPage - 1) + "' class='prev'>");
+			pagingHtml.append("<<");
 			pagingHtml.append("</a>");
 		}
 
-		pagingHtml.append(" | ");
-		// |1|2|3|4|5|  HTML (현재 페이지는 빨간색으로 강조하고 링크 제거)
+
+// |1|2|3|4|5|  HTML (현재 페이지는 active 클래스를 사용해 버튼 스타일 적용)
 		for (int i = startPage; i <= endPage; i++) {
 			if (i > maxPage) {
 				break;
 			}
 			if (i == currentPage) {
-				pagingHtml.append(" <b><font color='red'>");
+				// 현재 페이지에는 active 클래스를 추가하여 버튼처럼 스타일을 적용
+				pagingHtml.append("<a href='#' class='active'>");
 				pagingHtml.append(i);
-				pagingHtml.append("</font></b>");
+				pagingHtml.append("</a>");
 			} else {
-				pagingHtml.append(" <a href='" + url +"?&currentPage=");
-				pagingHtml.append(i);
-				pagingHtml.append("'>");
+				pagingHtml.append("<a href='" + url + "?&currentPage=" + i + "'>");
 				pagingHtml.append(i);
 				pagingHtml.append("</a>");
 			}
-
 			pagingHtml.append(" ");
 		}
-		pagingHtml.append("  |  ");
 
-		// [다음] HTML
+
+// [다음] 버튼
 		if (maxPage - startPage >= blockPage) {
-			pagingHtml.append("<a href='" + url +"?&currentPage="  + (endPage + 1) + "'>");
-			pagingHtml.append("다음");
+			pagingHtml.append("<a href='" + url + "?&currentPage=" + (endPage + 1) + "' class='next'>");
+			pagingHtml.append(">>");
 			pagingHtml.append("</a>");
 		}
+
 	}
 
 	

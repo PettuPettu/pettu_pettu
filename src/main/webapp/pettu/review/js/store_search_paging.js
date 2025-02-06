@@ -6,11 +6,9 @@ let pageGroupSize = 3; // 페이지 그룹 크기 (예: 1, 2, 3 -> 4, 5, 6)
 
 
 $(document).ready(function() {
-    loadData();
+
 });
-function loadData() {
-    spotListBySearchTypeOfAJAX(); // rest api 호출
-}
+
 
 // 페이지 렌더링
 function renderPage(page) {

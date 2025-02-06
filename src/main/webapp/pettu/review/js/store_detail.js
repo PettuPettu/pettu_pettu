@@ -23,7 +23,7 @@ function getStars() {
     let halfStar = (score % 1) >= 0.5 ? true : false;
     let emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
 
-    let stars = ' 평점 : ';
+    let stars = '총 평점 : ';
 
     // 채워진 별
     for (let i = 0; i < fullStars; i++) {
@@ -39,7 +39,7 @@ function getStars() {
     for (let i = 0; i < emptyStars; i++) {
         stars += '☆';
     }
-
+    stars += ' [ ' + score + ' 점 ]'
     return stars;
 }
 

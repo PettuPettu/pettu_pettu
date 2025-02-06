@@ -38,7 +38,7 @@ public class SpotController {
         // 전체 시설목록의 갯수
         int totRecord = slist.size();
         int blockCount = 9;
-        int blockPage = 2; // 3 or 5 으로 변경 해야함
+        int blockPage = 3; // 3 or 5 으로 변경 해야함
 
         PagingUtil pg = new PagingUtil("/spot/list", currentPage, totRecord, blockCount, blockPage);
 

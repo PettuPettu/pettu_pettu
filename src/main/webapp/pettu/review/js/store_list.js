@@ -62,7 +62,7 @@ function spotTop3OfAJAX(){
             successDivOfTop3API(data);
         },
         error: function(xhr, status, error) {
-            console.error("AJAX 요청 실패:", error);
+            console.log("조회 요청 실패:", error);
         }
     });
 }
@@ -93,7 +93,6 @@ function spotListBySearchTypeOfAJAX(){
         dataType: 'json',
         success: function(data) {
 
-            console.log("AJAX 요청 성공:"+data);
             
             // VO List 저장
             allItems = data || []; // 배열로 저장
@@ -103,7 +102,7 @@ function spotListBySearchTypeOfAJAX(){
 
         },
         error: function(xhr, status, error) {
-            console.error("AJAX 요청 실패:", error);
+            alert("검색 실패");
         }
     });
 }
@@ -113,7 +112,7 @@ function renderPagingSearchSpot(data){
     let cardCounter = 0;
     const container = $('#append-main-slide-section');
     container.empty();
-
+    $('#pagination').empty();
     if (data && data.length > 0) {
         data.forEach(function(spot, index) {
             // 3개의 카드가 추가 -> div 생성
@@ -141,7 +140,7 @@ function renderSpotCard(spot,sectionCounter) {
         <img src="${spot.spotPicture != null && spot.spotPicture != '' ? spot.spotPicture : '/assets/layout/github.svg'}" alt="${spot.spotName} 이미지">
         
         <div class="main-slide-card-desc">
-            <div class="spot-card-category"><span>#${spot.categorySeq}</span></div>
+            <div class="spot-card-category"><span>#${spot.categoryName}</span></div>
             <div class="main-card-content-div">
                 <!-- spotName이 null일 경우 '정보 없음' 표시 -->
                 <div>${spot.spotName != null ? spot.spotName : '정보 없음'}</div>
@@ -149,7 +148,7 @@ function renderSpotCard(spot,sectionCounter) {
                     <strong>${spot.spotLocation != null ? spot.spotLocation : '정보 없음'}</strong>
                 </div>
                 <div class="main-slide-card-info">
-                    <strong>평점 ${spot.spotSigunguCode != null ? spot.spotSigunguCode : '정보 없음'}</strong>
+                    <strong>평점 ${spot.spotTotalAvgScore != null ? spot.spotTotalAvgScore : '정보 없음'}</strong>
                     <span></span> 
                 </div>
             </div>
@@ -181,7 +180,7 @@ function successDivOfTop3API(data){
             var slideCard = $('<div class="slide-card card-flex"></div>');
 
             var imgSrc = item.spotPicture || '/assets/layout/default.jpg';
-            slideCard.append('<div class="top-img-contents"><img src="' + imgSrc + '" alt="카드 이미지"></div>');
+            slideCard.append('<div class="top-img-contents"><img src="' + imgSrc + '" alt="카드 이미지" ></div>');
 
             // 정보
             var spotName = item.spotName || '시설명 없음';
@@ -194,12 +193,11 @@ function successDivOfTop3API(data){
             var category = categoryMap[item.categorySeq] || '기타';
 
             var infoContents = $('<div class="top-info-contents"></div>');
-            infoContents.append('<div>' + spotName + '</div>');
-            infoContents.append('<div><br>' + spotLocation + '</div>');
-            infoContents.append('<div>별점 ' + avgScore + '점</div>');
-            infoContents.append('<div><strong>총 리뷰 수</strong><br>  이번달 ' + reviewMonthly + '개 / 총 ' + reviewTotal + '개</div>');
-            infoContents.append('<div>카테고리 : ' + category + '</div>');
-
+            infoContents.append('<div class="top1"><div class="category-tag">' + category + '</div></div>');
+            infoContents.append('<div class="top2"><div class="spot-name">' + spotName + '</div>');
+            infoContents.append('<div class="spot-location">' + spotLocation + '</div>');
+            infoContents.append('<div class="avg-score">별점 ' + avgScore + '점</div>');
+            infoContents.append('<div class="review-info"><strong>총 리뷰 수</strong><br> 이번달 ' + reviewMonthly + '개 / 총 ' + reviewTotal + '개</div></div>');
 
             slideCard.append(infoContents);
 
