@@ -53,7 +53,7 @@
 
 .main-slide-card img {
     width : 150px;
-    height: auto;
+    height: 200px;
     border-radius: 5px;
 }
 
@@ -168,6 +168,7 @@
 
     .main-slide-card img{
         width: 100%;
+        height: auto;
     }
 }
 
