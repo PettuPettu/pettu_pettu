@@ -38,7 +38,7 @@
         <div class="info-box">
             <div class="image-box flex-vertical-div">
                 <div id="image-content-div">
-                    <img src="/assets/layout/github.svg" alt="카드 이미지 3" class="img-full">
+                    <img src="${SPOT_ALL_INFO.spotPicture != null && SPOT_ALL_INFO.spotPicture != '' ? SPOT_ALL_INFO.spotPicture : '/assets/layout/github.svg'}" alt="카드 이미지 3" class="img-full">
                 </div>
 
                 <div class="place-score-div" data-score="${SPOT_ALL_INFO.spotTotalAvgScore}" >평점  : </div>
