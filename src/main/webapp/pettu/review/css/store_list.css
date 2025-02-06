@@ -7,6 +7,64 @@
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+.top-text-right{
+    font-size: 12px; /* 글자 크기 작게 */
+    text-align: right; /* 왼쪽 정렬 */
+    padding-left: 10px; /* 왼쪽 여백 추가 (원하는 대로 조정) */
+}
+/*--------------------------------------*/
+/* 장소 이름 스타일 */
+.spot-name {
+    font-size: 18px; /* 이름 글자 크기 */
+    font-weight: bold; /* 볼드체 */
+    margin-bottom: 10px; /* 아래 여백 */
+    color: #333; /* 글자 색상 */
+    letter-spacing: 1px; /* 글자 간격 */
+}
+
+/* 카테고리 태그 스타일 */
+.category-tag {
+    font-size: 14px; /* 작은 글자 크기 */
+    background-color: #ffcc00; /* 배경 색상 (태그 색상) */
+    border-radius: 15px; /* 둥근 모서리 */
+    color: #fff; /* 텍스트 색상 */
+    padding: 5px 12px; /* 내부 여백 */
+    display: inline-block; /* 인라인 블록으로 표시 */
+    margin-left: 10px; /* 왼쪽 여백 */
+    font-weight: 600; /* 굵은 글씨 */
+    text-align: center; /* 중앙 정렬 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+}
+
+/* 장소 위치 스타일 */
+.spot-location {
+    font-size: 14px; /* 작은 글자 크기 */
+    color: #777; /* 연한 색상 */
+    margin-top: 10px; /* 위쪽 여백 */
+}
+
+/* 별점 스타일 */
+.avg-score {
+    font-size: 16px; /* 별점 크기 */
+    color: #ff9900; /* 별점 색상 */
+    font-weight: 600; /* 굵은 글씨 */
+    margin-top: 10px; /* 위쪽 여백 */
+}
+
+/* 리뷰 정보 스타일 */
+.review-info {
+    font-size: 14px; /* 작은 글자 크기 */
+    color: #333; /* 텍스트 색상 */
+    margin-top: 15px; /* 위쪽 여백 */
+    line-height: 1.5; /* 줄 간격 */
+}
+
+.review-info strong {
+    font-weight: bold; /* 강조할 텍스트는 굵게 */
+    color: #222; /* 강조 색상 */
+}
+
 /*------------------------- store css-------------------------*/
 .second-section {
     background-color: #f9f9f9;
@@ -226,7 +284,7 @@
     color: #ffffff;
     background-color: #b1b1b1;
     padding: 2px 8px;
-    font-size: 12px;
+    font-size: 14px;
     border-radius: 4px;
     margin-bottom: 4px;
     width: fit-content;
@@ -242,57 +300,96 @@
     font-size: 25px;
 }
 /* --------top css --------- */
-.top-img-contents {
-    width: 50%;  /* div 크기 설정 */
-    height: 100%; /* div 높이 설정 */
-    display: flex;  /* flex로 배치 */
-    justify-content: center;  /* 가로로 중앙 정렬 */
-    align-items: center;  /* 세로로 중앙 정렬 */
-    border-radius: 10px;  /* 둥근 테두리 설정 */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
-    margin-right: 10px;
-}
-.top-img-contents img {
-    max-width: 80%;  /* 이미지가 div의 너비를 초과하지 않게 설정 */
-    max-height: 90%;  /* 이미지가 div의 높이를 초과하지 않게 설정 */
-    border-radius: 5px;  /* 이미지 테두리를 둥글게 설정 */
-}
+/* 전체 컨테이너 스타일 */
 .top-info-contents {
-    width: 50%;  /* 너비 100% */
-    padding: 20px;  /* 상하 좌우 여백 */
-    background-color: #FDFDFD;  /* 배경색 */
-    border-radius: 10px;  /* 테두리 둥글게 */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);  /* 그림자 효과 */
-    display: flex;  /* flexbox로 정렬 */
-    flex-direction: column;  /* 세로 방향으로 배치 */
-    gap: 10px;  /* 항목들 간의 간격 */
-    font-family: 'Arial', sans-serif;  /* 글꼴 */
+    font-family: Arial, sans-serif;
+    max-width: 600px; /* 최대 너비 설정 */
+    margin: 0 auto; /* 가운데 정렬 */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* 넘치는 내용 숨기기 */
+    word-wrap: break-word; /* 긴 단어가 있을 경우 줄 바꿈 처리 */
 }
-.top-info-contents div {
+
+/* top1 (카테고리 태그, 오른쪽에 붙이기) */
+.top1 {
+    display: flex;
+    justify-content: flex-end; /* 오른쪽으로 정렬 */
+    margin-bottom: 15px; /* 아래쪽 여백 */
+}
+
+/* 카테고리 태그 스타일 */
+.category-tag {
+    font-size: 14px;
+    background-color: #ffcc00;
+    color: white;
+    border-radius: 25px;
+    padding: 8px 20px;
+    display: inline-block;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 100%; /* 태그가 부모 영역을 넘지 않도록 */
+    overflow: hidden;
+    text-overflow: ellipsis; /* 텍스트가 넘치면 ...으로 표시 */
+}
+
+/* 카테고리 태그에 호버 효과 추가 */
+.category-tag:hover {
+    background-color: #ffb300;
+    cursor: pointer;
+}
+
+/* top2 (정보 나열 부분) */
+.top2 {
+    margin-top: 20px; /* 위쪽 여백 */
+    word-wrap: break-word; /* 긴 텍스트는 줄 바꿈 */
+}
+
+/* 장소 이름 스타일 */
+.spot-name {
+    font-size: 15px;
     font-weight: bold;
-    font-size: 16px;  /* 글자 크기 */
-    color: #333;  /* 글자 색 */
+    color: #333;
+    margin-bottom: 12px;
+    word-wrap: break-word; /* 긴 텍스트가 있을 때 줄 바꿈 처리 */
 }
-.top-info-contents div:nth-child(2) {
-    color: #888;  /* 리뷰 항목 색상 변경 */
-    font-weight: lighter;
-    font-style: italic;
-    font-size: 13px;
+
+/* 장소 위치 스타일 */
+.spot-location {
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 15px;
+    word-wrap: break-word; /* 긴 텍스트가 있을 때 줄 바꿈 처리 */
 }
-.top-info-contents div:nth-child(3) {
-    font-weight: bold;  /* 세 번째 항목은 굵은 글씨 */
-    color: #FF6F61;  /* 별점 색상 변경 */
-    font-size: 13px;
+
+/* 별점 스타일 */
+.avg-score {
+    font-size: 12px;
+    color: #ff9900;
+    font-weight: 600;
+    margin-bottom: 15px;
+    word-wrap: break-word; /* 긴 텍스트가 있을 때 줄 바꿈 처리 */
 }
-.top-info-contents div:nth-child(4) {
-    font-style: italic;  /* 두 번째 항목은 이탤릭체 */
-    font-size: 13px;
+
+/* 리뷰 정보 스타일 */
+.review-info {
+    font-size: 12px;
+    color: #333;
+    line-height: 1.6;
+    word-wrap: break-word; /* 긴 텍스트가 있을 때 줄 바꿈 처리 */
 }
-.top-info-contents div:nth-child(5) {
+
+.review-info strong {
     font-weight: bold;
-    color: #FF9F00;
-    font-size: 13px;
+    color: #222;
 }
+
+
+
+
 /*----------------------------*/
 
 .filter-container {

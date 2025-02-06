@@ -18,5 +18,6 @@ public class SearchSpotType {
 
     private String searchKeyword;        // 검색어 : 시설명 검색
 
-
+    private int startSeq; // 페이징 시작 번호
+    private int endSeq; // 페이징 끝 번호
 }

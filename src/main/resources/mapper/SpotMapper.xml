@@ -2,13 +2,8 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- Mapper와 Interface의 경로와 이름이 같아야 한다. -->
 <mapper namespace="com.spring.pettu.mapper.SpotMapper">
-<!--
-	<select id="reviewList" resultType="com.spring.pettu.com.spring.pettu.review.vo.ReviewVO">
-		select * from poto
-	</select>
--->
+
 
     <select id="spotList" resultType="com.spring.pettu.spot.vo.SpotVO">
         select * from spot
@@ -16,29 +11,73 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <select id="spotListOfTop3" resultType="com.spring.pettu.spot.vo.SpotVO">
         <![CDATA[
-        SELECT *
-        FROM SPOT
+        SELECT s.* ,
+               (SELECT ROUND(AVG(r.review_score), 2)
+                FROM review r
+                WHERE r.spot_seq = s.spot_seq) AS spotTotalAvgScore,
+
+               -- 총 리뷰 갯수
+               (SELECT COUNT(*)
+                FROM review r
+                WHERE r.spot_seq = s.spot_seq) AS reviewTotalCnt,
+
+               -- 지난 한 달 간의 리뷰 갯수
+               (SELECT COUNT(*)
+                FROM review r
+                WHERE r.spot_seq = s.spot_seq
+                  AND r.review_create_date >= SYSDATE - INTERVAL '1' MONTH) AS reviewMonthlyCnt
+
+        FROM SPOT s
         WHERE spot_seq IN (
             SELECT spot_seq
             from (
-                SELECT spot_seq, total_visit_cnt, ROUND(total_sum_score/total_visit_cnt,2) as total_review_socre
-                FROM (
-                    select spot_seq, count(1) as total_visit_cnt , sum(review_score) as total_sum_score
-                    from review
-                    group by spot_seq
-                )
-                where ROUND(total_sum_score/total_visit_cnt,2) >= 4.0
-                ORDER BY total_visit_cnt DESC, total_review_socre DESC
-            )
+                     SELECT spot_seq, total_visit_cnt, ROUND(total_sum_score/total_visit_cnt,2) as total_review_socre
+                     FROM (
+                              select spot_seq, count(1) as total_visit_cnt , sum(review_score) as total_sum_score
+                              from review
+                              group by spot_seq
+                          )
+                     where ROUND(total_sum_score/total_visit_cnt,2) >= 4.0
+                     ORDER BY total_visit_cnt DESC, total_review_socre DESC
+                 )
             WHERE ROWNUM <= 3
         )
         ]]>
     </select>
 
     <select id="spotListBySearchType" parameterType="com.spring.pettu.spot.vo.SearchSpotType" resultType="com.spring.pettu.spot.vo.SpotVO">
+        SELECT
+        s.SPOT_SEQ,
+        s.CATEGORY_SEQ,
+        s.SPOT_NAME,
+        s.SPOT_LOCATION,
+        s.SPOT_SUB_LOCATION,
+        s.SPOT_SIGUNGU_CODE,
+        s.SPOT_AREA_CODE,
+        s.SPOT_PICTURE,
+        s.SPOT_SUB_PICTURE,
+        -- 총 평점 (리뷰의 평균 점수) 소수점 2자리로 제한
+        (SELECT ROUND(AVG(r.review_score), 2)
+        FROM review r
+        WHERE r.spot_seq = s.spot_seq) AS SPOT_TOTAL_AVG_SCORE,
 
-        SELECT *
-        FROM spot
+        -- 총 리뷰 갯수
+        (SELECT COUNT(*)
+        FROM review r
+        WHERE r.spot_seq = s.spot_seq) AS REVIEW_TOTAL_CNT,
+
+        -- 지난 한 달 간의 리뷰 갯수
+        (SELECT COUNT(*)
+        FROM review r
+        WHERE r.spot_seq = s.spot_seq
+        AND r.review_create_date >= SYSDATE - INTERVAL '1' MONTH) AS REVIEW_MONTHLY_CNT,
+
+        -- CATEGORY_NAME 가져오기
+        c.CATEGORY_NAME
+
+        FROM spot s
+        JOIN category c ON s.CATEGORY_SEQ = c.CATEGORY_SEQ
+
         <where>
             <!-- 'searchKeyword'가 있을 경우 'SPOT_NAME LIKE' 조건 추가 -->
             <if test="searchKeyword != null and searchKeyword != ''">
@@ -61,7 +100,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 <if test="searchKeyword != null and searchKeyword != '' or locations != null and locations.size() > 0">
                     AND
                 </if>
-                CATEGORY_SEQ IN
+                s.CATEGORY_SEQ IN
                 <foreach collection="categories" item="category" open="(" close=")" separator=",">
                     #{category}
                 </foreach>
@@ -74,13 +113,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
 
     <select id="spotListByPaging" resultType="com.spring.pettu.spot.vo.SpotVO">
-        select s.*
-        from
-            (
-                select spot.*, (ROW_NUMBER() OVER(order by SPOT_CREATE_DATE asc, SPOT_SEQ)) as page_spot_seq
-                from spot
-            ) s
-        where page_spot_seq between #{startSeq} and #{endSeq}
+        SELECT
+            s.SPOT_SEQ,
+            s.CATEGORY_SEQ,
+            s.SPOT_NAME,
+            s.SPOT_LOCATION,
+            s.SPOT_SUB_LOCATION,
+            s.SPOT_SIGUNGU_CODE,
+            s.SPOT_AREA_CODE,
+            s.SPOT_PICTURE,
+            s.SPOT_SUB_PICTURE,
+            (SELECT ROUND(AVG(r.review_score), 2)
+             FROM review r
+             WHERE r.spot_seq = s.spot_seq) AS SPOT_TOTAL_AVG_SCORE,
+
+            (SELECT COUNT(*)
+             FROM review r
+             WHERE r.spot_seq = s.spot_seq) AS REVIEW_TOTAL_CNT,
+
+            (SELECT COUNT(*)
+             FROM review r
+             WHERE r.spot_seq = s.spot_seq
+               AND r.review_create_date >= SYSDATE - INTERVAL '1' MONTH) AS REVIEW_MONTHLY_CNT,
+
+            c.CATEGORY_NAME
+
+        FROM (
+                 SELECT spot.*,
+                        ROW_NUMBER() OVER (ORDER BY SPOT_CREATE_DATE ASC, SPOT_SEQ) AS page_spot_seq
+                 FROM spot
+             ) s
+
+                 JOIN category c ON s.CATEGORY_SEQ = c.CATEGORY_SEQ  -- Join with CATEGORY table
+
+        WHERE page_spot_seq BETWEEN #{startSeq} AND #{endSeq}
+
     </select>
 
     <select id="getRecentlyOpenedSpots" resultType="com.spring.pettu.main.vo.MainVO">
