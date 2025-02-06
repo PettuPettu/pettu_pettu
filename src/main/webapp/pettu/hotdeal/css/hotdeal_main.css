@@ -3,8 +3,9 @@
     display: flex;
     justify-content: center;
     gap: 15px;
-    padding: 20px 0;
+    margin: 80px 0;
     background-color: var(--sub-blue-color);
+    box-shadow: 0 0 0 40px rgba(160, 179, 255, 1);
 }
 
 .category {
@@ -16,23 +17,21 @@
     cursor: pointer;
 }
 
-/* Hotdeal Sections */
 .hotdeal-section {
-    margin: 30px 20px;
+    margin-top: 50px;
 }
 
 .hotdeal-section h2 {
+    display: flex;
+    font-family: "Hakgyoansim Dunggeunmiso TTF B";
     margin-bottom: 20px;
-    text-align: left;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #333;
-    padding: 20px;
+    align-items: center;
+    font-size: 20px;
+    gap: 10px;
 }
 
 .product-grid {
     display: flex;
-    /*grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));*/
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;

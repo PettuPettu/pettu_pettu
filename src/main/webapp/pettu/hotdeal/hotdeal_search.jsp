@@ -7,9 +7,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>펫뚜펫뚜 핫딜 페이지</title>
     <link
             rel="stylesheet"
             type="text/css"
@@ -17,7 +14,6 @@
     />
 </head>
 <body>
-<jsp:include page="../layout/header.jsp" />
 <main>
     <jsp:include page="hotdeal_search_form.jsp" />
 
@@ -76,6 +72,5 @@
         </c:choose>
     </section>
 </main>
-<jsp:include page="../layout/footer.jsp" />
 </body>
 </html>

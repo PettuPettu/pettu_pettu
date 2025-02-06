@@ -4,12 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
-<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <title>핫딜 상세 페이지</title>
     <link
             rel="stylesheet"
             type="text/css"
@@ -17,9 +13,6 @@
     />
 </head>
 <body>
-<!-- Header -->
-<jsp:include page="../layout/header.jsp" />
-
 <main>
     <!-- Search Section -->
     <jsp:include page="hotdeal_search_form.jsp" />
@@ -70,7 +63,5 @@
     </section>
     <script src="https://d3js.org/d3.v7.min.js"></script>
 </main>
-<!-- Footer -->
-<jsp:include page="../layout/footer.jsp" />
 </body>
 </html>
