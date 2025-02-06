@@ -13,7 +13,6 @@
     width: 70%;
     max-width: 1450px;
     height: auto;
-    max-height: 55vh;
 }
 
 #hero-responsive-img {
@@ -97,7 +96,7 @@
 
 @media screen and (min-width: 1920px) {
     #hero-desc {
-        gap: 50px;
+        gap: 40px;
     }
     #hero-desc h1 {
         font-size: 3rem;
