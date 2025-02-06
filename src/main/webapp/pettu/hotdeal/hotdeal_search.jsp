@@ -19,15 +19,7 @@
 <body>
 <jsp:include page="../layout/header.jsp" />
 <main>
-    <section class="search-section">
-        <h1>🔥 내 반려동물을 위한 핫딜 정보 찾아드려요 🔥</h1>
-
-        <form id="searchForm" action="/hotdeal/search" method="GET">
-            <input type="text" name="keyword" class="search-bar" placeholder="검색어를 입력하세요">
-            <button type="submit" class="search-button">🔍</button>
-        </form>
-    </section>
-
+    <jsp:include page="hotdeal_search_form.jsp" />
 
     <section class="hotdeal-section">
         <h2>🔥 핫딜 상품 검색 결과 </h2>
