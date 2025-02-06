@@ -31,7 +31,6 @@ public class HotdealServiceImpl implements HotdealService {
     @Override
     public int getTotalHotdealCount() {
         int count = hotdealMapper.countHotdeals();
-        System.out.println(count);
         return count;
     }
 
@@ -44,7 +43,6 @@ public class HotdealServiceImpl implements HotdealService {
     @Override
     public int getCountSearchHotdeals(String search) {
         int count = hotdealMapper.countSearch(search);
-        System.out.println(count);
         return count;
     }
 
