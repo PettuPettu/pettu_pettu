@@ -30,7 +30,6 @@ public class ApiDataController {
     public Map<String, String> insertApiData(@RequestParam String keyword, @RequestParam int limit){
 
         JsonNode request = apiCallerService.getApiData(keyword, limit);
-        System.out.println(request);
         List<HotdealDTO> hlist = apiCallerService.setHotdealData(request);
         Map<String, String> response = new HashMap<>();
         if (!hlist.isEmpty()) {
