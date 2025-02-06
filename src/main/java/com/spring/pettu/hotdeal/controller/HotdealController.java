@@ -35,7 +35,6 @@ public class HotdealController {
         int total = hotdealService.getTotalHotdealCount();
 
         hotdealPagingVO = new HotdealPagingVO(total, nowPage, cntPerPage);
-        System.out.println(hotdealService.getSearchDiscount());
         model.addAttribute("hlist", hotdealService.getSearchHotdealRecently());
         model.addAttribute("dlist", hotdealService.getSearchDiscount());
         model.addAttribute("paging", hotdealPagingVO);

@@ -61,7 +61,6 @@ public class AdminController {
 
     @PostMapping("/place/delete")
     public String adminPlaceDelete(@RequestParam(value="spotSeq") long spotSeq) {
-        System.out.println("hello");
         adminService.deleteSpotBySpotSeq(spotSeq);
         return "redirect:/admin/place";
     }

@@ -80,16 +80,14 @@ public class ApiCallerServiceImpl implements ApiCallerService {
                     throw new BusinessException(MISS_PARSSING);
                 }
             }
-        }
-        else {
-            System.out.println("wwwwwwww");
+        } else {
+            throw new BusinessException(MISS_PARSSING);
         }
 
-        if (list.isEmpty()) {
-            System.out.println("list is empty");
-        } else {
-            System.out.println("list size : " + list.size());
+        if (list.isEmpty()){
+            throw new BusinessException(MISS_PARSSING);
         }
+
         return list;
     }
 

@@ -88,16 +88,16 @@
             <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p">
                 <c:choose>
                     <c:when test="${p == paging.nowPage}">
-                        <b>${p}</b>
+                        <button class="pagination-button active">${p}</button>
                     </c:when>
                     <c:otherwise>
-                        <a href="/hotdeal/home?nowPage=${p}&cntPerPage=${paging.cntPerPage}">${p}</a>
+                        <a href="/hotdeal/home?nowPage=${p}&cntPerPage=${paging.cntPerPage}" class="pagination-button">${p}</a>
                     </c:otherwise>
                 </c:choose>
             </c:forEach>
 
             <c:if test="${paging.endPage != paging.lastPage}">
-                <a href="/hotdeal/home?nowPage=${paging.endPage + 1}&cntPerPage=${paging.cntPerPage}">&gt;</a>
+                <a href="/hotdeal/home?nowPage=${paging.endPage + 1}&cntPerPage=${paging.cntPerPage}" class="pagination-button">&gt;</a>
             </c:if>
         </div>
     </section>
