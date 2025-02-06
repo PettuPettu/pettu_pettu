@@ -115,3 +115,57 @@ body {
     margin-top: 5px;
     text-align: left;
 }
+
+
+/* 반응형 CSS: 화면 너비가 480px 이하인 경우 */
+@media screen and (max-width: 480px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .logo-container {
+        gap: 8px;
+        margin-bottom: 15px;
+    }
+
+    .logo-image {
+        width: 40px;
+        height: 40px;
+    }
+
+    .logo-text {
+        font-size: 30px;
+    }
+
+    .input-field {
+        padding: 12px;
+        font-size: 12px;
+    }
+
+    .social-buttons {
+        flex-direction: column;
+        gap: 10px;
+        margin: 15px 0;
+    }
+
+    .social-login-btn img {
+        height: 40px;
+    }
+
+    .login-btn {
+        padding: 12px;
+        font-size: 12px;
+        margin: 15px 0;
+    }
+
+    .links {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .links a {
+        font-size: 12px;
+    }
+}
