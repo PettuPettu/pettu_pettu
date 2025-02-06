@@ -225,6 +225,7 @@ document.addEventListener('click', function(event) {
         document.querySelectorAll('.dropdown.open').forEach(openDropdown => {
             openDropdown.classList.remove('open');
         });
+
     }
 });
 

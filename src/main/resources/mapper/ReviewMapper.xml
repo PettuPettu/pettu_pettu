@@ -53,7 +53,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             s.SPOT_CREATE_DATE,
             s.SPOT_UPDATE_DATE,
             s.SPOT_OPEN_API_ID,
-            s.SPOT_TOTAL_AVG_SCORE,
+            (SELECT ROUND(AVG(rSub.review_score), 2)
+             FROM review rSub
+             WHERE rSub.spot_seq = s.spot_seq) AS SPOT_TOTAL_AVG_SCORE,
             -- 리뷰 관련 필드
             r.REVIEW_TOTAL_CNT,
             r.REVIEW_MONTHLY_CNT,
