@@ -62,7 +62,7 @@ function spotTop3OfAJAX(){
             successDivOfTop3API(data);
         },
         error: function(xhr, status, error) {
-            console.log("조회 요청 실패:", error);
+            alert("top3 시설 정보 출력 실패");
         }
     });
 }
@@ -295,10 +295,9 @@ function findSpotName(){
 
         const categoryText = '검색어';
         if (isTagExists(categoryText)) {
-            console.log('검색어 태그가 이미 존재합니다.');
             removeTag(categoryText);
         } else {
-            console.log('검색어 태그가 존재하지 않습니다.');
+            alert("검색어가 존재 하지 않습니다.");
         }
 
         if (inputText) {

@@ -88,7 +88,7 @@ function reviewListRestAPI(sortOrder){
             saveReviewAfterData(reviewList);
         },
         error: function(xhr, status, error) {
-            console.log("AJAX Error: " + error);
+            alert("리뷰 불러오기 실패");
         }
     });
 }
