@@ -19,7 +19,7 @@
         </jsp:include>
         <jsp:include page="petbti_btn.jsp">
             <jsp:param name="value" value="로그인" />
-            <jsp:param name="onclick" value="location.href='/login'" />
+            <jsp:param name="onclick" value="location.href='/login?redirectURL=/petbti/pets'" />
         </jsp:include>
     </div>
 </div>
