@@ -11,6 +11,7 @@
     <link rel="icon" href="${pageContext.request.contextPath}/assets/favicon/favicon.ico">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/user/js/login.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 <body>
