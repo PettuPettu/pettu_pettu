@@ -6,19 +6,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>핫딜 관리</title>
     <link
             rel="stylesheet"
             type="text/css"
             href="${pageContext.request.contextPath}/admin/css/admin_page.css"
     />
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
-<jsp:include page="../layout/header.jsp" />
 <jsp:include page="/pettu/common/modal.jsp"/>
+<div class="wrapper">
 <main class="main-content">
     <div class="top-controls">
         <div class="view-options">
@@ -54,40 +51,40 @@
             <!-- Add more rows dynamically -->
             </tbody>
         </table>
-        <div class="pagination">
-            <c:if test="${paging.startPage != 1}">
-                <a href="/admin/hotdeal?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}">&lt;</a>
-            </c:if>
+            <div class="pagination">
+                <c:if test="${paging.startPage != 1}">
+                    <a href="/admin/hotdeal?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}" class="pagination-button">&lt;</a>
+                </c:if>
 
-            <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p">
-                <c:choose>
-                    <c:when test="${p == paging.nowPage}">
-                        <button class="pagination-button active">${p}</button>
-                    </c:when>
-                    <c:otherwise>
-                        <a href="/admin/hotdeal?nowPage=${p}&cntPerPage=${paging.cntPerPage}" class="pagination-button">${p}</a>
+                <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p">
+                    <c:choose>
+                        <c:when test="${p == paging.nowPage}">
+                            <button class="pagination-button active">${p}</button>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="/admin/hotdeal?nowPage=${p}&cntPerPage=${paging.cntPerPage}" class="pagination-button">${p}</a>
 
-                    </c:otherwise>
-                </c:choose>
-            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
 
-            <c:if test="${paging.endPage != paging.lastPage}">
-                <a href="/admin/hotdeal?nowPage=${paging.endPage + 1}&cntPerPage=${paging.cntPerPage}" class="pagination-button">&gt;</a>
-            </c:if>
-        </div>
-    </section>
-</main>
-<jsp:include page="../layout/footer.jsp" />
-<!-- jQuery 3.6.4 (최신 버전 사용 가능) -->
-<script>
-    $(document).ready(function() {
-        $(".add-button").click(function() {
-            const page = $(this).data("page");
-            console.log("Page URL:", page);
-            $("#modal-body").load(page);
-            $("#commonModal").show();
-        });
-    });
-</script>
+                <c:if test="${paging.endPage != paging.lastPage}">
+                    <a href="/admin/hotdeal?nowPage=${paging.endPage + 1}&cntPerPage=${paging.cntPerPage}" class="pagination-button">&gt;</a>
+                </c:if>
+            </div>
+        </section>
+    </main>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $(".add-button").click(function() {
+                    const page = $(this).data("page");
+                    console.log("Page URL:", page);
+                    $("#modal-body").load(page);
+                    $("#commonModal").show();
+                });
+            });
+        </script>
+    </div>
 </body>
 </html>

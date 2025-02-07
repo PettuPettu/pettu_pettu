@@ -1,15 +1,3 @@
-@import "../../layout/css/color.css";
-@import "../../layout/css/reset.css";
-@import "../../layout/css/layout.css";
-
-
-html, body {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-}
-
 .wrapper {
     display: flex;
     flex-direction: column;

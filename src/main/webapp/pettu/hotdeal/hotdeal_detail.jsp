@@ -43,6 +43,9 @@
                     <p class="product-link">
                         <a href="${hvo.link}">이 제품 보러 가기</a>
                     </p>
+                    <p class="product-notice">
+                        ※이 가격은 배송비를 제외한 가격일 수 있습니다.
+                    </p>
                 </div>
             </div>
         </div>
@@ -61,7 +64,6 @@
         </div>
         <script src="${pageContext.request.contextPath}/hotdeal/js/hotdeal_info.js"></script>
     </section>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
 </main>
 </body>
 </html>

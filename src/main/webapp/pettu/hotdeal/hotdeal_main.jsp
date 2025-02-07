@@ -67,7 +67,7 @@
         <!-- 페이징 기능 추가 -->
         <div class="pagination">
             <c:if test="${paging.startPage != 1}">
-                <a href="/hotdeal/home?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}">&lt;</a>
+                <a href="/hotdeal/home?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}" class="pagination-button">&lt;</a>
             </c:if>
 
             <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p">

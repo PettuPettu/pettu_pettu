@@ -41,7 +41,7 @@ public class AdminController {
         model.addAttribute("paging", userpagingVO);
         model.addAttribute("ulist", adminService.getUserPaging(userpagingVO));
         model.addAttribute("contentPage", "/pettu/admin/admin_user.jsp");
-        return "pettu/admin/admin_user";
+        return "pettu/layout/layout";
     }
 
     @GetMapping("/place")
@@ -56,7 +56,7 @@ public class AdminController {
         model.addAttribute("paging", placepagingVO);
         model.addAttribute("slist", adminService.getSpotPaging(placepagingVO));
         model.addAttribute("contentPage", "/pettu/admin/admin_place.jsp");
-        return "pettu/admin/admin_place";
+        return "pettu/layout/layout";
     }
 
     @PostMapping("/place/delete")
@@ -78,7 +78,7 @@ public class AdminController {
         model.addAttribute("hlist", hotdealService.getPagedHotdeals(hotdealpagingVO));
 
         model.addAttribute("contentPage", "/pettu/admin/admin_hotdeal.jsp");
-        return "pettu/admin/admin_hotdeal";
+        return "pettu/layout/layout";
     }
 
     @GetMapping("/user/detail")
@@ -90,7 +90,7 @@ public class AdminController {
         model.addAttribute("urlist", myReviewService.findUserAndReviewById(userSeq));
 
         model.addAttribute("contentPage", "/pettu/admin/admin_user_detail.jsp");
-        return "pettu/admin/admin_user_detail";
+        return "pettu/layout/layout";
     }
 
     @PostMapping("/user/detail/review/delete")

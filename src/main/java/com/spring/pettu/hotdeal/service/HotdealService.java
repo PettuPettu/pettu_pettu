@@ -21,5 +21,6 @@ public interface HotdealService {
     public List<Map<String, Object>> getSearchDiscount();
 
     public List<Map<String, Object>> getSearchHotdealRecently();
+
 }
 

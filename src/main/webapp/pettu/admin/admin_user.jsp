@@ -6,78 +6,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원 관리</title>
     <link
             rel="stylesheet"
             type="text/css"
             href="${pageContext.request.contextPath}/admin/css/admin_page.css"
     />
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 <div class="wrapper">
-<jsp:include page="../layout/header.jsp" />
-<main class="main-content">
-    <div class="top-controls">
-        <div class="view-options">
-            <button class="menu-item active" onclick="location.href='/admin/user'">사용자 관리</button>
-            <button class="menu-item" onclick="location.href='/admin/place'">시설 관리</button>
-            <button class="menu-item" onclick="location.href='/admin/hotdeal'">상품 관리</button>
+    <main class="main-content">
+        <div class="top-controls">
+            <div class="view-options">
+                <button class="menu-item active" onclick="location.href='/admin/user'">사용자 관리</button>
+                <button class="menu-item" onclick="location.href='/admin/place'">시설 관리</button>
+                <button class="menu-item" onclick="location.href='/admin/hotdeal'">상품 관리</button>
+            </div>
         </div>
-    </div>
 
-    <section class="content">
-        <table class="facility-table">
-            <thead>
-            <tr>
-                <th>사용자 번호</th>
-                <th>닉네임</th>
-                <th>가입 날짜</th>
-                <th>상태</th>
-                <th>상세 보기</th>
-            </tr>
-            </thead>
-            <tbody>
-            <!-- Example rows -->
-            <c:forEach var="uvo" items="${ulist}">
-                <fmt:formatDate value="${uvo.userCreateAt}" pattern="yyyy-MM-dd" var="formattedDate" />
+        <section class="content">
+            <table class="facility-table">
+                <thead>
                 <tr>
-                    <td>${uvo.userSeq}</td>
-                    <td>${uvo.userNickname}</td>
-                    <td>${formattedDate}</td>
-                    <td>${uvo.userStatus}</td>
-                    <td><a href="${pageContext.request.contextPath}/admin/user/detail?userSeq=${uvo.userSeq}">보기</a></td>
+                    <th>사용자 번호</th>
+                    <th>닉네임</th>
+                    <th>가입 날짜</th>
+                    <th>상태</th>
+                    <th>상세 보기</th>
                 </tr>
-            </c:forEach>
-            <!-- Add more rows dynamically -->
-            </tbody>
-        </table>
-        <div class="pagination">
-            <c:if test="${paging.startPage != 1}">
-                <a href="/admin/user?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}">&lt;</a>
-            </c:if>
+                </thead>
+                <tbody>
+                <!-- Example rows -->
+                <c:forEach var="uvo" items="${ulist}">
+                    <fmt:formatDate value="${uvo.userCreateAt}" pattern="yyyy-MM-dd" var="formattedDate" />
+                    <tr>
+                        <td>${uvo.userSeq}</td>
+                        <td>${uvo.userNickname}</td>
+                        <td>${formattedDate}</td>
+                        <td>${uvo.userStatus}</td>
+                        <td><a href="${pageContext.request.contextPath}/admin/user/detail?userSeq=${uvo.userSeq}">보기</a></td>
+                    </tr>
+                </c:forEach>
+                <!-- Add more rows dynamically -->
+                </tbody>
+            </table>
+            <div class="pagination">
+                <c:if test="${paging.startPage != 1}">
+                    <a href="/admin/user?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}" class="pagination-button">&lt;</a>
+                </c:if>
 
-            <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p">
-                <c:choose>
-                    <c:when test="${p == paging.nowPage}">
-                        <button class="pagination-button active">${p}</button>
-                    </c:when>
-                    <c:otherwise>
-                        <a href="/admin/user?nowPage=${p}&cntPerPage=${paging.cntPerPage}" class="pagination-button">${p}</a>
+                <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p">
+                    <c:choose>
+                        <c:when test="${p == paging.nowPage}">
+                            <button class="pagination-button active">${p}</button>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="/admin/user?nowPage=${p}&cntPerPage=${paging.cntPerPage}" class="pagination-button">${p}</a>
 
-                    </c:otherwise>
-                </c:choose>
-            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
 
-            <c:if test="${paging.endPage != paging.lastPage}">
-                <a href="/admin/user?nowPage=${paging.endPage + 1}&cntPerPage=${paging.cntPerPage}" class="pagination-button">&gt;</a>
-            </c:if>
-        </div>
-    </section>
-</main>
-<jsp:include page="../layout/footer.jsp" />
+                <c:if test="${paging.endPage != paging.lastPage}">
+                    <a href="/admin/user?nowPage=${paging.endPage + 1}&cntPerPage=${paging.cntPerPage}" class="pagination-button">&gt;</a>
+                </c:if>
+            </div>
+        </section>
+    </main>
 </div>
 </body>
 </html>
