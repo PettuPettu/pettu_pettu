@@ -93,4 +93,5 @@ public class HotdealServiceImpl implements HotdealService {
 
         return hashList;
     }
+
 }
