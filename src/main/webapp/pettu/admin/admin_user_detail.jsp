@@ -18,8 +18,6 @@
     <script src="${pageContext.request.contextPath}/admin/js/admin_user_detail.js"></script>
 </head>
 <body>
-    <jsp:include page="../layout/header.jsp" />
-
     <main class="main-content">
 
             <div class="left-section">
@@ -77,10 +75,7 @@
                         <button class="activate-user" data-user-id="${user.userSeq}" data-user-status="0">사용자 활성화</button>
                     </c:otherwise>
                 </c:choose>
-
-
             </div>
     </main>
-    <jsp:include page="../layout/footer.jsp" />
 </body>
 </html>
