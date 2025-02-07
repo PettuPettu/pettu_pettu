@@ -3,21 +3,15 @@ package com.spring.pettu.hotdeal.controller;
 import com.spring.pettu.hotdeal.service.HotdealServiceImpl;
 import com.spring.pettu.hotdeal.vo.HistoryVO;
 import com.spring.pettu.hotdeal.vo.HotdealPagingVO;
-import com.spring.pettu.hotdeal.vo.HotdealVO;
-import com.spring.pettu.review.controller.ReviewController;
-import com.spring.pettu.review.service.ReviewServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
