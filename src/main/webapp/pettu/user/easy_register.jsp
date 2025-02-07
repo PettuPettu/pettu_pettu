@@ -13,7 +13,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <!-- JS 파일 -->
     <script src="${pageContext.request.contextPath}/user/js/easy_register.js"></script>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 <body>
