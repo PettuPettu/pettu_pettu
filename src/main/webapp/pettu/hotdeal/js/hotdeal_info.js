@@ -1,91 +1,100 @@
+// URL에서 proSeq 추출
 const urlParams = new URLSearchParams(window.location.search);
-const proSeq = urlParams.get("proSeq"); // "230" (예제: ?proSeq=230)
-console.log("proSeq 값:", proSeq);
+const proSeq = urlParams.get("proSeq"); // 예: ?proSeq=230
 
-// 서버에서 데이터 가져오는 함수
+// 서버에서 데이터 가져오기
 fetch('/hotdeal/chart?proSeq=' + proSeq, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' }
 })
     .then(response => response.json())
     .then(data => {
-        console.log("서버에서 받은 데이터:", data);
 
-        // 날짜 데이터 변환
-        const parseDate = d3.timeParse("%Y-%m-%d %H:%M:%S"); // ✅ 정밀한 시간 변환 지원
-        const formatDate = d3.timeFormat("%Y-%m-%d %H:%M"); // ✅ 원하는 형식 변환
+        // 날짜 변환 함수
+        const parseDate = d3.timeParse("%Y-%m-%d %H:%M:%S"); // 정밀한 시간 변환 지원
+        const formatDate = d3.timeFormat("%Y-%m-%d");         // 원하는 형식 변환
 
+        // 데이터 전처리: regitDate를 파싱하고 자정 기준(normalizedDate)으로 정규화
         data.forEach(d => {
-            console.log("Before Fixing:", d.regitDate);
-
             if (d.regitDate) {
-                d.regitDate = d.regitDate.split(".")[0]; // ✅ ".0" 제거
-                d.date = parseDate(d.regitDate); // ✅ Date 변환
+                // ".0" 제거 (예: "2025-02-06 00:24:49.0" → "2025-02-06 00:24:49")
+                d.regitDate = d.regitDate.split(".")[0];
+
+                // 문자열 → Date 객체 변환
+                d.date = parseDate(d.regitDate);
 
                 if (d.date) {
-                    d.date.setHours(d.date.getHours() + 9); // ✅ KST 변환
-                    d.formattedDate = formatDate(d.date); // ✅ YYYY-MM-DD HH:mm 포맷 적용
+                    // 날짜를 자정 기준으로 정규화 (시간 정보를 제거)
+                    d.normalizedDate = new Date(
+                        d.date.getFullYear(),
+                        d.date.getMonth(),
+                        d.date.getDate()
+                    );
                 } else {
                     console.warn("Invalid date:", d.regitDate);
                 }
             }
         });
 
-        console.log("Formatted Data:", data);
-
-        updateChart(data, formatDate); // ✅ formatDate를 updateChart()에 전달
+        // updateChart 함수에 data와 formatDate 함수를 전달합니다.
+        updateChart(data, formatDate);
     });
 
-function updateChart(data, formatDate) { // ✅ formatDate를 인자로 받음
+
+// updateChart 함수: 정규화된 날짜(d.normalizedDate)를 기준으로 x축과 점의 위치를 결정
+function updateChart(data, formatDate) {
+    // 기존 SVG 내용 제거
     d3.select("#svg-chart").selectAll("*").remove();
 
-    console.log("Loaded data:", data);
-    // SVG dimensions and margins
-    const margin = {top: 20, right: 30, bottom: 40, left: 50};
+    // SVG 크기 및 여백 설정
+    const margin = { top: 20, right: 30, bottom: 40, left: 50 };
     const width = 800 - margin.left - margin.right;
     const height = 400 - margin.top - margin.bottom;
 
-    // X축 (시간 축) 및 Y축 (가격 축) 설정
+    // 고유한 날짜(문자열 형식) 추출 → 이를 Date 객체(자정 기준)로 변환
+    const uniqueNormalizedDates = [...new Set(data.map(d => d.normalizedDate.getTime()))]
+        .map(t => new Date(t));
+
+    // x축: 정규화된 날짜를 기준으로 도메인 설정
     const x = d3.scaleTime()
-        .domain(d3.extent(data, d => d.date)) // `date` 사용
+        .domain(d3.extent(data, d => d.normalizedDate)) // 최소 ~ 최대 정규화 날짜
         .range([0, width]);
 
+    // y축: lowPrice 값을 기준으로 도메인 설정
     const y = d3.scaleLinear()
-        .domain([0, d3.max(data, d => d.lowPrice)])
-        .nice()
+        .domain([
+            Math.max(50, d3.min(data, d => d.lowPrice) * 0.9),
+            d3.max(data, d => d.lowPrice) * 1.1
+        ])
         .range([height, 0]);
 
-    // Create SVG element
+    // SVG 요소 생성
     const svg = d3.select("#svg-chart")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
 
-    // 중복 없는 날짜 생성
-    const uniqueDates = [...new Set(data.map(d => d.formattedDate))];
-    console.log("Unique Dates for X-Axis:", uniqueDates);
-
+    // x축 생성: 눈금은 고유 날짜(Date 객체 배열)를 사용하고, 라벨은 YYYY-MM-DD 형식으로 표시
     const xAxis = d3.axisBottom(x)
-        .tickValues(data.map(d => d.date)) // `date` 사용
-        .tickFormat(d => formatDate(d)); // ✅ formatDate를 정상적으로 사용 가능
+        .tickValues(uniqueNormalizedDates)
+        .tickFormat(d3.timeFormat("%Y-%m-%d"));
 
     const yAxis = d3.axisLeft(y);
 
-    // Add axes to the SVG
+    // 축 추가
     svg.append("g")
-        .attr("transform", `translate(0,${height})`)
+        .attr("transform", `translate(0, ${height})`)
         .call(xAxis);
-
     svg.append("g")
         .call(yAxis);
 
-    // Line generator
+    // 선(Line) 생성: x좌표는 정규화된 날짜를 사용
     const line = d3.line()
-        .x(d => x(d.date)) // `date` 사용
+        .x(d => x(d.normalizedDate))
         .y(d => y(d.lowPrice));
 
-    // Append the line
+    // 선 추가
     svg.append("path")
         .datum(data)
         .attr("fill", "none")
@@ -93,12 +102,12 @@ function updateChart(data, formatDate) { // ✅ formatDate를 인자로 받음
         .attr("stroke-width", 2)
         .attr("d", line);
 
-    // Add points
+    // 데이터 포인트(원) 추가: x좌표는 정규화된 날짜 사용
     svg.selectAll("circle")
         .data(data)
         .enter()
         .append("circle")
-        .attr("cx", d => x(d.date)) // `date` 사용
+        .attr("cx", d => x(d.normalizedDate))
         .attr("cy", d => y(d.lowPrice))
         .attr("r", 4)
         .attr("fill", "steelblue");
