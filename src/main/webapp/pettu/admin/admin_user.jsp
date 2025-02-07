@@ -18,7 +18,6 @@
 </head>
 <body>
 <div class="wrapper">
-<jsp:include page="../layout/header.jsp" />
 <main class="main-content">
     <div class="top-controls">
         <div class="view-options">
@@ -56,7 +55,7 @@
         </table>
         <div class="pagination">
             <c:if test="${paging.startPage != 1}">
-                <a href="/admin/user?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}">&lt;</a>
+                <a href="/admin/user?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}" class="pagination-button">&lt;</a>
             </c:if>
 
             <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p">
@@ -77,7 +76,6 @@
         </div>
     </section>
 </main>
-<jsp:include page="../layout/footer.jsp" />
 </div>
 </body>
 </html>
