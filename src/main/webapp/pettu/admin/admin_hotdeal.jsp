@@ -17,8 +17,8 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
-<jsp:include page="../layout/header.jsp" />
 <jsp:include page="/pettu/common/modal.jsp"/>
+<div class="wrapper">
 <main class="main-content">
     <div class="top-controls">
         <div class="view-options">
@@ -56,7 +56,7 @@
         </table>
         <div class="pagination">
             <c:if test="${paging.startPage != 1}">
-                <a href="/admin/hotdeal?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}">&lt;</a>
+                <a href="/admin/hotdeal?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}" class="pagination-button">&lt;</a>
             </c:if>
 
             <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p">
@@ -77,7 +77,6 @@
         </div>
     </section>
 </main>
-<jsp:include page="../layout/footer.jsp" />
 <!-- jQuery 3.6.4 (최신 버전 사용 가능) -->
 <script>
     $(document).ready(function() {
@@ -89,5 +88,6 @@
         });
     });
 </script>
+</div>
 </body>
 </html>
