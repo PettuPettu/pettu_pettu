@@ -1,0 +1,275 @@
+/* Default styles (for desktop/larger screens) remain as is */
+
+/* Media query for tablets (768px and below) */
+@media (max-width: 768px) {
+    .container {
+
+        max-width: 100%; /* Adjust container width */
+        padding: 15px;
+        margin: 10px;
+
+        height: fit-content;
+    }
+
+    .spot-card-category {
+        font-size: 12px;
+        padding: 2px 6px;
+        margin-left: 0; /* Remove auto margin */
+        text-align: center; /* Center align */
+    }
+
+    .main-slide-card {
+        flex-direction: column; /* Stack image and text vertically */
+        max-height: fit-content; /* Allow height to adjust dynamically */
+        width: 100%; /* Full width on smaller screens */
+    }
+
+    .main-slide-card img {
+        width: 100%; /* Image takes full width */
+        height: auto; /* Adjust height to maintain aspect ratio */
+    }
+
+    .slide-cards {
+        flex-direction: column; /* Stack cards vertically */
+        gap: 15px;
+    }
+
+    .slide-card {
+        width: 100%; /* Full width */
+        height: auto; /* Adjust height */
+    }
+
+    .dropdown-button {
+        width: 100%; /* Full width dropdown */
+    }
+
+    .dropdown-content {
+        width: 100%; /* Full width dropdown content */
+    }
+
+    .tags {
+        gap: 10px;
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+/* Media query for mobile phones (480px and below) */
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+        margin: 5px;
+        height: fit-content;
+    }
+
+    .spot-card-category {
+        font-size: 10px;
+        padding: 2px 4px;
+    }
+
+    .main-slide-card {
+        width: 100%;
+        padding: 10px;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .main-slide-card img {
+        width: 100%;
+        height: auto;
+    }
+
+    .slide-card {
+        padding: 10px;
+    }
+
+    .slide-cards {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .tags span {
+        font-size: 10px; /* Smaller font for tags */
+        padding: 5px 8px; /* Adjust padding */
+    }
+
+    .search-bar {
+        flex-direction: column; /* Stack input and button */
+        gap: 5px;
+    }
+
+    .search-bar input {
+        width: 100%; /* Full width */
+    }
+
+    .search-bar button {
+        width: 100%; /* Full width */
+    }
+}
+
+@media (max-width: 768px) {
+    .filter-row {
+        flex-direction: column; /* Stack elements vertically */
+        gap: 15px;
+    }
+
+    .dropdown {
+        min-width: 100%; /* Make dropdowns full width */
+    }
+
+    .search-bar {
+        flex-direction: column; /* Stack search bar elements */
+        gap: 10px;
+    }
+
+    .search-bar input {
+        width: 100%; /* Full width for input field */
+    }
+
+    .search-bar button {
+        width: 100%; /* Full width for button */
+    }
+}
+
+@media (max-width: 480px) {
+    .dropdown-button {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .dropdown-content label {
+        font-size: 12px;
+    }
+
+    .search-bar input {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .search-bar button {
+        font-size: 12px;
+        padding: 8px 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .filter-row {
+        flex-direction: column; /* Stack items vertically */
+        align-items: stretch; /* Make items take full width */
+        gap: 15px; /* Adjust spacing between items */
+    }
+
+    .dropdown {
+        min-width: 100%; /* Full width for dropdowns */
+    }
+
+    .search-bar {
+        flex-direction: column; /* Stack input and button */
+        gap: 10px;
+    }
+
+    .search-bar input,
+    .search-bar button {
+        width: 100%; /* Full width for both input and button */
+    }
+}
+
+/* Mobile view (480px and below) */
+@media (max-width: 480px) {
+    .dropdown-button {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .dropdown-content label {
+        font-size: 12px;
+    }
+
+    .search-bar input {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .search-bar button {
+        font-size: 12px;
+        padding: 8px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-slide-card {
+        max-width: 100%;
+        padding: 8px;
+    }
+
+    .spot-card-category {
+        font-size: 10px;
+        padding: 2px 5px;
+    }
+
+    .main-slide-card-title {
+        font-size: 12px;
+    }
+
+    .main-slide-card-info {
+        font-size: 10px;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-slide-card {
+        max-width: 100%; /* Allow cards to take full width */
+        padding: 10px;
+    }
+
+    .spot-card-category {
+        font-size: 12px;
+        padding: 3px 6px;
+    }
+
+    .main-slide-card-title {
+        font-size: 13px;
+    }
+
+    .main-slide-card-info {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 12px; /* 작은 화면에서는 기본 폰트 크기 12px */
+    }
+    .main-slide-card-title strong {
+        font-size: 0.9rem; /* 폰트 크기 0.9rem으로 줄이기 */
+    }
+
+    .main-slide-card-info strong {
+        font-size: 0.75rem; /* 폰트 크기 0.75rem으로 줄이기 */
+    }
+
+    .main-slide-card-info span {
+        font-size: 0.7rem; /* 폰트 크기 0.7rem으로 줄이기 */
+    }
+}
+
+/* 더 작은 화면에서 더 작은 글자 크기 설정 */
+@media (max-width: 480px) {
+    html {
+        font-size: 10px; /* 기본 폰트 크기 10px로 설정 */
+    }
+
+    .main-slide-card-title strong {
+        font-size: 0.8rem; /* 폰트 크기 0.8rem으로 줄이기 */
+    }
+
+    .main-slide-card-info strong {
+        font-size: 0.7rem; /* 폰트 크기 0.7rem으로 줄이기 */
+    }
+
+    .main-slide-card-info span {
+        font-size: 0.65rem; /* 폰트 크기 0.65rem으로 줄이기 */
+    }
+}
+
