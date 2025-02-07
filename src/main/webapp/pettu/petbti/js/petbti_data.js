@@ -148,14 +148,6 @@ export const petbtiQuestions = [
     },
     {
         id: 3,
-        question: "혼자 있을 때도 잘 놀거나 편안해 보이나요?",
-        options: [
-            { id: "I", text: "네, 혼자서도 잘 놀아요." },
-            { id: "E", text: "아니요, 혼자 있으면 심심해요." }
-        ]
-    },
-    {
-        id: 4,
         question: "산책이나 놀이 시간이 길어질수록 더 즐거워하나요?",
         options: [
             { id: "E", text: "네, 더 즐거워요!" },
@@ -163,39 +155,7 @@ export const petbtiQuestions = [
         ]
     },
     {
-        id: 5,
-        question: "집 안에서 가족들과 시간을 보내는 걸 더 좋아하나요?",
-        options: [
-            { id: "I", text: "네, 가족과 함께하는 게 좋아요." },
-            { id: "E", text: "아니요, 혼자 있는 게 좋아요." }
-        ]
-    },
-    {
-        id: 6,
-        question: "손님이 오면 바로 다가가서 반기나요, 아니면 숨거나 거리를 두나요?",
-        options: [
-            { id: "E", text: "바로 다가가서 반겨요!" },
-            { id: "I", text: "숨거나 거리를 두는 편이에요." }
-        ]
-    },
-    {
-        id: 7,
-        question: "주변의 사소한 변화(새 가구, 물건 위치 변화)를 바로 알아차리나요?",
-        options: [
-            { id: "S", text: "네, 바로 알아차려요!" },
-            { id: "N", text: "아니요, 잘 못 알아차려요." }
-        ]
-    },
-    {
-        id: 8,
-        question: "산책 중 특정 냄새를 오래 탐색하는 걸 좋아하나요?",
-        options: [
-            { id: "S", text: "네, 좋아해요!" },
-            { id: "N", text: "아니요, 빨리 지나가요." }
-        ]
-    },
-    {
-        id: 9,
+        id: 4,
         question: "새로운 장난감이나 환경에 호기심을 보이며 적극적으로 탐구하나요?",
         options: [
             { id: "N", text: "네, 적극적으로 탐구해요!" },
@@ -203,7 +163,7 @@ export const petbtiQuestions = [
         ]
     },
     {
-        id: 10,
+        id: 5,
         question: "같은 루틴(식사 시간, 산책 경로)을 고집하나요?",
         options: [
             { id: "S", text: "네, 고집해요!" },
@@ -211,7 +171,7 @@ export const petbtiQuestions = [
         ]
     },
     {
-        id: 11,
+        id: 6,
         question: "창밖을 보며 상상의 세계에 빠진 듯한 행동을 하나요?",
         options: [
             { id: "N", text: "네, 자주 그래요!" },
@@ -219,15 +179,7 @@ export const petbtiQuestions = [
         ]
     },
     {
-        id: 12,
-        question: "목적 없이 뛰어다니며 창의적인 놀이를 즐기나요?",
-        options: [
-            { id: "N", text: "네, 즐겨요!" },
-            { id: "S", text: "아니요, 목적이 있어야 해요." }
-        ]
-    },
-    {
-        id: 13,
+        id: 7,
         question: "다른 동물과 다툴 때 합리적으로 물러나거나 경계를 하나요?",
         options: [
             { id: "T", text: "네, 합리적으로 행동해요." },
@@ -235,7 +187,7 @@ export const petbtiQuestions = [
         ]
     },
     {
-        id: 14,
+        id: 8,
         question: "보호자가 기분이 좋지 않을 때 이를 알아채고 위로하려는 듯한 행동을 하나요?",
         options: [
             { id: "F", text: "네, 위로하려고 해요." },
@@ -243,31 +195,7 @@ export const petbtiQuestions = [
         ]
     },
     {
-        id: 15,
-        question: "원하는 것을 얻기 위해 논리적으로 행동하거나 문제를 해결하려고 하나요?",
-        options: [
-            { id: "T", text: "네, 논리적으로 행동해요." },
-            { id: "F", text: "아니요, 감정적으로 행동해요." }
-        ]
-    },
-    {
-        id: 16,
-        question: "보호자의 표정과 감정을 민감하게 관찰하며 반응하나요?",
-        options: [
-            { id: "F", text: "네, 민감하게 반응해요." },
-            { id: "T", text: "아니요, 잘 못 알아차려요." }
-        ]
-    },
-    {
-        id: 17,
-        question: "다른 동물에게 장난을 치거나 규칙을 어기는 행동을 자주 하나요?",
-        options: [
-            { id: "T", text: "네, 자주 그래요!" },
-            { id: "F", text: "아니요, 규칙을 잘 지켜요." }
-        ]
-    },
-    {
-        id: 18,
+        id: 9,
         question: "보호자와의 교감(스킨십, 칭찬)에 매우 의존적인 편인가요?",
         options: [
             { id: "F", text: "네, 의존적이에요." },
@@ -275,7 +203,7 @@ export const petbtiQuestions = [
         ]
     },
     {
-        id: 19,
+        id: 10,
         question: "식사, 산책 등 일과가 일정하지 않을 경우 불안감을 보이나요?",
         options: [
             { id: "J", text: "네, 불안해요." },
@@ -283,15 +211,7 @@ export const petbtiQuestions = [
         ]
     },
     {
-        id: 20,
-        question: "자유로운 환경(예: 큰 마당, 넓은 공원)에서 더 활발히 움직이나요?",
-        options: [
-            { id: "P", text: "네, 더 활발해요!" },
-            { id: "J", text: "아니요, 제한된 공간이 좋아요." }
-        ]
-    },
-    {
-        id: 21,
+        id: 11,
         question: "새 장난감이나 새로운 경험을 바로 시도하나요, 아니면 천천히 접근하나요?",
         options: [
             { id: "P", text: "바로 시도해요!" },
@@ -299,23 +219,7 @@ export const petbtiQuestions = [
         ]
     },
     {
-        id: 22,
-        question: "자신의 공간(방석, 집)을 깨끗하게 유지하려고 하나요?",
-        options: [
-            { id: "J", text: "네, 깨끗하게 유지해요." },
-            { id: "P", text: "아니요, 신경 쓰지 않아요." }
-        ]
-    },
-    {
-        id: 23,
-        question: "놀이 도중 계획 없이 즉흥적으로 새로운 행동을 자주 하나요?",
-        options: [
-            { id: "P", text: "네, 자주 그래요!" },
-            { id: "J", text: "아니요, 계획이 필요해요." }
-        ]
-    },
-    {
-        id: 24,
+        id: 12,
         question: "특정 행동 패턴(앉기, 기다리기)을 배우면 이를 엄격히 따르나요?",
         options: [
             { id: "J", text: "네, 엄격히 따르죠." },
