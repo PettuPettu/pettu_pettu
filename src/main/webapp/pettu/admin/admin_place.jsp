@@ -18,7 +18,7 @@
     <script src="${pageContext.request.contextPath}/admin/js/admin_place_delete.js"></script>
 </head>
 <body>
-<jsp:include page="../layout/header.jsp" />
+<div class="wrapper">
 <main class="main-content">
     <div class="top-controls">
         <div class="view-options">
@@ -58,7 +58,7 @@
 
         <div class="pagination">
             <c:if test="${paging.startPage != 1}">
-                <a href="/admin/place?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}">&lt;</a>
+                <a href="/admin/place?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}" class="pagination-button">&lt;</a>
             </c:if>
 
             <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p">
@@ -79,6 +79,6 @@
         </div>
     </section>
 </main>
-<jsp:include page="../layout/footer.jsp" />
+</div>
 </body>
 </html>
