@@ -19,42 +19,54 @@
 
     <!-- Hotdeal Section -->
     <section class="hotdeal-section">
-        <h3>${hvo.title}</h3>
         <div class="product-grid">
             <!-- 상품 카드 -->
             <div class="product-card">
                 <img src="${hvo.image}" alt="상품 이미지">
                 <div class="product-info">
-                    <c:set var="myList" value="${htlist}" />
-                    <p class="product-name">상품명: ${hvo.title}</p>
-                    <p class="product-category">카테고리: ${hvo.category3}</p>
-                    <p class="product-price"><fmt:formatNumber value="${myList[0].lowPrice}" pattern="###,###,###"/>원</p>
-                    <p class="product-discount">
-                        <c:choose>
-                            <c:when test="${empty myList[1] or myList[1].lowPrice == 0}">
-                                할인율: 0.0%
-                            </c:when>
-                            <c:otherwise>
-                                할인율: <fmt:formatNumber value="${((myList[1].lowPrice - myList[0].lowPrice) / myList[1].lowPrice) * 100}" type="number" maxFractionDigits="2"/> %
-                            </c:otherwise>
-                        </c:choose>
-                    </p>
+                    <!-- 상단 영역 -->
+                    <div class="product-details">
+                        <c:set var="myList" value="${htlist}" />
+                        <p class="product-name">${hvo.title}</p>
+                        <p class="product-category">카테고리: ${hvo.category3}</p>
+                        <p class="product-price">
+                            <fmt:formatNumber value="${myList[0].lowPrice}" pattern="###,###,###"/>원
+                        </p>
+                        <p class="product-discount">
+                            <c:choose>
+                                <c:when test="${empty myList[1] or myList[1].lowPrice == 0}">
+                                    할인율: 0.0%
+                                </c:when>
+                                <c:otherwise>
+                                    할인율:
+                                    <fmt:formatNumber
+                                            value="${((myList[1].lowPrice - myList[0].lowPrice) / myList[1].lowPrice) * 100}"
+                                            type="number"
+                                            maxFractionDigits="2"
+                                    />
+                                    %
+                                </c:otherwise>
+                            </c:choose>
+                        </p>
+                    </div>
 
-                    <p class="product-link">
-                        <a href="${hvo.link}">이 제품 보러 가기</a>
-                    </p>
-                    <p class="product-notice">
-                        ※이 가격은 배송비를 제외한 가격일 수 있습니다.
-                    </p>
+                    <!-- 하단 영역 -->
+                    <div class="product-cta">  <!-- Call To Action: 여기서 '이 제품 보러가기' 링크 등을 묶음 -->
+                        <p class="product-link">
+                            <a href="${hvo.link}">이 제품 보러 가기</a>
+                        </p>
+                        <p class="product-notice">
+                            ※ 이 가격은 배송비를 제외한 가격일 수 있습니다.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-<!-- Chart Section -->
     <!-- Chart Section -->
     <section class="chart-section">
-        <h3 class="chart-title">📈 가격 변동 추이</h3>
+        <h2 class="chart-title">📈 가격 변동 추이</h2>
         <div class="chart-info">
             <p>이 그래프는 제품 가격의 변동 추이를 나타냅니다.</p>
         </div>
@@ -66,4 +78,3 @@
     </section>
 </main>
 </body>
-</html>
