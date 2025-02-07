@@ -1,6 +1,6 @@
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- Mapper와 Interface의 경로와 이름이 같아야 한다. -->
 <mapper namespace="com.spring.pettu.mapper.TrafficMapper">
@@ -8,6 +8,43 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO Traffic_Log (traffic_seq, client_ip, user_agent,request_uri, access_time)
 		VALUES (traffic_log_seq.NEXTVAL, #{clientIp}, #{userAgent}, #{requestUri}, SYSDATE)
 	</insert>
+
+
+	<insert id="addBanIp" parameterType="String">
+		INSERT INTO ban_ip(id, client_ip)
+		VALUES (ban_ip_seq.NEXTVAL, #{clientIp})
+	</insert>
+
+	<select id="findIp" parameterType="String" resultType="com.spring.pettu.auth.traffic.vo.BanIpVO">
+		SELECT * FROM BAN_IP WHERE client_ip = #{ip}
+	</select>
+
+	<select id="findBanIpList" resultType="com.spring.pettu.auth.traffic.vo.BanIpVO">
+		SELECT id, client_ip
+		FROM ban_ip
+	</select>
+
+	<delete id="deleteBanIp" parameterType="String">
+		DELETE FROM ban_ip
+		WHERE client_ip = #{ip}
+	</delete>
+
+	<select id="getResultPbti" resultType="com.spring.pettu.auth.traffic.vo.DateCountDTO">
+		SELECT TO_CHAR(access_time, 'YYYY-MM-DD') AS date_time,
+			   COUNT(DISTINCT client_ip) AS cnt
+		FROM traffic_log
+		where request_uri = '/petbti/result'
+		GROUP BY TO_CHAR(access_time, 'YYYY-MM-DD')
+		ORDER BY date_time
+	</select>
+
+	<select id="findDateCount" resultType="com.spring.pettu.auth.traffic.vo.DateCountDTO">
+		SELECT TO_CHAR(access_time, 'YYYY-MM-DD') AS date_time,
+			   COUNT(DISTINCT client_ip) AS cnt
+		FROM traffic_log
+		GROUP BY TO_CHAR(access_time, 'YYYY-MM-DD')
+		ORDER BY date_time
+	</select>
 
 
 </mapper>
