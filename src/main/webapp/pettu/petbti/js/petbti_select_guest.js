@@ -1,5 +1,5 @@
 const savePetNameAndRedirect=()=>{
-    const petName = document.getElementById("petbti-name-input").value; // ID에 맞게 수정
+    const petName = document.getElementById("petbti-name-input").value.trim();
 
     if (petName) {
         sessionStorage.setItem("petName", petName);
