@@ -9,14 +9,9 @@ import com.spring.pettu.auth.traffic.service.TrafficLogService;
 import com.spring.pettu.auth.traffic.vo.TrafficLogVO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import lombok.Generated;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 
@@ -33,20 +28,20 @@ public class TrafficInterceptor extends HandlerInterceptorAdapter {
         String ip = request.getRemoteAddr();
         log.info("IP = {}, Url  = {}", ip, request.getRequestURI());
 
-            try {
-                if(!ip.equals("0:0:0:0:0:0:0:1") && !ip.equals("127.0.0.1")){
-                    TrafficLogVO trafficLogVO = new TrafficLogVO();
-                    trafficLogVO.setClientIp(request.getRemoteAddr());
-                    trafficLogVO.setUserAgent(request.getHeader("User-Agent"));
-                    trafficLogVO.setRequestUri(request.getRequestURI());
-                    trafficLogService.save(trafficLogVO);
-                }
-
-            } catch (Exception e) {
-                log.error("Traffic logging failed: " + e.getMessage(), e);
+        try {
+            if(!ip.equals("0:0:0:0:0:0:0:1") && !ip.equals("127.0.0.1")){
+                TrafficLogVO trafficLogVO = new TrafficLogVO();
+                trafficLogVO.setClientIp(request.getRemoteAddr());
+                trafficLogVO.setUserAgent(request.getHeader("User-Agent"));
+                trafficLogVO.setRequestUri(request.getRequestURI());
+                trafficLogService.save(trafficLogVO);
             }
 
-            return true;
+        } catch (Exception e) {
+            log.error("Traffic logging failed: " + e.getMessage(), e);
+        }
+
+        return true;
 
     }
 }
