@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mbtiScores[optionId]++;
 
         if((currentQuestionIndex/petbtiQuestions.length)*100 <= 2) {
-            progressbar.style.width = "2%";
+            progressbar.style.width = "4%";
         } else {
             progressbar.style.width = `${(currentQuestionIndex/petbtiQuestions.length)*100}%`;
         }
@@ -71,7 +71,10 @@ document.addEventListener("DOMContentLoaded", function () {
         mbtiType += mbtiScores["J"] >= mbtiScores["P"] ? "J" : "P";
 
         sessionStorage.setItem("petMbti", mbtiType);
-        updatePetMbti(mbtiType, sessionStorage.getItem("pSeq"));
+
+        if(sessionStorage.getItem("pSeq")!=null) {
+            updatePetMbti(mbtiType, sessionStorage.getItem("pSeq"));
+        }
 
         window.location.href = "/petbti/result";
     }

@@ -12,7 +12,6 @@
         <img class="petbti-result-img"/>
         <p class="petbti-result-tag"></p>
         <div class="petbti-result-explanation">
-            <strong></strong> 성향을 가진 <b></b>은<br/>
         </div>
     </div>
 
