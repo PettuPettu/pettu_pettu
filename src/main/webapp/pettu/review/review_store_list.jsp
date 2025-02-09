@@ -52,13 +52,25 @@
                 <div class="dropdown">
                     <button class="dropdown-button" onclick="toggleDropdown(event)">지역 검색</button>
                     <div class="dropdown-content" id="location-select-div">
-                        <label><input type="checkbox" class="locationType" value="1" onchange="handleCheckboxChange(event)"> 서울특별시</label>
+                        <label><input type="checkbox" class="locationType" value="1" onchange="handleCheckboxChange(event)"> 서울</label>
+                        <label><input type="checkbox" class="locationType" value="2" onchange="handleCheckboxChange(event)"> 인천</label>
+                        <label><input type="checkbox" class="locationType" value="3" onchange="handleCheckboxChange(event)"> 대전</label>
+                        <label><input type="checkbox" class="locationType" value="4" onchange="handleCheckboxChange(event)"> 대구</label>
+                        <label><input type="checkbox" class="locationType" value="5" onchange="handleCheckboxChange(event)"> 광주</label>
+                        <label><input type="checkbox" class="locationType" value="6" onchange="handleCheckboxChange(event)"> 부산</label>
+                        <label><input type="checkbox" class="locationType" value="7" onchange="handleCheckboxChange(event)"> 울산</label>
+                        <label><input type="checkbox" class="locationType" value="8" onchange="handleCheckboxChange(event)"> 세종특별자치시</label>
                         <label><input type="checkbox" class="locationType" value="31" onchange="handleCheckboxChange(event)"> 경기도</label>
-                        <label><input type="checkbox" class="locationType" value="2" onchange="handleCheckboxChange(event)"> 인천광역시</label>
+                        <label><input type="checkbox" class="locationType" value="32" onchange="handleCheckboxChange(event)"> 강원특별자치도</label>
+                        <label><input type="checkbox" class="locationType" value="33" onchange="handleCheckboxChange(event)"> 충청북도</label>
+                        <label><input type="checkbox" class="locationType" value="34" onchange="handleCheckboxChange(event)"> 충청남도</label>
                         <label><input type="checkbox" class="locationType" value="35" onchange="handleCheckboxChange(event)"> 경상북도</label>
-                        <label><input type="checkbox" class="locationType" value="32" onchange="handleCheckboxChange(event)"> 강원도</label>
-                        <label><input type="checkbox" class="locationType" value="39" onchange="handleCheckboxChange(event)"> 전북</label>
+                        <label><input type="checkbox" class="locationType" value="36" onchange="handleCheckboxChange(event)"> 경상남도</label>
+                        <label><input type="checkbox" class="locationType" value="37" onchange="handleCheckboxChange(event)"> 전북특별자치도</label>
+                        <label><input type="checkbox" class="locationType" value="38" onchange="handleCheckboxChange(event)"> 전라남도</label>
+                        <label><input type="checkbox" class="locationType" value="39" onchange="handleCheckboxChange(event)"> 제주도</label>
                     </div>
+
                 </div>
 
                 <div class="dropdown">
