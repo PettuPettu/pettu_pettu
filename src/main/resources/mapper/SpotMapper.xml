@@ -106,6 +106,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 </foreach>
             </if>
         </where>
+        ORDER BY REVIEW_TOTAL_CNT DESC
     </select>
 
     <select id="spotListSize" resultType="int">
@@ -147,6 +148,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                  JOIN category c ON s.CATEGORY_SEQ = c.CATEGORY_SEQ  -- Join with CATEGORY table
 
         WHERE page_spot_seq BETWEEN #{startSeq} AND #{endSeq}
+        ORDER BY REVIEW_TOTAL_CNT DESC
 
     </select>
 
@@ -162,6 +164,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 BETWEEN ADD_MONTHS(SYSDATE, -3) AND SYSDATE
         ORDER BY s.SPOT_OPEN_DATE DESC
     </select>
+
+    <insert id="insertSpot" parameterType="com.spring.pettu.spot.vo.SpotVO">
+        INSERT INTO spot (
+        spot_seq,
+        category_seq,
+        spot_name,
+        spot_location,
+        spot_sub_location,
+        spot_sigungu_code,
+        spot_area_code,
+        spot_picture,
+        spot_sub_picture,
+        spot_open_date,
+        spot_create_date,
+        spot_open_api_id
+        ) VALUES
+       (
+            spot_seq.NEXTVAL,
+            #{categorySeq},
+            #{spotName},
+            #{spotLocation},
+            #{spotSubLocation},
+            #{spotSigunguCode},
+            #{spotAreaCode},
+            #{spotPicture},
+            #{spotSubPicture},
+            #{spotOpenDate},
+            SYSDATE,
+            #{spotOpenApiId}
+            )
+    </insert>
 
 
 </mapper>
