@@ -48,5 +48,20 @@ public class SpotServiceImpl implements SpotService {
         return spotList;
     }
 
+    @Override
+    // SpotVO 리스트를 받아서 DB에 삽입
+    public int saveSpotList(List<SpotVO> spotList) {
+        System.out.println("saveSpotList >>>");
+
+        int result = 0;
+
+        // 리스트의 각 SpotVO 객체에 대해 insert 쿼리를 호출
+        for (SpotVO spot : spotList) {
+            System.out.println("저장 : >>> "+spot.getSpotName());
+            result += spotMapper.insertSpot(spot);  // 삽입 결과를 누적
+        }
+
+        return result;  // 삽입된 데이터의 개수 반환
+    }
 
 }

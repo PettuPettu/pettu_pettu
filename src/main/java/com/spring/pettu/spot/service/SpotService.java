@@ -15,4 +15,6 @@ public interface SpotService {
     List<SpotVO> svcSelectSpotListBySearchType(SearchSpotType searchSpotType);
 
     List<SpotVO> svcSpotListByPaging(int startSeq, int endSeq);
+
+    int saveSpotList(List<SpotVO> spotList);
 }

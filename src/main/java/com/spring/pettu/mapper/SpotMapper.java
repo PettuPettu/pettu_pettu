@@ -30,5 +30,7 @@ public interface SpotMapper {
 
     // 최근 개업한(오늘 날짜로 부터 3개월 전까지) Spot
     List<MainVO> getRecentlyOpenedSpots();
+
+    int insertSpot(SpotVO spotVO);
 }
 
