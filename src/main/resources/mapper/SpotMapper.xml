@@ -151,7 +151,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
 
     <select id="getRecentlyOpenedSpots" resultType="com.spring.pettu.main.vo.MainVO">
-        SELECT s.SPOT_SEQ, s.SPOT_PICTURE, c.CATEGORY_NAME, s.SPOT_NAME, s.SPOT_LOCATION, s.SPOT_OPEN_DATE, s.SPOT_TOTAL_AVG_SCORE
+        SELECT s.SPOT_SEQ, s.SPOT_PICTURE, c.CATEGORY_NAME, s.SPOT_NAME, s.SPOT_LOCATION,s.SPOT_OPEN_DATE,
+               (SELECT
+                    ROUND(AVG(r.review_score), 2)
+                FROM review r
+                WHERE r.spot_seq = s.spot_seq) AS SPOT_TOTAL_AVG_SCORE
         FROM spot s, category c
         WHERE (c.category_seq = s.category_seq) and
             s.SPOT_OPEN_DATE
