@@ -179,7 +179,7 @@ function successDivOfTop3API(data){
 
             var slideCard = $('<div class="slide-card card-flex"></div>');
 
-            var imgSrc = item.spotPicture || '/assets/layout/default.jpg';
+            var imgSrc = item.spotPicture || '/assets/layout/logo.svg';
             slideCard.append('<div class="top-img-contents"><img src="' + imgSrc + '" alt="카드 이미지" ></div>');
 
             // 정보

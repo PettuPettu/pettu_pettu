@@ -116,7 +116,7 @@
 
                 <div class="main-slide-card" data-store-id="${spot.spotSeq}">
                     <!-- 이미지가 null일 경우 기본 이미지로 대체 -->
-                    <img src="${spot.spotPicture != null && spot.spotPicture != '' ? spot.spotPicture : '/assets/layout/github.svg'}" alt="${spot.spotName != null ? spot.spotName : '정보 없음'} 이미지">
+                    <img src="${spot.spotPicture != null && spot.spotPicture != '' ? spot.spotPicture : '/assets/layout/logo.svg'}" alt="${spot.spotName != null ? spot.spotName : '정보 없음'} 이미지">
 
                     <div class="main-slide-card-desc">
                         <div class="spot-card-category"><span>#${spot.categoryName}</span></div>
