@@ -305,12 +305,15 @@
     font-family: Arial, sans-serif;
     max-width: 600px; /* 최대 너비 설정 */
     margin: 0 auto; /* 가운데 정렬 */
-    padding: 20px;
+    padding: 10px;
     background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     overflow: hidden; /* 넘치는 내용 숨기기 */
     word-wrap: break-word; /* 긴 단어가 있을 경우 줄 바꿈 처리 */
+}
+.top-img-contents{
+    margin-right: 15px;
 }
 
 /* top1 (카테고리 태그, 오른쪽에 붙이기) */

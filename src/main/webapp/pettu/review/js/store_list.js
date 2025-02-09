@@ -137,7 +137,7 @@ function renderSpotCard(spot,sectionCounter) {
     var cardHtml = `
        <div class="main-slide-card" data-store-id="${spot.spotSeq}">
         <!-- 이미지가 null일 경우 기본 이미지로 대체 -->
-        <img src="${spot.spotPicture != null && spot.spotPicture != '' ? spot.spotPicture : '/assets/layout/github.svg'}" alt="${spot.spotName} 이미지">
+        <img src="${spot.spotPicture != null && spot.spotPicture != '' ? spot.spotPicture : '/assets/layout/logo.svg'}" alt="${spot.spotName} 이미지">
         
         <div class="main-slide-card-desc">
             <div class="spot-card-category"><span>#${spot.categoryName}</span></div>
@@ -197,7 +197,7 @@ function successDivOfTop3API(data){
             infoContents.append('<div class="top2"><div class="spot-name">' + spotName + '</div>');
             infoContents.append('<div class="spot-location">' + spotLocation + '</div>');
             infoContents.append('<div class="avg-score">별점 ' + avgScore + '점</div>');
-            infoContents.append('<div class="review-info"><strong>총 리뷰 수</strong><br> 이번달 ' + reviewMonthly + '개 / 총 ' + reviewTotal + '개</div></div>');
+            infoContents.append('<div class="review-info"><strong>리뷰 : </strong> 저번달 ' + reviewMonthly + '개 / 총 ' + reviewTotal + '개</div></div>');
 
             slideCard.append(infoContents);
 
@@ -297,8 +297,6 @@ function findSpotName(){
         const categoryText = '검색어';
         if (isTagExists(categoryText)) {
             removeTag(categoryText);
-        } else {
-            alert("검색어가 존재 하지 않습니다.");
         }
 
         if (inputText) {
