@@ -1,7 +1,7 @@
 # 🐾 Pettu Pettu
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/12345678/your-logo-image-url.png" alt="Pettu Pettu Logo" width="200"/>
+ ![Image](https://github.com/user-attachments/assets/07b049f5-497e-47b9-88fc-83ef3f4b1b7c)
 </p>
 
 <p align="center">
