@@ -1,7 +1,7 @@
 # 🐾 Pettu Pettu
 
 <p align="center">
- ![Image](https://github.com/user-attachments/assets/07b049f5-497e-47b9-88fc-83ef3f4b1b7c)
+  <img src="https://github.com/user-attachments/assets/07b049f5-497e-47b9-88fc-83ef3f4b1b7c" alt="Image">
 </p>
 
 <p align="center">
