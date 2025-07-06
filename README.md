@@ -1,20 +1,46 @@
 # 🐾 Pettu Pettu
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/07b049f5-497e-47b9-88fc-83ef3f4b1b7c" alt="Image">
+  <img src="https://github.com/user-attachments/assets/620e1850-f412-41d6-8d45-a8855cd01fb2" alt="preview" style="height: 300px; width: auto;">
 </p>
 
 <p align="center">
   <strong>반려동물과 함께하는 즐거운 라이프스타일을 위한 모든 것</strong>
 </p>
 
-<br>
+<br />
 
 ## 📝 프로젝트 개요
 
-**Pettu Pettu**는 반려동물과 함께하는 삶을 더욱 풍요롭게 만들기 위한 웹 애플리케이션입니다. 반려동물 동반 가능 장소 추천부터 실시간 핫딜 정보, 사용자들의 생생한 리뷰, 그리고 재미로 보는 반려동물 성향 테스트(PETBTI)까지 다양한 기능을 제공하여 반려인들에게 유용한 정보와 즐거움을 선사합니다.
+**Pettu Pettu**는 효율적인 반려 생활에 필요한 정보를 제공하는 웹 서비스 개발 프로젝트입니다.
 
-<br>
+### 개발기간
+- 2025/01/27 ~ 2025/02/07 (12일간 진행)
+
+### 주요 기능
+- 반려동물 용품의 가격 변동을 확인할 수 있습니다.
+- 반려동물 동반이 가능한 카페, 음식점, 편의시설 정보를 한 눈에 확인할 수 있습니다.
+- 펫BTI(반려동물 성향 분석)을 할 수 있습니다.
+
+<br />
+
+### 📑 [프로젝트 발표 자료 보러가기](https://www.canva.com/design/DAGeGGjP8Ok/PVx-5EM_GbgjBqNnKBBSCA/view?utm_content=DAGeGGjP8Ok&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h6a03433963#1)
+
+<br />
+
+## 👥 팀원 소개
+| **이효경** | **조정하** | **최성관** | **최영범** |
+| --- | --- | --- | --- |
+| <img src="https://github.com/user-attachments/assets/9d35f2a3-7005-4e07-aa58-5bb6fb21b54b" width="150" height="150" class="jop-noMdConv"> | <img src="https://github.com/user-attachments/assets/5bec9175-ed74-415a-9714-8d73e0ecd8b2" width="150" height="150" class="jop-noMdConv"> | <img src="https://github.com/user-attachments/assets/61a67500-59a4-46df-9250-def6158b75fa" width="150" height="150" class="jop-noMdConv"> | <img src="https://github.com/user-attachments/assets/d194ac35-53a0-4613-ae3e-e671982e737d" width="150" height="150" class="jop-noMdConv"> |
+| [이효경 GitHub](https://github.com/HyoKyoungLee) | [조정하 GitHub](https://github.com/JungHaCho) | [최성관 GitHub](https://github.com/sk-choi) | [최영범 GitHub](https://github.com/YeongBee) |
+| **펫BTI 및 메인페이지** 구현 <br/> UI/UX 담당 | **시설(카페/음식점/편의시설 정보)** 구현 <br/>일정 및 문서 담당  | **핫딜 및 어드민**  구현<br/>Git 담당 | **로그인, 회원가입, 마이페이지 구현** <br /> DB 및 서버 담당|
+
+### 협업 방식
+- 모든 팀원이 프론트엔드와 백엔드를 구분하지 않고, 본인이 맡은 `기능 단위로 풀스택 개발`을 진행했습니다.
+- UI 설계와 ERD 설계도 각자의 기능에 맞게 개별적으로 수행했습니다.
+- 서비스 기획은 팀 전체가 논의하고 협업을 통해 결정했습니다.
+
+<br />
 
 ## 🛠️ 기술 스택
 
@@ -45,7 +71,7 @@
   <img src="https://img.shields.io/badge/Apache%20HttpClient-5A9934?style=for-the-badge&logo=apache&logoColor=white" alt="Apache HttpClient"/>
 </p>
 
-<br>
+<br />
 
 ## 📂 프로젝트 구조
 
@@ -76,7 +102,7 @@
 └── ...
 ```
 
-<br>
+<br />
 
 ## 🚀 설치 및 실행 방법
 
@@ -102,11 +128,7 @@
 4.  **WAS (Tomcat 등) 배포**
     - 생성된 `target/sdemo.war` 파일을 사용 중인 WAS에 배포하여 실행합니다.
 
-<br>
-
-
-
-<br>
+<br />
 
 ## 🗺️ API 엔드포인트 (주요 기능)
 
@@ -137,5 +159,5 @@
 | 장소 관리 | `GET` | `/admin/places` | 장소 정보 관리 |
 | 핫딜 관리 | `GET` | `/admin/hotdeals` | 핫딜 정보 관리 |
 
-<br>
+<br />
 
